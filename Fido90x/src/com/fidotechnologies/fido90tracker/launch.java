@@ -1,12 +1,10 @@
 package com.fidotechnologies.fido90tracker;
 
-import com.fidotechnologies.fido90tracker.DBHelper;
 
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -17,6 +15,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
 
 
+
 public class launch extends Activity {
 	
 	
@@ -24,7 +23,7 @@ public class launch extends Activity {
 	protected Cursor cursor;
 	protected ListAdapter adapter;
 	
-	String [] mString;
+	
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +37,7 @@ public class launch extends Activity {
     			cursor, 
     			new String[] {"name","program"}, 
     			new int[] {R.id.name,R.id.programname});
+        ;
     	}
     
     
@@ -48,10 +48,15 @@ public void programSelect (View view)
 	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	builder.setTitle("Select Program");
 	builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+		
                 public void onClick(DialogInterface dialog,
-                        int item) {
+                        int position) {
                 Toast.makeText(getBaseContext(), "You selected: ",Toast.LENGTH_LONG).show();
+                Cursor cursor = (Cursor) adapter.getItem(position);
+                Intent in = new Intent(launch.this, programlist.class);
+                in.putExtra("PROGRAM_NAME", cursor.getString(cursor.getColumnIndex("name")));
                 
+				startActivity(in); 
                 dialog.dismiss();
         }
 });
