@@ -37,7 +37,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				db.execSQL(s);
 			}
 		} catch (Throwable t) {
-			Toast.makeText(context, t.toString(), 50000).show();
+			Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show();
 		}
 	}
 	// on upgrade - deleting existing tables and rebuilding - I need to look more into this are of SQLLITE

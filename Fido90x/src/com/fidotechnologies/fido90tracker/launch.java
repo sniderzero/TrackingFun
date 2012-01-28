@@ -1,34 +1,62 @@
 package com.fidotechnologies.fido90tracker;
 
+import com.fidotechnologies.fido90tracker.DBHelper;
+
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ListAdapter;
+import android.widget.SimpleCursorAdapter;
+import android.widget.Toast;
+
 
 public class launch extends Activity {
+	
+	
+	protected SQLiteDatabase db;
+	protected Cursor cursor;
+	protected ListAdapter adapter;
+	
+	String [] mString;
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        }
+        db = (new DBHelper(this)).getWritableDatabase();
+        cursor = db.rawQuery("SELECT _id, name, program FROM programs", null);
+        adapter = new SimpleCursorAdapter(
+    			this, 
+    			R.layout.row, 
+    			cursor, 
+    			new String[] {"name","program"}, 
+    			new int[] {R.id.name,R.id.programname});
+    	}
     
-public void programSelect (View v)
+    
+	
+public void programSelect (View view)
 {
-	final CharSequence[] items = {"Classic","Cardio", "Doubles"};
-
+	
 	AlertDialog.Builder builder = new AlertDialog.Builder(this);
 	builder.setTitle("Select Program");
-	builder.setItems(items, new DialogInterface.OnClickListener() {
-	    public void onClick(DialogInterface dialog, int item) {
-	       // Toast.makeText(getApplicationContext(), items[item], Toast.LENGTH_SHORT).show();
-	       // Intent in = new Intent(jitapp.this, webview.class);
-	      //  in.putExtra(bar, items[item]);
-			//startActivity(in);
-	    }});
+	builder.setAdapter(adapter, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog,
+                        int item) {
+                Toast.makeText(getBaseContext(), "You selected: ",Toast.LENGTH_LONG).show();
+                
+                dialog.dismiss();
+        }
+});
+	
 	AlertDialog alert = builder.create();
-	alert.show();
+	alert.show(); 
 }
 }
