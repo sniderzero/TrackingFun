@@ -11,13 +11,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 
 
-public class programlist extends ListActivity {
+public class exerciselist extends ListActivity {
 	
 	
 	protected SQLiteDatabase db;
 	protected Cursor cursor;
 	protected ListAdapter adapter;
-	protected String programID;
+	protected String dayID;
 	@Override
 	// on open 
     public void onCreate(Bundle savedInstanceState) {
@@ -26,23 +26,23 @@ public class programlist extends ListActivity {
     	//open db
         db = (new DBHelper(this)).getWritableDatabase();
     	//grab variable passed from previous activity
-        programID = getIntent().getStringExtra("PROGRAM_NAME");
+        dayID = getIntent().getStringExtra("PROGRAM_DAY");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, day, track FROM wodays WHERE track = " + "'" + programID +"'", null);
+    	cursor = db.rawQuery("SELECT _id, day, name FROM nintyexer WHERE day = " + "'" + dayID +"'", null);
     	// set ListView to results
     	adapter = new SimpleCursorAdapter(
 				this, 
 				R.layout.row, 
 				cursor, 
-				new String[] {"day", "track"}, 
+				new String[] {"name", "day"}, 
 				new int[] {R.id.name, R.id.programname});
 		setListAdapter(adapter);
     }
 	//this is what we do when we select an item from our new list
     public void onListItemClick(ListView parent, View view, int position, long id) {
-    	Intent intent = new Intent(this, exerciselist.class);
+    	Intent intent = new Intent(this, detailview.class);
     	Cursor cursor = (Cursor) adapter.getItem(position);
-    	intent.putExtra("PROGRAM_DAY", cursor.getString(cursor.getColumnIndex("day")));
+    	intent.putExtra("programDAY", cursor.getString(cursor.getColumnIndex("day")));
     	startActivity(intent);
     }
 }

@@ -13,6 +13,15 @@ CREATE TABLE IF NOT EXISTS programs (
 	name VARCHAR(50),
 	program VARCHAR(50))
 </statement>
+<statement>
+CREATE TABLE IF NOT EXISTS nintyexer (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	day VARCHAR(50),
+	name VARCHAR(50),
+	type VARCHAR(50),
+	exernum INTERGER,
+	bonus INTERGER)
+</statement>
 <statement>INSERT INTO programs VALUES(1,'Classic','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(2,'Lean','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(3,'Doubles','P90X : ')</statement>
@@ -289,4 +298,28 @@ CREATE TABLE IF NOT EXISTS programs (
 <statement>INSERT INTO wodays VALUES(271,'Doubles','Core Synergistics',13,89)</statement>
 <statement>INSERT INTO wodays VALUES(272,'Doubles','Yoga X',13,90)</statement>
 <statement>INSERT INTO wodays VALUES(273,'Doubles','Rest or X Stretch',13,91)</statement>
+<statement>INSERT INTO nintyexer VALUES(1,'Chest and Back/Ab Ripper X','Standard Push-Ups',1,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(2,'Chest and Back/Ab Ripper X','Wide Front Pull-Ups',2,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(3,'Chest and Back/Ab Ripper X','Military Push-Ups',3,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(4,'Chest and Back/Ab Ripper X','Reverse Grip Chin-Ups',4,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(5,'Chest and Back/Ab Ripper X','Wide Fly Push-Ups',5,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(6,'Chest and Back/Ab Ripper X','Closed Grip Overhand Pull-Ups',6,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(7,'Chest and Back/Ab Ripper X','Decline Push-Ups',7,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(8,'Chest and Back/Ab Ripper X','Heavy Pants',8,'Weights',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(9,'Chest and Back/Ab Ripper X','Diamond Push-Ups',9,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(10,'Chest and Back/Ab Ripper X','Lawnmowers',10,'Weights',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(11,'Chest and Back/Ab Ripper X','Dive-Bomber Push-Ups',11,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(12,'Chest and Back/Ab Ripper X','Back Flys',12,'Weights',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(13,'Chest and Back/Ab Ripper X','Standard Push-Ups',13,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(14,'Chest and Back/Ab Ripper X','Wide Front Pull-Ups',14,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(15,'Chest and Back/Ab Ripper X','Military Push-Ups',15,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(16,'Chest and Back/Ab Ripper X','Reverse Grip Chin-Ups',16,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(17,'Chest and Back/Ab Ripper X','Wide Fly Push-Ups',17,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(18,'Chest and Back/Ab Ripper X','Closed Grip Overhand Pull-Ups',18,'Pullups',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(19,'Chest and Back/Ab Ripper X','Decline Push-Ups',19,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(20,'Chest and Back/Ab Ripper X','Heavy Pants',20,'Weights',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(21,'Chest and Back/Ab Ripper X','Diamond Push-Ups',21,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(22,'Chest and Back/Ab Ripper X','Lawnmowers',22,'Weights',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(23,'Chest and Back/Ab Ripper X','Dive-Bomber Push-Ups',23,'Reps',0)</statement>
+<statement>INSERT INTO nintyexer VALUES(24,'Chest and Back/Ab Ripper X','Back Flys',24,'Weights',0)</statement>
 </sql>
