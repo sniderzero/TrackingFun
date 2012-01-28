@@ -10,11 +10,12 @@
         android:layout_height="wrap_content"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <Button
         android:id="@+id/btnPrgm"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:onClick="programSelect"
         android:text="Select Program" />
 
     <Button
