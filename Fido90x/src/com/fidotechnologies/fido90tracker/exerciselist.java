@@ -18,6 +18,7 @@ public class exerciselist extends ListActivity {
 	protected Cursor cursor;
 	protected ListAdapter adapter;
 	protected String dayID;
+	protected Integer curPos;
 	@Override
 	// on open 
     public void onCreate(Bundle savedInstanceState) {
@@ -37,12 +38,15 @@ public class exerciselist extends ListActivity {
 				new String[] {"name", "day"}, 
 				new int[] {R.id.name, R.id.programname});
 		setListAdapter(adapter);
+		db.close();
     }
 	//this is what we do when we select an item from our new list
     public void onListItemClick(ListView parent, View view, int position, long id) {
     	Intent intent = new Intent(this, detailview.class);
     	Cursor cursor = (Cursor) adapter.getItem(position);
-    	intent.putExtra("programDAY", cursor.getString(cursor.getColumnIndex("day")));
+    	curPos = cursor.getPosition();
+    	intent.putExtra("int", curPos);
+    	intent.putExtra("PROGRAM_DAY", dayID);
     	startActivity(intent);
     }
 }

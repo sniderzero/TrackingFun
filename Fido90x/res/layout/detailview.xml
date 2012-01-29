@@ -18,18 +18,20 @@
         android:layout_height="wrap_content" >
 
         <ImageButton
-            android:id="@+id/imgNext"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:src="@drawable/ic_launcher" />
-
-        <ImageButton
             android:id="@+id/imgPrev"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:src="@drawable/ic_launcher" />
+            android:src="@drawable/ic_launcher" 
+            android:onClick="prevExercise"/>
+
+        <ImageButton
+            android:id="@+id/imgNext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="50"
+            android:src="@drawable/ic_launcher"
+            android:onClick="nextExercise" />
     </LinearLayout>
 
     <TextView
@@ -76,9 +78,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="Last Round"
+        android:text="Beat Your Last Results"
         android:textAppearance="?android:attr/textAppearanceMedium" />
-
+
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="fill_parent"
@@ -88,20 +90,51 @@
             android:id="@+id/txtReps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text" />
+            android:layout_weight="33"
+            android:text="Reps" />
 
         <TextView
             android:id="@+id/txtWeight"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Medium Text" />
-
+            android:layout_weight="33"
+            android:text="Weight" />
+
         <TextView
             android:id="@+id/txtTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
-            android:text="Medium Text" />
+            android:layout_weight="33"
+            android:text="Time" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/LinearLayout01"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="33" >
+
+        <TextView
+            android:id="@+id/txtRepsValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:text="Reps" />
+
+        <TextView
+            android:id="@+id/txtWeightValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:text="Weight" />
+
+        <TextView
+            android:id="@+id/txtTimeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="33"
+            android:text="Time" />
 
     </LinearLayout>
 
@@ -109,7 +142,7 @@
         android:id="@+id/btnHist"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Full History"
-        android:layout_gravity="bottom" />
+        android:layout_weight="33"
+        android:text="Full History" />
 
 </LinearLayout>

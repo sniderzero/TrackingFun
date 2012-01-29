@@ -43,6 +43,7 @@ public class programlist extends ListActivity {
     	Intent intent = new Intent(this, exerciselist.class);
     	Cursor cursor = (Cursor) adapter.getItem(position);
     	intent.putExtra("PROGRAM_DAY", cursor.getString(cursor.getColumnIndex("day")));
+    	db.close();
     	startActivity(intent);
     }
 }

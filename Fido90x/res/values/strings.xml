@@ -2,6 +2,20 @@
 <resources>
 
     <string name="hello">Hello World, launch!</string>
-    <string name="app_name">Fido90x</string>
-
+    <string name="app_name">Fido Fitness</string>
+    <string-array name="weight_values">
+		<item>5</item>
+		<item>10</item>
+		<item>15</item>
+	</string-array>
+	<string-array name="rep_values">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+	</string-array>
+	<string-array name="time_values">
+		<item>1</item>
+		<item>2</item>
+		<item>3</item>
+	</string-array>
 </resources>

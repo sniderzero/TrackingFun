@@ -22,6 +22,16 @@ CREATE TABLE IF NOT EXISTS nintyexer (
 	exernum INTERGER,
 	bonus INTERGER)
 </statement>
+<statement>
+CREATE TABLE IF NOT EXISTS userstats (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	username VARCHAR(50),
+	exername VARCHAR(50),
+	weight INTERGER,
+	reps INTERGER,
+	time INTERGER,
+	date INTERGER)
+</statement>
 <statement>INSERT INTO programs VALUES(1,'Classic','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(2,'Lean','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(3,'Doubles','P90X : ')</statement>

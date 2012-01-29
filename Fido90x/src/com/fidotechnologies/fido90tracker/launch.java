@@ -51,7 +51,7 @@ public void programSelect (View view)
 		
                 public void onClick(DialogInterface dialog,
                         int position) {
-                Toast.makeText(getBaseContext(), "You selected: ",Toast.LENGTH_LONG).show();
+                
                 Cursor cursor = (Cursor) adapter.getItem(position);
                 Intent in = new Intent(launch.this, programlist.class);
                 in.putExtra("PROGRAM_NAME", cursor.getString(cursor.getColumnIndex("name")));
