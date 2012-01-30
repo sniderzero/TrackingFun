@@ -1,5 +1,7 @@
 package com.fidotechnologies.fido90tracker;
 
+import java.util.Calendar;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
@@ -36,16 +38,22 @@ public class detailview extends Activity {
 	ArrayAdapter<CharSequence> adapter_time;
 	ArrayAdapter<CharSequence> adapter_rep;
 	ArrayAdapter<CharSequence> adapter_weight;
+	ImageButton btnNext;
+	ImageButton btnPrev;
+
 	
 	@Override
 	// on open 
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.detailview);
+        //declaring widgets
         txtName = (TextView) findViewById(R.id.txtName);
         txtRepsValue = (TextView) findViewById(R.id.txtRepsValue);
         txtWeightValue = (TextView) findViewById(R.id.txtWeightValue);
         txtTimeValue = (TextView) findViewById(R.id.txtTimeValue);
+    	btnNext = (ImageButton) findViewById(R.id.imgNext);
+    	btnPrev = (ImageButton) findViewById(R.id.imgPrev);
         //open db
         db = (new DBHelper(this)).getWritableDatabase();
     	//grab exercise name variable passed from previous activity
@@ -80,26 +88,23 @@ public class detailview extends Activity {
     public void nextExercise(View v)
     {
     	//TextView txtName = (TextView) findViewById(R.id.txtName);
-    	ImageButton btnNext = (ImageButton) findViewById(R.id.imgNext);
-    	ImageButton btnPrev = (ImageButton) findViewById(R.id.imgPrev);
-    	viewRefresh();
+    	
     	if (cursor.isLast() == false) {
         	//if the cursor is not at the end, go to the next one and change the value of txtName
     		saveRecord(v);
     		cursor.moveToNext();
     		fillUserStats();
+    		viewRefresh();
         	txtName.setText(cursor.getString(2));
         	btnPrev.setVisibility(View.VISIBLE);
         	
     	}
-    	else{
+    	else if (cursor.isLast() == true){
     	btnNext.setVisibility(View.INVISIBLE);
     	}
     }
   public void prevExercise(View v)
         {
-	  		ImageButton btnNext = (ImageButton) findViewById(R.id.imgNext);
-	  		ImageButton btnPrev = (ImageButton) findViewById(R.id.imgPrev);
         	TextView txtName = (TextView) findViewById(R.id.txtName);
         	if (cursor.isFirst() == false) {
             	//if the cursor is not at the end, go to the next one and change the value of txtName
@@ -113,17 +118,18 @@ public class detailview extends Activity {
         	}
     }		
   public void saveRecord(View v){
-	String spnWeightInt = spnWeight.getItemAtPosition((int) spnWeight.getSelectedItemId()).toString();
-	String spnRepsInt = spnReps.getItemAtPosition((int) spnReps.getSelectedItemId()).toString();
-	String spnTimeInt = spnTime.getItemAtPosition((int) spnTime.getSelectedItemId()).toString();
+		String spnWeightInt = spnWeight.getItemAtPosition((int) spnWeight.getSelectedItemId()).toString();
+		String spnRepsInt = spnReps.getItemAtPosition((int) spnReps.getSelectedItemId()).toString();
+		String spnTimeInt = spnTime.getItemAtPosition((int) spnTime.getSelectedItemId()).toString();
+		String strDate = getDate();
 	  
-	  db.execSQL("INSERT INTO userstats (exername,weight,reps,time) VALUES("+ "'" + cursor.getString(2) +"'" + "," 
-			+ "'" + spnWeightInt +"'"+","+"'" + spnRepsInt +"'"+","+"'" + spnTimeInt +"'"+ ")");
+	  db.execSQL("INSERT INTO userstats (exername,weight,reps,time,date) VALUES("+ "'" + cursor.getString(2) +"'" + "," 
+			+ "'" + spnWeightInt +"'"+","+"'" + spnRepsInt +"'"+","+"'" + spnTimeInt +"'"+","+ "'" + strDate +"'"+ ")");
 	
 	
   }
   public void fillUserStats(){
-  	//chanign the textviews to show the users last results
+  	//changing the textviews to show the users last results
   	cursor_user = db.rawQuery("SELECT _id, weight, exername, reps, time FROM userstats WHERE exername = " + "'" + cursor.getString(2) +"'", null);
   	
   	if (cursor_user.getCount()==0){
@@ -140,6 +146,27 @@ public class detailview extends Activity {
   }
   	public void viewRefresh(){
   		adapter_time.notifyDataSetInvalidated();
+  		adapter_weight.notifyDataSetInvalidated();
+  		adapter_rep.notifyDataSetInvalidated();
   		
+  	}
+  	public String getDate(){
+        // get the current date
+  		int intYear;
+  		int intMonth;
+  		int intDay;
+  		String fullDate;
+        Calendar c = Calendar.getInstance();
+        intYear = c.get(Calendar.YEAR);
+        intMonth = c.get(Calendar.MONTH) + 1;
+        intDay = c.get(Calendar.DAY_OF_MONTH); 
+        
+        Integer.toString(intYear);
+        Integer.toString(intMonth);
+        Integer.toString(intDay);
+        fullDate = intMonth + "/" + intDay + "/" + intYear;
+        
+        return fullDate;       
+        
   	}
   }

@@ -11,7 +11,7 @@
         android:gravity="center"
         android:text="Large Text"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -22,16 +22,22 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:src="@drawable/ic_launcher" 
-            android:onClick="prevExercise"/>
+            android:background="@null"
+            android:onClick="prevExercise"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:src="@drawable/arrowprev" />
 
         <ImageButton
             android:id="@+id/imgNext"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:src="@drawable/ic_launcher"
-            android:onClick="nextExercise" />
+            android:background="@null"
+            android:onClick="nextExercise"
+            android:paddingBottom="10dip"
+            android:paddingTop="10dip"
+            android:src="@drawable/arrownext" />
     </LinearLayout>
 
     <TextView

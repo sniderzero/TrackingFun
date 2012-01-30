@@ -6,9 +6,10 @@
 
     <TextView
         android:id="@+id/textView1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Large Text"
+        android:text="Fido Extreme Fitness Tracker"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <Button
@@ -19,21 +20,21 @@
         android:text="Select Program" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnPreferences"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Preferences" />
 
     <Button
-        android:id="@+id/button3"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Some Thing Else" />
-
-    <Button
-        android:id="@+id/button4"
+        android:id="@+id/btnMeasure"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Measurements" />
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Continue Program" />
 
 </LinearLayout>

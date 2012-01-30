@@ -28,13 +28,13 @@ public class programlist extends ListActivity {
     	//grab variable passed from previous activity
         programID = getIntent().getStringExtra("PROGRAM_NAME");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, day, track FROM wodays WHERE track = " + "'" + programID +"'", null);
+    	cursor = db.rawQuery("SELECT _id, day, track, daynumber FROM wodays WHERE track = " + "'" + programID +"'", null);
     	// set ListView to results
     	adapter = new SimpleCursorAdapter(
 				this, 
 				R.layout.row, 
 				cursor, 
-				new String[] {"day", "track"}, 
+				new String[] {"day", "daynumber"}, 
 				new int[] {R.id.name, R.id.programname});
 		setListAdapter(adapter);
     }

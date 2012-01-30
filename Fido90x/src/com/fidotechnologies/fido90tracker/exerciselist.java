@@ -35,8 +35,8 @@ public class exerciselist extends ListActivity {
 				this, 
 				R.layout.row, 
 				cursor, 
-				new String[] {"name", "day"}, 
-				new int[] {R.id.name, R.id.programname});
+				new String[] {"name"}, 
+				new int[] {R.id.name});
 		setListAdapter(adapter);
 		db.close();
     }
