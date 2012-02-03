@@ -5,25 +5,20 @@
     android:orientation="horizontal" >
 
     <TextView
-        android:id="@+id/lblDAY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DAY:"
-        android:paddingRight="4dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
-    <TextView
-        android:id="@+id/programname"
+        android:id="@+id/progname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:textColor="#000000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="3dp"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#000000" />
     
 </LinearLayout>

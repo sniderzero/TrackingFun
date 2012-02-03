@@ -94,7 +94,7 @@ public class detailview extends Activity {
     		saveRecord(v);
     		cursor.moveToNext();
     		fillUserStats();
-    		viewRefresh();
+    		//viewRefresh();
         	txtName.setText(cursor.getString(2));
         	btnPrev.setVisibility(View.VISIBLE);
         	

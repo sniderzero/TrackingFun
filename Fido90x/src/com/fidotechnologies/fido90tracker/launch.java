@@ -2,17 +2,19 @@ package com.fidotechnologies.fido90tracker;
 
 
 
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListAdapter;
 import android.widget.SimpleCursorAdapter;
-import android.widget.Toast;
+
 
 
 
@@ -29,14 +31,15 @@ public class launch extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        db = (new DBHelper(this)).getWritableDatabase();
+      db = (new DBHelper(this)).getWritableDatabase();
+
         cursor = db.rawQuery("SELECT _id, name, program FROM programs", null);
         adapter = new SimpleCursorAdapter(
     			this, 
-    			R.layout.row, 
+    			R.layout.progrow, 
     			cursor, 
     			new String[] {"name","program"}, 
-    			new int[] {R.id.name,R.id.programname});
+    			new int[] {R.id.name,R.id.progname });
         ;
     	}
     
@@ -55,13 +58,29 @@ public void programSelect (View view)
                 Cursor cursor = (Cursor) adapter.getItem(position);
                 Intent in = new Intent(launch.this, programlist.class);
                 in.putExtra("PROGRAM_NAME", cursor.getString(cursor.getColumnIndex("name")));
-                
+                //set current program preference
+                SharedPreferences appSettings = getSharedPreferences("AppPreferences", MODE_PRIVATE);  
+                SharedPreferences.Editor prefEditor = appSettings.edit();  
+                prefEditor.putString("trackType", cursor.getString(cursor.getColumnIndex("name")));  
+                prefEditor.commit();  
+                //start activity
 				startActivity(in); 
                 dialog.dismiss();
+                db.close();
         }
 });
 	
 	AlertDialog alert = builder.create();
 	alert.show(); 
 }
+
+public void preferenceSelect (View view)
+{
+
+                Intent in = new Intent(launch.this, AppPreferences.class);
+               
+                startActivity(in); 
+
+}
+
 }

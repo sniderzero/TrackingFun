@@ -24,6 +24,7 @@
         </activity>
         <activity android:name="exerciselist"></activity>
         <activity android:name="detailview"></activity>
+        <activity android:name="AppPreferences"></activity>
         
         
     </application>

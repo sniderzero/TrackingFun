@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+  
+  <EditTextPreference android:title="Your Name"
+                      android:key="username"
+                      android:summary="Please provide your username"/>
+  <ListPreference     android:title="Current Track"
+                      android:summary="Which Track are you current on?"
+                      android:key="trackType"
+                      android:entries="@array/listTrack"
+                      android:entryValues="@array/listTrack" />
+  <ListPreference     android:title="Equipment Type"
+                      android:summary="Are you using weights or bands?"
+                      android:key="equipmentType"
+                      android:defaultValue="1"
+                      android:entries="@array/listEquip"
+                      android:entryValues="@array/listEquip" />
+</PreferenceScreen>
