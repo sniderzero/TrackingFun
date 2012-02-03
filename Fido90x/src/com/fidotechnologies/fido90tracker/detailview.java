@@ -61,7 +61,7 @@ public class detailview extends Activity {
         //grab day name variable passed from pervious activity
         dayID = getIntent().getStringExtra("PROGRAM_DAY");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, day, name, type, exernum, bonus FROM nintyexer WHERE day = " + "'" + dayID +"'", null);
+        cursor = db.rawQuery("SELECT _id, day, name, exernum, type FROM p90Exercises WHERE day = " + "'" + dayID +"'", null);
     	cursor.moveToPosition(curPos);
     	//db.close();
     	// txtName Value based on previous selection criteria    	

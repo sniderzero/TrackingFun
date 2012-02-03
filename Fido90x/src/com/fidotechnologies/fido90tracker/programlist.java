@@ -58,7 +58,8 @@ public class programlist extends Activity {
 			type = cursor.getInt(5);
 			if(type == 2)
 				{
-					Intent intent = new Intent(programlist.this, exerciselist.class);
+				Toast.makeText(getBaseContext(), cursor.getString(2), 2000).show();	
+				Intent intent = new Intent(programlist.this, exerciselist.class);
 					//Cursor cursor2 = (Cursor) adapter.getItem(position);
 					intent.putExtra("PROGRAM_DAY", cursor.getString(2));
 					//db.close();
@@ -66,6 +67,8 @@ public class programlist extends Activity {
 				}
 				else { 
 					Toast.makeText(getBaseContext(), cursor.getString(5), 2000).show();
+					Intent intent = new Intent(programlist.this, StopWatch.class);
+					startActivity(intent);
 				 	}
 																								}
 

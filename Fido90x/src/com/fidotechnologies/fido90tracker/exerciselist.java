@@ -34,8 +34,8 @@ public class exerciselist extends Activity {
     	//grab variable passed from previous activity
         dayID = getIntent().getStringExtra("PROGRAM_DAY");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, day, name, exernum, type FROM p90exercises WHERE day = " + "'" + dayID +"'", null);
-    	db.close();
+    	cursor = db.rawQuery("SELECT _id, day, name, exernum, type FROM p90Exercises WHERE day = " + "'" + dayID +"'", null);
+    	//db.close();
     	// set ListView to results
     	adapter = new SimpleCursorAdapter(
 				this, 

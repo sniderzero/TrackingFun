@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
     <string name="hello">Hello World, launch!</string>
-    <string name="app_name">Fido Fitness</string>
+    <string name="app_name">UltiTracker 90</string>
+    <string name="chronometer_initial_format">Initial format:<xliff:g> id="initial-format">%</xliff:g> </string>
     <string-array name="weight_values">
 		<item>5</item>
 		<item>10</item>
