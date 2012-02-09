@@ -20,26 +20,33 @@ public class exerciselist extends Activity {
 	protected SQLiteDatabase db;
 	protected Cursor cursor;
 	protected ListAdapter adapter;
-	protected String dayID;
+	protected int dayID,hasRIP;
 	protected Integer curPos;
 	protected ListView lstExer;
+	protected int type;
 	@Override
 	// on open 
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.programlist);
+        setContentView(R.layout.exerciselist);
         lstExer = (ListView)findViewById(R.id.list);
         //open db
         db = (new DBHelper(this)).getWritableDatabase();
     	//grab variable passed from previous activity
-        dayID = getIntent().getStringExtra("PROGRAM_DAY");
+        dayID = getIntent().getIntExtra("PROGRAM_DAY", 0);
+        hasRIP = getIntent().getIntExtra("HAS_RIPPER", 1);
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, day, name, exernum, type FROM p90Exercises WHERE day = " + "'" + dayID +"'", null);
-    	//db.close();
+        if (hasRIP == 0){
+        	nohasRipper();
+        }
+        else{
+        	hasRipper();
+        }
+        //db.close();
     	// set ListView to results
     	adapter = new SimpleCursorAdapter(
 				this, 
-				R.layout.row, 
+				R.layout.exerrow, 
 				cursor, 
 				new String[] {"name"}, 
 				new int[] {R.id.name});
@@ -52,14 +59,25 @@ public class exerciselist extends Activity {
 						{
 						@Override
 						public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    	Intent intent = new Intent(exerciselist.this, detailview.class);
-    	Cursor cursor = (Cursor) adapter.getItem(position);
-    	curPos = cursor.getPosition();
-    	intent.putExtra("int", curPos);
-    	intent.putExtra("PROGRAM_DAY", dayID);
-    	startActivity(intent);
+								type = cursor.getInt(3);
+								Intent intent = new Intent(exerciselist.this, detailview.class);
+								Cursor cursor2 = (Cursor) adapter.getItem(position);
+								curPos = cursor2.getPosition();
+								intent.putExtra("int", curPos);
+								intent.putExtra("PROGRAM_DAY", dayID);
+								intent.putExtra("EXER_TYPE", type);
+								intent.putExtra("HAS_RIPPER", hasRIP);
+								startActivity(intent);
 						}
 							
 						});
+}
+public void nohasRipper(){
+	cursor = db.rawQuery("SELECT _id, dayID, name, type " +
+			"FROM p90Exercises WHERE dayID =" + "'" + dayID +"'", null);
+}
+public void hasRipper(){
+	cursor = db.rawQuery("SELECT _id, dayID, name, type " +
+			"FROM p90Exercises WHERE dayID =" + 12 + " OR dayID = "  + dayID , null);
 }
 }

@@ -1,34 +1,176 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:padding="4dip"
-   android:gravity="center_horizontal"
-   android:layout_width="fill_parent"
-   android:layout_height="fill_parent">
+<?xml version="1.0" encoding="utf-8"?>
+	<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
 
-    <Chronometer android:id="@+id/chronometer"
-       android:format="@string/chronometer_initial_format"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_weight="0"
-       android:paddingBottom="30dip"
-       android:paddingTop="30dip"
-       />
+			<LinearLayout
+			    android:id="@+id/linearLayout"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:orientation="vertical" >
 
-    <Button android:id="@+id/start"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Start">
-        <requestFocus />
-    </Button>
+				<TextView
+				    android:id="@+id/textName"
+				    android:layout_width="fill_parent"
+				    android:layout_height="wrap_content"
+				    android:gravity="center"
+				    android:text="Large Text"
+				    style="@style/buttonText"
+				     />
 
-    <Button android:id="@+id/stop"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Stop">
-    </Button>
+				<TextView
+				    android:id="@+id/timer"
+				    style="@style/timerText"
+				    android:layout_width="fill_parent"
+				    android:text="@string/timer" />
 
-    <Button android:id="@+id/reset"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:text="Reset">
-    </Button>
+				<LinearLayout 
+				android:orientation="horizontal"
+				android:layout_gravity="center_horizontal"
+				android:gravity="center"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="2dp"
+				android:id="@+id/buttonArea">
 
-</LinearLayout>
+					<Button
+					    android:id="@+id/startButton"
+					    style="@style/buttonText"
+					    android:layout_width="fill_parent"
+					    android:layout_marginLeft="5dp"
+					    android:onClick="startClick"
+					    android:text="@string/startText" >
+
+					</Button>
+
+					<Button
+					    android:id="@+id/resetButton"
+					    style="@style/buttonText"
+					    android:layout_width="fill_parent"
+					    android:layout_marginRight="5dp"
+					    android:onClick="resetClick"
+					    android:text="@string/resetText" >
+
+					</Button>
+	
+				</LinearLayout>
+
+				<LinearLayout
+				    android:layout_width="wrap_content"
+				    android:layout_height="wrap_content"
+				    android:layout_gravity="center_horizontal"
+				    android:orientation="vertical" >
+
+				    <Button
+				        android:id="@+id/stopButton"
+				        style="@style/buttonText"
+				        android:layout_width="fill_parent"
+				        android:layout_marginLeft="5dp"
+				        android:layout_marginRight="5dp"
+				        android:onClick="stopClick"
+				        android:text="@string/stopText" />
+
+				    <Button
+				        android:id="@+id/saveButton"
+				        style="@style/buttonText"
+				        android:layout_width="fill_parent"
+				        android:layout_marginLeft="5dp"
+				        android:layout_marginRight="5dp"
+				        android:onClick="saveClick"
+				        android:text="Save Results"
+				        android:visibility="invisible" />
+
+				    <ImageView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_gravity="center"
+				        android:layout_marginBottom="5dp"
+				        android:layout_marginTop="5dp"
+				        android:src="@drawable/hline" >
+				    </ImageView>
+
+				    <TextView
+				        android:id="@+id/lblLastRound"
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_gravity="center_horizontal"
+				        android:text="Beat Your Last Results"
+				        android:textAppearance="?android:attr/textAppearanceMedium"
+				        android:textSize="26dip" />
+
+				    <ImageView
+				        android:layout_width="wrap_content"
+				        android:layout_height="wrap_content"
+				        android:layout_marginBottom="5dp"
+				        android:layout_marginTop="5dp"
+				        android:layout_weight="50"
+				        android:src="@drawable/hline" />
+
+				    <LinearLayout
+				        android:id="@+id/linearLayout2"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content" >
+
+				        <TextView
+				            android:id="@+id/lblTime"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_weight="50"
+				            android:text="Time"
+				            android:textSize="22dip" />
+
+				        <TextView
+				            android:id="@+id/lblDate"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_gravity="right"
+				            android:layout_weight="50"
+				            android:text="Date"
+				            android:textSize="22dip" />
+				    </LinearLayout>
+
+				    <LinearLayout
+				        android:id="@+id/linearLayout2"
+				        android:layout_width="fill_parent"
+				        android:layout_height="wrap_content" >
+
+				        <TextView
+				            android:id="@+id/txtTime"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_weight="50"
+				            android:text=""
+				            android:textSize="22dip" />
+
+				        <TextView
+				            android:id="@+id/txtDate"
+				            android:layout_width="wrap_content"
+				            android:layout_height="wrap_content"
+				            android:layout_gravity="right"
+				            android:layout_weight="50"
+				            android:text=""
+				            android:textSize="22dip" />
+				    </LinearLayout>
+				</LinearLayout>
+
+				<LinearLayout
+				    android:id="@+id/linearLayout1"
+				    android:layout_width="fill_parent"
+				    android:layout_height="fill_parent"
+				    android:layout_weight="50" >
+
+				    <Button
+				        android:id="@+id/btnHistory"
+				        style="@style/buttonText"
+				        android:layout_width="fill_parent"
+				        android:layout_gravity="bottom"
+				        android:layout_marginLeft="2dp"
+				        android:layout_marginRight="2dp"
+				        android:layout_marginBottom="2dp"
+				        android:text="View Full History"
+				        android:onClick="clickHistory" />
+
+				</LinearLayout>
+
+			</LinearLayout>	
+	</RelativeLayout>

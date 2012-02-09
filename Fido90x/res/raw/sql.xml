@@ -3,11 +3,13 @@
 CREATE TABLE IF NOT EXISTS p90days (
 	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
 	track VARCHAR(50), 
-	dayname VARCHAR(50), 
+	dayname VARCHAR(50),
+	dayID INTERGER, 
 	weeknumber INTERGER, 
 	daynumber INTERGER,
 	type INTERGER,
-	date VARCHAR(50))
+	date VARCHAR(50),
+	hasRipper INTERGER)
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS results (
@@ -17,6 +19,8 @@ CREATE TABLE IF NOT EXISTS results (
 	weight INTERGER,
 	reps INTERGER,
 	band VARCHAR(50),
+	time VARCHAR(50),
+	pullup VARCHAR(50),
 	date VARCHAR(50),
 	notes VARCHAR(100))
 </statement>
@@ -35,11 +39,12 @@ CREATE TABLE IF NOT EXISTS programs (
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS p90Exercises (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	_id INTEGER PRIMARY KEY AUTOINCREMENT,
+	dayID INTEGER,
 	day VARCHAR(50),
 	name VARCHAR(50),
-	exernum INTERGER,
-	type INTERGER)
+	exernum INTEGER,
+	type INTEGER)
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS userstats (
@@ -51,484 +56,501 @@ CREATE TABLE IF NOT EXISTS userstats (
 	time INTERGER,
 	date INTERGER)
 </statement>
+<statement>
+CREATE TABLE IF NOT EXISTS p90dayKey (
+	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+	dayName VARCHAR(50),
+	dayID INTERGER)
+</statement>
 <statement>INSERT INTO programs VALUES(1,'Classic','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(2,'Lean','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(3,'Doubles','P90X : ')</statement>
-<statement>INSERT INTO p90days VALUES(1,'Classic','Chest/Back/Ab Ripper X',1,1,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(2,'Classic','Plyometrics',1,2,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(3,'Classic','Shoulders and Arms/Ab Ripper X',1,3,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(4,'Classic','Yoga X',1,4,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(5,'Classic','Legs/Back/Ab Ripper X',1,5,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(6,'Classic','Kenpo X',1,6,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(7,'Classic','Rest/X Stretch',1,7,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(8,'Classic','Chest/Back/Ab Ripper X',2,8,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(9,'Classic','Plyometrics',2,9,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(10,'Classic','Shoulders and Arms/Ab Ripper X',2,10,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(11,'Classic','Yoga X',2,11,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(12,'Classic','Legs/Back/Ab Ripper X',2,12,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(13,'Classic','Kenpo X',2,13,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(14,'Classic','Rest/X Stretch',2,14,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(15,'Classic','Chest/Back/Ab Ripper X',3,15,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(16,'Classic','Plyometrics',3,16,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(17,'Classic','Shoulders and Arms/Ab Ripper X',3,17,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(18,'Classic','Yoga X',3,18,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(19,'Classic','Legs/Back/Ab Ripper X',3,19,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(20,'Classic','Kenpo X',3,20,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(21,'Classic','Rest/X Stretch',3,21,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(22,'Classic','Yoga X',4,22,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(23,'Classic','Core Synergistics',4,23,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(24,'Classic','Kenpo X',4,24,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(25,'Classic','X Stretch',4,25,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(26,'Classic','Core Synergistics',4,26,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(27,'Classic','Yoga X',4,27,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(28,'Classic','Rest/X Stretch',5,28,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(29,'Classic','Chest/Shoulders/Triceps/Ab Ripper X',5,29,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(30,'Classic','Plyometrics',5,30,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(31,'Classic','Back/Biceps, Ab Ripper X',5,31,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(32,'Classic','Yoga X',5,32,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(33,'Classic','Legs/Back/Ab Ripper X',5,33,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(34,'Classic','Kenpo X',5,34,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(35,'Classic','Rest/X Stretch',5,35,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(36,'Classic','Chest/Shoulders/Triceps/Ab Ripper X',6,36,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(37,'Classic','Plyometrics',6,37,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(38,'Classic','Back/Biceps, Ab Ripper X',6,38,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(39,'Classic','Yoga X',6,39,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(40,'Classic','Legs/Back/Ab Ripper X',6,40,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(41,'Classic','Kenpo X',6,41,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(42,'Classic','Rest/X Stretch',6,42,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(43,'Classic','Chest/Shoulders/Triceps/Ab Ripper X',7,43,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(44,'Classic','Plyometrics',7,44,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(45,'Classic','Back/Biceps, Ab Ripper X',7,45,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(46,'Classic','Yoga X',7,46,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(47,'Classic','Legs/Back/Ab Ripper X',7,47,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(48,'Classic','Kenpo X',7,48,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(49,'Classic','Rest/X Stretch',7,49,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(50,'Classic','Yoga X',8,50,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(51,'Classic','Core Synergistics',8,51,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(52,'Classic','Kenpo X',8,52,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(53,'Classic','X Stretch',8,53,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(54,'Classic','Core Synergistics',8,54,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(55,'Classic','Yoga X',8,55,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(56,'Classic','Rest/X Stretch',8,56,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(57,'Classic','Chest/Back/Ab Ripper X',9,57,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(58,'Classic','Plyometrics',9,58,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(59,'Classic','Shoulders and Arms/Ab Ripper X',9,59,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(60,'Classic','Yoga X',9,60,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(61,'Classic','Legs/Back/Ab Ripper X',9,61,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(62,'Classic','Kenpo X',9,62,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(63,'Classic','Rest/X Stretch',9,63,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(64,'Classic','Chest/Shoulders/Triceps/Ab Ripper X',10,64,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(65,'Classic','Plyometrics',10,65,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(66,'Classic','Back/Biceps, Ab Ripper X',10,66,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(67,'Classic','Yoga X',10,67,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(68,'Classic','Legs/Back/Ab Ripper X',10,68,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(69,'Classic','Kenpo X',10,69,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(70,'Classic','Rest/X Stretch',10,70,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(71,'Classic','Chest/Back/Ab Ripper X',11,71,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(72,'Classic','Plyometrics',11,72,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(73,'Classic','Shoulders and Arms/Ab Ripper X',11,73,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(74,'Classic','Yoga X',11,74,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(75,'Classic','Legs/Back/Ab Ripper X',11,75,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(76,'Classic','Kenpo X',11,76,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(77,'Classic','Rest/X Stretch',11,77,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(78,'Classic','Chest/Shoulders/Triceps/Ab Ripper X',12,78,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(79,'Classic','Plyometrics',12,79,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(80,'Classic','Back/Biceps, Ab Ripper X',12,80,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(81,'Classic','Yoga X',12,81,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(82,'Classic','Legs/Back/Ab Ripper X',12,82,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(83,'Classic','Kenpo X',12,83,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(84,'Classic','Rest/X Stretch',12,84,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(85,'Classic','Yoga X',13,85,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(86,'Classic','Core Synergistics',13,86,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(87,'Classic','Kenpo X',13,87,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(88,'Classic','X Stretch',13,88,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(89,'Classic','Core Synergistics',13,89,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(90,'Classic','Yoga X',13,90,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(91,'Classic','Rest/X Stretch',13,91,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(92,'Lean','Core Synergistics',1,1,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(93,'Lean','Cardio X',1,2,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(94,'Lean','Shoulders/Arms/Ab Ripper X',1,3,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(95,'Lean','Yoga X',1,4,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(96,'Lean','Legs/Back/Ab Ripper X',1,5,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(97,'Lean','Kenpo X',1,6,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(98,'Lean','Rest/X Stretch',1,7,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(99,'Lean','Core Synergistics',2,8,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(100,'Lean','Cardio X',2,9,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(101,'Lean','Shoulders/Arms/Ab Ripper X',2,10,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(102,'Lean','Yoga X',2,11,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(103,'Lean','Legs/Back/Ab Ripper X',2,12,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(104,'Lean','Kenpo X',2,13,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(105,'Lean','Rest/X Stretch',2,14,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(106,'Lean','Core Synergistics',3,15,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(107,'Lean','Cardio X',3,16,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(108,'Lean','Shoulders/Arms/Ab Ripper X',3,17,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(109,'Lean','Yoga X',3,18,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(110,'Lean','Legs/Back/Ab Ripper X',3,19,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(111,'Lean','Kenpo X',3,20,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(112,'Lean','Rest/X Stretch',3,21,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(113,'Lean','Yoga X',4,22,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(114,'Lean','Core Synergistics',4,23,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(115,'Lean','Kenpo X',4,24,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(116,'Lean','X Stretch',4,25,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(117,'Lean','Cardio X',4,26,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(118,'Lean','Yoga X',4,27,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(119,'Lean','Rest/X Stretch',4,28,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(120,'Lean','Core Synergistics',5,29,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(121,'Lean','Cardio X',5,30,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(122,'Lean','Chest, Shoulders/Triceps/Ab Ripper X',5,31,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(123,'Lean','Yoga X',5,32,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(124,'Lean','Legs/Back/Ab Ripper X',5,33,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(125,'Lean','Kenpo X',5,34,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(126,'Lean','Rest/X Stretch',5,35,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(127,'Lean','Core Synergistics',6,36,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(128,'Lean','Cardio X',6,37,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(129,'Lean','Chest, Shoulders/Triceps/Ab Ripper X',6,38,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(130,'Lean','Yoga X',6,39,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(131,'Lean','Legs/Back/Ab Ripper X',6,40,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(132,'Lean','Kenpo X',6,41,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(133,'Lean','Rest/X Stretch',6,42,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(134,'Lean','Core Synergistics',7,43,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(135,'Lean','Cardio X',7,44,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(136,'Lean','Chest, Shoulders/Triceps/Ab Ripper X',7,45,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(137,'Lean','Yoga X',7,46,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(138,'Lean','Legs/Back/Ab Ripper X',7,47,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(139,'Lean','Kenpo X',7,48,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(140,'Lean','Rest/X Stretch',7,49,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(141,'Lean','Yoga X',8,50,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(142,'Lean','Core Synergistics',8,51,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(143,'Lean','Kenpo X',8,52,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(144,'Lean','X Stretch',8,53,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(145,'Lean','Cardio X',8,54,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(146,'Lean','Yoga X',8,55,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(147,'Lean','Rest/X Stretch',8,56,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(148,'Lean','Chest/Back, Ab Ripper X',9,57,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(149,'Lean','Cardio X',9,58,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(150,'Lean','Shoulders/Arms/Ab Ripper X',9,59,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(151,'Lean','Yoga X',9,60,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(152,'Lean','Core Synergistics',9,61,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(153,'Lean','Kenpo X',9,62,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(154,'Lean','Rest/X Stretch',9,63,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(155,'Lean','Chest, Shoulders/Triceps/Ab Ripper X',10,64,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(156,'Lean','Cardio X',10,65,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(157,'Lean','Back/Biceps, Ab Ripper X',10,66,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(158,'Lean','Yoga X',10,67,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(159,'Lean','Core Synergistics',10,68,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(160,'Lean','Kenpo X',10,69,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(161,'Lean','Rest/X Stretch',10,70,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(162,'Lean','Chest/Back, Ab Ripper X',11,71,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(163,'Lean','Cardio X',11,72,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(164,'Lean','Shoulders/Arms/Ab Ripper X',11,73,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(165,'Lean','Yoga X',11,74,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(166,'Lean','Core Synergistics',11,75,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(167,'Lean','Kenpo X',11,76,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(168,'Lean','Rest/X Stretch',11,77,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(169,'Lean','Chest, Shoulders/Triceps/Ab Ripper X',12,78,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(170,'Lean','Cardio X',12,79,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(171,'Lean','Back/Biceps, Ab Ripper X',12,80,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(172,'Lean','Yoga X',12,81,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(173,'Lean','Core Synergistics',12,82,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(174,'Lean','Kenpo X',12,83,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(175,'Lean','Rest/X Stretch',12,84,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(176,'Lean','Yoga X',13,85,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(177,'Lean','Core Synergistics',13,86,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(178,'Lean','Kenpo X',13,87,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(179,'Lean','X Stretch',13,88,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(180,'Lean','Cardio X',13,89,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(181,'Lean','Yoga X',13,90,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(182,'Lean','Rest/X Stretch',13,91,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(183,'Doubles','Chest/Back/Ab Ripper X',1,1,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(184,'Doubles','Plyometrics',1,2,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(185,'Doubles','Shoulders and Arms/Ab Ripper X',1,3,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(186,'Doubles','Yoga X',1,4,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(187,'Doubles','Legs/Back/Ab Ripper X',1,5,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(188,'Doubles','Kenpo X',1,6,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(189,'Doubles','Rest/X Stretch',1,7,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(190,'Doubles','Chest/Back/Ab Ripper X',2,8,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(191,'Doubles','Plyometrics',2,9,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(192,'Doubles','Shoulders and Arms/Ab Ripper X',2,10,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(193,'Doubles','Yoga X',2,11,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(194,'Doubles','Legs/Back/Ab Ripper X',2,12,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(195,'Doubles','Kenpo X',2,13,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(196,'Doubles','Rest/X Stretch',2,14,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(197,'Doubles','Chest/Back/Ab Ripper X',3,15,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(198,'Doubles','Plyometrics',3,16,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(199,'Doubles','Shoulders and Arms/Ab Ripper X',3,17,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(200,'Doubles','Yoga X',3,18,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(201,'Doubles','Legs/Back/Ab Ripper X',3,19,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(202,'Doubles','Kenpo X',3,20,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(203,'Doubles','Rest/X Stretch',3,21,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(204,'Doubles','Yoga X',4,22,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(205,'Doubles','Core Synergistics',4,23,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(206,'Doubles','Kenpo X',4,24,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(207,'Doubles','X Stretch',4,25,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(208,'Doubles','Core Synergistics',4,26,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(209,'Doubles','Yoga X',4,27,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(210,'Doubles','Rest/X Stretch',4,28,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(211,'Doubles','Cardio X',5,'29 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(212,'Doubles','Chest/Shoulders/Triceps/Ab Ripper X',5,'29 Part2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(213,'Doubles','Plyometrics',5,30,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(214,'Doubles','Cardio X',5,'31 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(215,'Doubles','Back/Biceps/Ab Ripper X',5,'31 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(216,'Doubles','Yoga X',5,32,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(217,'Doubles','Cardio X',5,'33 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(218,'Doubles','Legs/Back/Ab Ripper X',5,'33 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(219,'Doubles','Kenpo X',5,34,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(220,'Doubles','Rest/X Stretch',5,35,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(221,'Doubles','Cardio X',6,'36 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(222,'Doubles','Chest/Shoulders/Triceps/Ab Ripper X',6,'36 Part2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(223,'Doubles','Plyometrics',6,37,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(224,'Doubles','Cardio X',6,'38 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(225,'Doubles','Back/Biceps/Ab Ripper X',6,'38 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(226,'Doubles','Yoga X',6,39,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(227,'Doubles','Cardio X',6,'40 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(228,'Doubles','Legs/Back/Ab Ripper X',6,'40 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(229,'Doubles','Kenpo X',6,41,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(230,'Doubles','Rest/X Stretch',6,42,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(231,'Doubles','Cardio X',7,'43 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(232,'Doubles','Chest/Shoulders/Triceps/Ab Ripper X',7,'43 Part2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(233,'Doubles','Plyometrics',7,44,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(234,'Doubles','Cardio X',7,'45 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(235,'Doubles','Back/Biceps/Ab Ripper X',7,'45 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(236,'Doubles','Yoga X',7,46,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(237,'Doubles','Cardio X',7,'47 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(238,'Doubles','Legs/Back/Ab Ripper X',7,'47 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(239,'Doubles','Kenpo X',7,48,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(240,'Doubles','Rest/X Stretch',7,49,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(241,'Doubles','Yoga X',8,50,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(242,'Doubles','Core Synergistics',8,51,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(243,'Doubles','Kenpo X',8,52,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(244,'Doubles','X Stretch',8,53,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(245,'Doubles','Core Synergistics',8,54,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(246,'Doubles','Yoga X',8,55,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(247,'Doubles','Rest/X Stretch',8,56,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(248,'Doubles','Cardio X',9,'57 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(249,'Doubles','Chest/Back/Ab Ripper X',9,'57 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(250,'Doubles','Cardio X',9,'58 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(251,'Doubles','Plyometrics',9,'58 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(252,'Doubles','Shoulders and Arms/Ab Ripper X',9,59,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(253,'Doubles','Cardio X',9,'60 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(254,'Doubles','Yoga X',9,'60 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(255,'Doubles','Cardio X',9,'61 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(256,'Doubles','Legs/Back/Ab Ripper X',9,'61 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(257,'Doubles','Kenpo X',9,62,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(258,'Doubles','Rest/X Stretch',9,63,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(259,'Doubles','Cardio X',10,'64 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(260,'Doubles','Chest/Shoulders/Triceps/Ab Ripper X',10,'64 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(261,'Doubles','Cardio X',10,'65 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(262,'Doubles','Plyometrics',10,'65 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(263,'Doubles','Back/Biceps/Ab Ripper X',10,66,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(264,'Doubles','Cardio X',10,'67 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(265,'Doubles','Yoga X',10,'67 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(266,'Doubles','Cardio X',10,'68 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(267,'Doubles','Legs/Back/Ab Ripper X',10,'68 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(268,'Doubles','Kenpo X',10,69,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(269,'Doubles','Rest/X Stretch',10,70,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(270,'Doubles','Cardio X',11,'71 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(271,'Doubles','Chest/Back/Ab Ripper X',11,'71 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(272,'Doubles','Cardio X',11,'72 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(273,'Doubles','Plyometrics',11,'72 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(274,'Doubles','Shoulders and Arms/Ab Ripper X',11,73,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(275,'Doubles','Cardio X',11,'74 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(276,'Doubles','Yoga X',11,'74 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(277,'Doubles','Cardio X',11,'75 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(278,'Doubles','Legs/Back/Ab Ripper X',11,'75 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(279,'Doubles','Kenpo X',11,76,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(280,'Doubles','Rest/X Stretch',11,77,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(281,'Doubles','Cardio X',12,'78 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(282,'Doubles','Chest/Shoulders/Triceps/Ab Ripper X',12,'78 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(283,'Doubles','Cardio X',12,'79 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(284,'Doubles','Plyometrics',12,'79 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(285,'Doubles','Back/Biceps/Ab Ripper X',12,80,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(286,'Doubles','Cardio X',12,'81 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(287,'Doubles','Yoga X',12,'81 Part 2',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(288,'Doubles','Cardio X',12,'82 Part 1',1,'')</statement>
-<statement>INSERT INTO p90days VALUES(289,'Doubles','Legs/Back/Ab Ripper X',12,'82 Part 2',2,'')</statement>
-<statement>INSERT INTO p90days VALUES(290,'Doubles','Kenpo X',12,83,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(291,'Doubles','Rest/X Stretch',12,84,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(292,'Doubles','Yoga X',13,85,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(293,'Doubles','Core Synergistics',13,86,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(294,'Doubles','Kenpo X',13,87,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(295,'Doubles','X Stretch',13,88,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(296,'Doubles','Core Synergistics',13,89,2,'')</statement>
-<statement>INSERT INTO p90days VALUES(297,'Doubles','Yoga X',13,90,1,'')</statement>
-<statement>INSERT INTO p90days VALUES(298,'Doubles','Rest/X Stretch',13,91,1,'')</statement>
-<statement>INSERT INTO p90Exercises VALUES(1,'Chest/Back','Standard Push-Ups',1,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(2,'Chest/Back','Wide Front Pull-Ups',2,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(3,'Chest/Back','Military Push-Ups',3,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(4,'Chest/Back','Reverse Grip Chin-Ups',4,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(5,'Chest/Back','Wide Fly Push-Ups',5,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(6,'Chest/Back','Closed Grip Overhand Pull-Ups',6,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(7,'Chest/Back','Decline Push-Ups',7,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(8,'Chest/Back','Heavy Pants',8,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(9,'Chest/Back','Diamond Push-Ups',9,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(10,'Chest/Back','Lawnmowers',10,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(11,'Chest/Back','Dive-Bomber Push-Ups',11,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(12,'Chest/Back','Back Flys',12,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(13,'Chest/Back','Standard Push-Ups',13,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(14,'Chest/Back','Wide Front Pull-Ups',14,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(15,'Chest/Back','Military Push-Ups',15,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(16,'Chest/Back','Reverse Grip Chin-Ups',16,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(17,'Chest/Back','Wide Fly Push-Ups',17,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(18,'Chest/Back','Closed Grip Overhand Pull-Ups',18,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(19,'Chest/Back','Decline Push-Ups',19,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(20,'Chest/Back','Heavy Pants',20,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(21,'Chest/Back','Diamond Push-Ups',21,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(22,'Chest/Back','Lawnmowers',22,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(23,'Chest/Back','Dive-Bomber Push-Ups',23,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(24,'Chest/Back','Back Flys',24,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(25,'Shoulders/Arms','Alternating Shoulder Press',1,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(26,'Shoulders/Arms','In/Out Bicep Curls',2,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(27,'Shoulders/Arms','Two-Arm Tricep Kickbacks',3,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(28,'Shoulders/Arms','Alternating Shoulder Press',4,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(29,'Shoulders/Arms','In/Out Bicep Curls',5,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(30,'Shoulders/Arms','Two-Arm Tricep Kickbacks',6,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(31,'Shoulders/Arms','Deep Swimmers Press',7,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(32,'Shoulders/Arms','Full Supination Concentration Curls',8,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(33,'Shoulders/Arms','Chair Dips',9,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(34,'Shoulders/Arms','Deep Swimmers Press',10,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(35,'Shoulders/Arms','Full Supination Concentration Curls',11,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(36,'Shoulders/Arms','Chair Dips',12,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(37,'Shoulders/Arms','Upright Rows',13,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(38,'Shoulders/Arms','Staic Arm Curls',14,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(39,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',15,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(40,'Shoulders/Arms','Upright Rows',16,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(41,'Shoulders/Arms','Staic Arm Curls',17,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(42,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',18,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(43,'Shoulders/Arms','Two-Angle Shoulder Flys',19,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(44,'Shoulders/Arms','Crouching Cohen Curls',20,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(45,'Shoulders/Arms','Lying-Down Tricep Extensions',21,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(46,'Shoulders/Arms','Two-Angle Shoulder Flys',22,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(47,'Shoulders/Arms','Crouching Cohen Curls',23,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(48,'Shoulders/Arms','Lying-Down Tricep Extensions',24,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(49,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',25,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(50,'Shoulders/Arms','Congdon Curls',26,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(51,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(52,'Shoulders/Arms','Side Tri-Rise Right',27,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(53,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',27,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(54,'Shoulders/Arms','Congdon Curls',27,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(55,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(56,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(57,'Legs/Back','Balance Lunge Left Leg',1,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(58,'Legs/Back','Balance Lunge Right Leg',2,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(59,'Legs/Back','Calf Raise Squat',3,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(60,'Legs/Back','Reverse Grip Chin-Ups',4,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(61,'Legs/Back','Super Skater Left Leg',5,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(62,'Legs/Back','Super Skater Right Leg',6,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(63,'Legs/Back','Wall Squat (sec)',7,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(64,'Legs/Back','Wide Front Pull-Ups',8,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(65,'Legs/Back','Step Back Lunge Left Leg',9,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(66,'Legs/Back','Step Back Lunge Right Leg',10,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(67,'Legs/Back','Alternating Side Lunge',11,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(68,'Legs/Back','Closed Grip Overhand Pull-Ups',12,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(69,'Legs/Back','Single Leg Wall Squat (sec)',13,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(70,'Legs/Back','Deadlift Squat Left Leg',14,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(71,'Legs/Back','Deadlift Squat Right Leg',15,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(72,'Legs/Back','Switch Grip Pull-Ups',16,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(73,'Legs/Back','Three-Way Lunge Right Leg',17,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(74,'Legs/Back','Three-Way Lunge Left Leg',18,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(75,'Legs/Back','Sneaky Lunge',19,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(76,'Legs/Back','Reverse Grip Chin-Ups',20,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(77,'Legs/Back','Chair Salutations (sec)',21,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(78,'Legs/Back','Chair Salutations (sec)',22,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(79,'Legs/Back','Toe-Roll Iso Lunge',23,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(80,'Legs/Back','Wide Front Pull-Ups',24,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(81,'Legs/Back','Groucho Walk',25,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(82,'Legs/Back','Calf Raises',26,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(83,'Legs/Back','Closed Grip Overhand Pull-Ups',27,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(84,'Legs/Back','80/20 Cyber-Speed Squat Right Leg',28,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(85,'Legs/Back','80/20 Cyber-Speed Squat Left Leg',29,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(86,'Legs/Back','Switch Grip Pull-Ups',30,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(87,'CoreSynergistics','Stack Foot/Stagger Hands Push-Ups',1,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(88,'CoreSynergistics','Banana Rolls',2,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(89,'CoreSynergistics','Leaning Crescent Lunges',3,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(90,'CoreSynergistics','Squat Run',4,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(91,'CoreSynergistics','Sphinx Push-Ups',5,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(92,'CoreSynergistics','Bow To Boat',6,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(93,'CoreSynergistics','Low Lateral Skaters',7,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(94,'CoreSynergistics','Lunge/Reach',8,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(95,'CoreSynergistics','Prison Cell Push-Ups',9,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(96,'CoreSynergistics','Side Hip Raise Right Side',10,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(97,'CoreSynergistics','Side Hip Raise Left Side',11,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(98,'CoreSynergistics','Squat X-Press',12,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(99,'CoreSynergistics','Plank To Chaturanga Run',13,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(100,'CoreSynergistics','Walking Push-Ups',14,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(101,'CoreSynergistics','Superman Banana',15,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(102,'CoreSynergistics','Lunge-Kickback-Curl-Press',16,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(103,'CoreSynergistics','Towel Hopping',17,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(104,'CoreSynergistics','Reach High/Under Push-Ups',18,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(105,'CoreSynergistics','Steam Engine',19,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(106,'CoreSynergistics','Dreya Roll',20,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(107,'CoreSynergistics','Plank To Chaturanga Iso',21,3)</statement>
-<statement>INSERT INTO p90Exercises VALUES(108,'CoreSynergistics','The Halfback',22,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(109,'CoreSynergistics','Table Dip Leg Raise',23,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(110,'Chest/Shoulders/Tricpes','Slow-Motion 3-in-1 Push-Ups',1,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(111,'Chest/Shoulders/Tricpes','In/Out Shoulder Flys',2,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(112,'Chest/Shoulders/Tricpes','Chairs Dips',3,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(113,'Chest/Shoulders/Tricpes','Plange Push-Ups',4,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(114,'Chest/Shoulders/Tricpes','Pike Presses',5,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(115,'Chest/Shoulders/Tricpes','Side Tri-Rises Right Side',6,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(116,'Chest/Shoulders/Tricpes','Side Tri-Rises Left Side',7,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(117,'Chest/Shoulders/Tricpes','Floor Flys',8,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(118,'Chest/Shoulders/Tricpes','Scarecrows',9,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(119,'Chest/Shoulders/Tricpes','Overhead Tricep Extensions',10,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(120,'Chest/Shoulders/Tricpes','Two-Twitch Speed Push-Ups',11,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(121,'Chest/Shoulders/Tricpes','Y-Presses',12,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(122,'Chest/Shoulders/Tricpes','Lying Tricep Extensions',13,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(123,'Chest/Shoulders/Tricpes','Side-To-Side Push-Ups',14,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(124,'Chest/Shoulders/Tricpes','Pour Flys',15,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(125,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Right Side',16,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(126,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Left Side',17,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(127,'Chest/Shoulders/Tricpes','One-Arm Push-Ups',18,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(128,'Chest/Shoulders/Tricpes','Weighted Circles',19,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(129,'Chest/Shoulders/Tricpes','Throw the Bomb Right Side',20,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(130,'Chest/Shoulders/Tricpes','Throw the Bomb Left Side',21,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(131,'Chest/Shoulders/Tricpes','Clap or Plyo Push-Ups',22,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(132,'Chest/Shoulders/Tricpes','Slo-Mo Throws',23,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(133,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Right Side',24,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(134,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Left Side',25,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(135,'Chest/Shoulders/Tricpes','One-Arm Balance Push-Ups',26,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(136,'Chest/Shoulders/Tricpes','Fly-Row Presses',27,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(137,'Chest/Shoulders/Tricpes','Dumbbell Cross-Body Blows',28,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(138,'Back/Bicpes','Wide Front Pull-Ups',1,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(139,'Back/Bicpes','Lawnmowers Right Side',2,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(140,'Back/Bicpes','Lawnmowers Left Side',3,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(141,'Back/Bicpes','Twenty-Ones',4,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(142,'Back/Bicpes','One-Arm Cross-Body Curls Right Side',5,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(143,'Back/Bicpes','One-Arm Cross-Body Curls Left Side',6,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(144,'Back/Bicpes','Switch Grip Pull-Ups',7,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(145,'Back/Bicpes','Elbows-Out Lawnmowers Right Side',8,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(146,'Back/Bicpes','Elbows-Out Lawnmowers Left Side',9,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(147,'Back/Bicpes','Standing Bicep Curls',10,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(148,'Back/Bicpes','One-Arm Concentration Curls',11,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(149,'Back/Bicpes','Corn Cob Pull-Ups',12,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(150,'Back/Bicpes','Reverse Grip Bent-Over Rows',13,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(151,'Back/Bicpes','Open Arm Curls',14,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(152,'Back/Bicpes','Static Arm Curls',15,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(153,'Back/Bicpes','Towel Pull-Ups',16,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(154,'Back/Bicpes','Congdon Locomotives',17,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(155,'Back/Bicpes','Crouching Cohen Curls',18,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(156,'Back/Bicpes','One-Arm Corkscrew Curls',19,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(157,'Back/Bicpes','Chin-Ups',20,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(158,'Back/Bicpes','Seated Bent-Over Back Flys',21,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(159,'Back/Bicpes','Curl-Up/Hammer Downs',22,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(160,'Back/Bicpes','Hammer Curls',23,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(161,'Back/Bicpes','Max Rep Pull-Ups',24,4)</statement>
-<statement>INSERT INTO p90Exercises VALUES(162,'Back/Bicpes','Superman',25,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(163,'Back/Bicpes','In-Out Hammer Curls',26,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(164,'Back/Bicpes','Strip-Set Curls',27,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(165,'Back/Bicpes','Strip-Set Curls',28,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(166,'Back/Bicpes','Strip-Set Curls',29,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(167,'Back/Bicpes','Strip-Set Curls',30,2)</statement>
-<statement>INSERT INTO p90Exercises VALUES(168,'AbRipperX','In/Out',1,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(169,'AbRipperX','Seated Bicycle',2,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(170,'AbRipperX','Seated Crunchy Frog',3,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(171,'AbRipperX','Crossed leg/Wide Leg Sit-Up',4,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(172,'AbRipperX','Fifer Scissors',5,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(173,'AbRipperX','Hip Rock N Raise',6,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(174,'AbRipperX','Pulse-Up',7,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(175,'AbRipperX','Roll-Up/V-Up Combo',8,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(176,'AbRipperX','Oblique V-Up',9,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(177,'AbRipperX','Leg Climb',10,1)</statement>
-<statement>INSERT INTO p90Exercises VALUES(178,'AbRipperX','Mason Twist',11,1)</statement>
-
+<statement>INSERT INTO "p90days" VALUES('1','Classic','Chest and Back - Ab Ripper X','1','1','1','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('2','Classic','Plyometrics','2','1','2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('3','Classic','Shoulders and Arms - Ab Ripper X','3','1','3','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('4','Classic','Yoga X','4','1','4','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('5','Classic','Legs and Back - Ab Ripper X','5','1','5','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('6','Classic','Kenpo X','6','1','6','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('7','Classic','Rest or X Stretch','7','1','7','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('8','Classic','Chest and Back - Ab Ripper X','1','2','8','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('9','Classic','Plyometrics','2','2','9','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('10','Classic','Shoulders and Arms - Ab Ripper X','3','2','10','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('11','Classic','Yoga X','4','2','11','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('12','Classic','Legs and Back - Ab Ripper X','5','2','12','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('13','Classic','Kenpo X','6','2','13','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('14','Classic','Rest or X Stretch','7','2','14','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('15','Classic','Chest and Back - Ab Ripper X','1','3','15','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('16','Classic','Plyometrics','2','3','16','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('17','Classic','Shoulders and Arms - Ab Ripper X','3','3','17','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('18','Classic','Yoga X','4','3','18','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('19','Classic','Legs and Back - Ab Ripper X','5','3','19','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('20','Classic','Kenpo X','6','3','20','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('21','Classic','Rest or X Stretch','7','3','21','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('22','Classic','Yoga X','4','4','22','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('23','Classic','Core Synergistics','8','4','23','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('24','Classic','Kenpo X','6','4','24','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('25','Classic','X Stretch','7','4','25','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('26','Classic','Core Synergistics','8','4','26','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('27','Classic','Yoga X','4','4','27','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('28','Classic','Rest or X Stretch','7','5','28','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('29','Classic','Chest Shoulders and Triceps - Ab Ripper X','10','5','29','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('30','Classic','Plyometrics','2','5','30','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('31','Classic','Back and Biceps - Ab Ripper X','9','5','31','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('32','Classic','Yoga X','4','5','32','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('33','Classic','Legs and Back - Ab Ripper X','5','5','33','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('34','Classic','Kenpo X','6','5','34','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('35','Classic','Rest or X Stretch','7','5','35','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('36','Classic','Chest Shoulders and Triceps - Ab Ripper X','10','6','36','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('37','Classic','Plyometrics','2','6','37','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('38','Classic','Back and Biceps - Ab Ripper X','9','6','38','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('39','Classic','Yoga X','4','6','39','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('40','Classic','Legs and Back - Ab Ripper X','5','6','40','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('41','Classic','Kenpo X','6','6','41','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('42','Classic','Rest or X Stretch','7','6','42','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('43','Classic','Chest Shoulders and Triceps - Ab Ripper X','10','7','43','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('44','Classic','Plyometrics','2','7','44','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('45','Classic','Back and Biceps - Ab Ripper X','9','7','45','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('46','Classic','Yoga X','4','7','46','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('47','Classic','Legs and Back - Ab Ripper X','5','7','47','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('48','Classic','Kenpo X','6','7','48','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('49','Classic','Rest or X Stretch','7','7','49','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('50','Classic','Yoga X','4','8','50','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('51','Classic','Core Synergistics','8','8','51','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('52','Classic','Kenpo X','6','8','52','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('53','Classic','X Stretch','7','8','53','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('54','Classic','Core Synergistics','8','8','54','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('55','Classic','Yoga X','4','8','55','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('56','Classic','Rest or X Stretch','7','8','56','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('57','Classic','Chest and Back - Ab Ripper X','1','9','57','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('58','Classic','Plyometrics','2','9','58','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('59','Classic','Shoulders and Arms - Ab Ripper X','3','9','59','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('60','Classic','Yoga X','4','9','60','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('61','Classic','Legs and Back - Ab Ripper X','5','9','61','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('62','Classic','Kenpo X','6','9','62','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('63','Classic','Rest or X Stretch','7','9','63','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('64','Classic','Chest Shoulders and Triceps - Ab Ripper X','10','10','64','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('65','Classic','Plyometrics','2','10','65','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('66','Classic','Back and Biceps - Ab Ripper X','9','10','66','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('67','Classic','Yoga X','4','10','67','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('68','Classic','Legs and Back - Ab Ripper X','5','10','68','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('69','Classic','Kenpo X','6','10','69','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('70','Classic','Rest or X Stretch','7','10','70','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('71','Classic','Chest and Back - Ab Ripper X','1','11','71','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('72','Classic','Plyometrics','2','11','72','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('73','Classic','Shoulders and Arms - Ab Ripper X','3','11','73','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('74','Classic','Yoga X','4','11','74','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('75','Classic','Legs and Back - Ab Ripper X','5','11','75','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('76','Classic','Kenpo X','6','11','76','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('77','Classic','Rest or X Stretch','7','11','77','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('78','Classic','Chest Shoulders and Triceps - Ab Ripper X','10','12','78','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('79','Classic','Plyometrics','2','12','79','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('80','Classic','Back and Biceps - Ab Ripper X','9','12','80','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('81','Classic','Yoga X','4','12','81','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('82','Classic','Legs and Back - Ab Ripper X','5','12','82','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('83','Classic','Kenpo X','6','12','83','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('84','Classic','Rest or X Stretch','7','12','84','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('85','Classic','Yoga X','4','13','85','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('86','Classic','Core Synergistics','8','13','86','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('87','Classic','Kenpo X','6','13','87','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('88','Classic','X Stretch','7','13','88','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('89','Classic','Core Synergistics','8','13','89','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('90','Classic','Yoga X','4','13','90','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('91','Classic','Rest or X Stretch','7','13','91','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('92','Lean','Core Synergistics','8','1','1','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('93','Lean','Cardio X','11','1','2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('94','Lean','Shoulders and Arms - Ab Ripper X','3','1','3','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('95','Lean','Yoga X','4','1','4','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('96','Lean','Legs and Back - Ab Ripper X','5','1','5','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('97','Lean','Kenpo X','6','1','6','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('98','Lean','Rest or X Stretch','7','1','7','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('99','Lean','Core Synergistics','8','2','8','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('100','Lean','Cardio X','11','2','9','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('101','Lean','Shoulders and Arms - Ab Ripper X','3','2','10','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('102','Lean','Yoga X','4','2','11','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('103','Lean','Legs and Back - Ab Ripper X','5','2','12','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('104','Lean','Kenpo X','6','2','13','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('105','Lean','Rest or X Stretch','7','2','14','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('106','Lean','Core Synergistics','8','3','15','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('107','Lean','Cardio X','11','3','16','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('108','Lean','Shoulders and Arms - Ab Ripper X','3','3','17','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('109','Lean','Yoga X','4','3','18','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('110','Lean','Legs and Back - Ab Ripper X','5','3','19','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('111','Lean','Kenpo X','6','3','20','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('112','Lean','Rest or X Stretch','7','3','21','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('113','Lean','Yoga X','4','4','22','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('114','Lean','Core Synergistics','8','4','23','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('115','Lean','Kenpo X','6','4','24','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('116','Lean','X Stretch','7','4','25','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('117','Lean','Cardio X','8','4','26','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('118','Lean','Yoga X','4','4','27','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('119','Lean','Rest or X Stretch','7','4','28','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('120','Lean','Core Synergistics','8','5','29','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('121','Lean','Cardio X','11','5','30','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('122','Lean','Chest Shoulders and Triceps - Ab Ripper X','10','5','31','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('123','Lean','Yoga X','4','5','32','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('124','Lean','Legs and Back - Ab Ripper X','5','5','33','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('125','Lean','Kenpo X','6','5','34','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('126','Lean','Rest or X Stretch','7','5','35','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('127','Lean','Core Synergistics','8','6','36','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('128','Lean','Cardio X','11','6','37','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('129','Lean','Chest Shoulders and Triceps - Ab Ripper X','10','6','38','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('130','Lean','Yoga X','4','6','39','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('131','Lean','Legs and Back - Ab Ripper X','5','6','40','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('132','Lean','Kenpo X','6','6','41','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('133','Lean','Rest or X Stretch','7','6','42','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('134','Lean','Core Synergistics','8','7','43','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('135','Lean','Cardio X','11','7','44','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('136','Lean','Chest Shoulders and Triceps - Ab Ripper X','10','7','45','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('137','Lean','Yoga X','4','7','46','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('138','Lean','Legs and Back - Ab Ripper X','5','7','47','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('139','Lean','Kenpo X','6','7','48','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('140','Lean','Rest or X Stretch','7','7','49','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('141','Lean','Yoga X','4','8','50','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('142','Lean','Core Synergistics','8','8','51','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('143','Lean','Kenpo X','6','8','52','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('144','Lean','X Stretch','7','8','53','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('145','Lean','Cardio X','8','8','54','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('146','Lean','Yoga X','4','8','55','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('147','Lean','Rest or X Stretch','7','8','56','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('148','Lean','Chest and Back - Ab Ripper X','1','9','57','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('149','Lean','Cardio X','11','9','58','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('150','Lean','Shoulders and Arms - Ab Ripper X','3','9','59','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('151','Lean','Yoga X','4','9','60','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('152','Lean','Core Synergistics','8','9','61','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('153','Lean','Kenpo X','6','9','62','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('154','Lean','Rest or X Stretch','7','9','63','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('155','Lean','Chest Shoulders and Triceps - Ab Ripper X','10','10','64','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('156','Lean','Cardio X','11','10','65','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('157','Lean','Back and Biceps - Ab Ripper X','9','10','66','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('158','Lean','Yoga X','4','10','67','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('159','Lean','Core Synergistics','8','10','68','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('160','Lean','Kenpo X','6','10','69','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('161','Lean','Rest or X Stretch','7','10','70','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('162','Lean','Chest and Back - Ab Ripper X','1','11','71','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('163','Lean','Cardio X','11','11','72','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('164','Lean','Shoulders and Arms - Ab Ripper X','3','11','73','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('165','Lean','Yoga X','4','11','74','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('166','Lean','Core Synergistics','8','11','75','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('167','Lean','Kenpo X','6','11','76','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('168','Lean','Rest or X Stretch','7','11','77','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('169','Lean','Chest Shoulders and Triceps - Ab Ripper X','10','12','78','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('170','Lean','Cardio X','11','12','79','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('171','Lean','Back and Biceps - Ab Ripper X','9','12','80','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('172','Lean','Yoga X','4','12','81','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('173','Lean','Core Synergistics','8','12','82','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('174','Lean','Kenpo X','6','12','83','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('175','Lean','Rest or X Stretch','7','12','84','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('176','Lean','Yoga X','4','13','85','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('177','Lean','Core Synergistics','8','13','86','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('178','Lean','Kenpo X','6','13','87','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('179','Lean','X Stretch','7','13','88','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('180','Lean','Cardio X','8','13','89','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('181','Lean','Yoga X','4','13','90','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('182','Lean','Rest or X Stretch','7','13','91','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('183','Doubles','Chest and Back - Ab Ripper X','1','1','1','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('184','Doubles','Plyometrics','2','1','2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('185','Doubles','Shoulders and Arms - Ab Ripper X','3','1','3','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('186','Doubles','Yoga X','4','1','4','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('187','Doubles','Legs and Back - Ab Ripper X','5','1','5','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('188','Doubles','Kenpo X','6','1','6','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('189','Doubles','Rest or X Stretch','7','1','7','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('190','Doubles','Chest and Back - Ab Ripper X','1','2','8','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('191','Doubles','Plyometrics','2','2','9','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('192','Doubles','Shoulders and Arms - Ab Ripper X','3','2','10','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('193','Doubles','Yoga X','4','2','11','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('194','Doubles','Legs and Back - Ab Ripper X','5','2','12','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('195','Doubles','Kenpo X','6','2','13','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('196','Doubles','Rest or X Stretch','7','2','14','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('197','Doubles','Chest and Back - Ab Ripper X','1','3','15','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('198','Doubles','Plyometrics','2','3','16','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('199','Doubles','Shoulders and Arms - Ab Ripper X','3','3','17','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('200','Doubles','Yoga X','4','3','18','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('201','Doubles','Legs and Back - Ab Ripper X','5','3','19','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('202','Doubles','Kenpo X','6','3','20','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('203','Doubles','Rest or X Stretch','7','3','21','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('204','Doubles','Yoga X','4','4','22','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('205','Doubles','Core Synergistics','8','4','23','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('206','Doubles','Kenpo X','6','4','24','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('207','Doubles','X Stretch','7','4','25','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('208','Doubles','Core Synergistics','8','4','26','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('209','Doubles','Yoga X','4','4','27','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('210','Doubles','Rest or X Stretch','7','4','28','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('211','Doubles','Cardio X','11','5','29 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('212','Doubles','Chest Shoulders and Triceps - Ab Ripper X','10','5','29 Part2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('213','Doubles','Plyometrics','2','5','30','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('214','Doubles','Cardio X','11','5','31 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('215','Doubles','Back and Biceps - Ab Ripper X','9','5','31 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('216','Doubles','Yoga X','4','5','32','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('217','Doubles','Cardio X','11','5','33 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('218','Doubles','Legs and Back - Ab Ripper X','5','5','33 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('219','Doubles','Kenpo X','6','5','34','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('220','Doubles','Rest or X Stretch','7','5','35','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('221','Doubles','Cardio X','11','6','36 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('222','Doubles','Chest Shoulders and Triceps - Ab Ripper X','10','6','36 Part2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('223','Doubles','Plyometrics','2','6','37','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('224','Doubles','Cardio X','11','6','38 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('225','Doubles','Back and Biceps - Ab Ripper X','9','6','38 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('226','Doubles','Yoga X','4','6','39','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('227','Doubles','Cardio X','11','6','40 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('228','Doubles','Legs and Back - Ab Ripper X','5','6','40 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('229','Doubles','Kenpo X','6','6','41','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('230','Doubles','Rest or X Stretch','7','6','42','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('231','Doubles','Cardio X','11','7','43 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('232','Doubles','Chest Shoulders and Triceps - Ab Ripper X','10','7','43 Part2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('233','Doubles','Plyometrics','2','7','44','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('234','Doubles','Cardio X','11','7','45 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('235','Doubles','Back and Biceps - Ab Ripper X','9','7','45 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('236','Doubles','Yoga X','4','7','46','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('237','Doubles','Cardio X','11','7','47 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('238','Doubles','Legs and Back - Ab Ripper X','5','7','47 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('239','Doubles','Kenpo X','6','7','48','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('240','Doubles','Rest or X Stretch','7','7','49','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('241','Doubles','Yoga X','4','8','50','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('242','Doubles','Core Synergistics','8','8','51','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('243','Doubles','Kenpo X','6','8','52','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('244','Doubles','X Stretch','7','8','53','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('245','Doubles','Core Synergistics','8','8','54','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('246','Doubles','Yoga X','4','8','55','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('247','Doubles','Rest or X Stretch','7','8','56','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('248','Doubles','Cardio X','11','9','57 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('249','Doubles','Chest and Back - Ab Ripper X','1','9','57 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('250','Doubles','Cardio X','11','9','58 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('251','Doubles','Plyometrics','2','9','58 Part 2','1',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('252','Doubles','Shoulders and Arms - Ab Ripper X','3','9','59','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('253','Doubles','Cardio X','11','9','60 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('254','Doubles','Yoga X','4','9','60 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('255','Doubles','Cardio X','11','9','61 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('256','Doubles','Legs and Back - Ab Ripper X','5','9','61 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('257','Doubles','Kenpo X','6','9','62','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('258','Doubles','Rest or X Stretch','7','9','63','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('259','Doubles','Cardio X','11','10','64 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('260','Doubles','Chest Shoulders and Triceps - Ab Ripper X','10','10','64 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('261','Doubles','Cardio X','11','10','65 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('262','Doubles','Plyometrics','2','10','65 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('263','Doubles','Back and Biceps - Ab Ripper X','9','10','66','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('264','Doubles','Cardio X','11','10','67 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('265','Doubles','Yoga X','4','10','67 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('266','Doubles','Cardio X','11','10','68 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('267','Doubles','Legs and Back - Ab Ripper X','5','10','68 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('268','Doubles','Kenpo X','6','10','69','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('269','Doubles','Rest or X Stretch','7','10','70','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('270','Doubles','Cardio X','11','11','71 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('271','Doubles','Chest and Back - Ab Ripper X','1','11','71 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('272','Doubles','Cardio X','11','11','72 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('273','Doubles','Plyometrics','2','11','72 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('274','Doubles','Shoulders and Arms - Ab Ripper X','3','11','73','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('275','Doubles','Cardio X','11','11','74 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('276','Doubles','Yoga X','4','11','74 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('277','Doubles','Cardio X','11','11','75 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('278','Doubles','Legs and Back - Ab Ripper X','5','11','75 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('279','Doubles','Kenpo X','6','11','76','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('280','Doubles','Rest or X Stretch','7','11','77','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('281','Doubles','Cardio X','11','12','78 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('282','Doubles','Chest Shoulders and Triceps - Ab Ripper X','10','12','78 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('283','Doubles','Cardio X','11','12','79 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('284','Doubles','Plyometrics','2','12','79 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('285','Doubles','Back and Biceps - Ab Ripper X','9','12','80','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('286','Doubles','Cardio X','11','12','81 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('287','Doubles','Yoga X','4','12','81 Part 2','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('288','Doubles','Cardio X','11','12','82 Part 1','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('289','Doubles','Legs and Back - Ab Ripper X','5','12','82 Part 2','2',NULL,'1')</statement>
+<statement>INSERT INTO "p90days" VALUES('290','Doubles','Kenpo X','6','12','83','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('291','Doubles','Rest or X Stretch','7','12','84','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('292','Doubles','Yoga X','4','13','85','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('293','Doubles','Core Synergistics','8','13','86','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('294','Doubles','Kenpo X','6','13','87','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('295','Doubles','X Stretch','7','13','88','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('296','Doubles','Core Synergistics','8','13','89','2',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('297','Doubles','Yoga X','4','13','90','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90days" VALUES('298','Doubles','Rest or X Stretch','7','13','91','1',NULL,'0')</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('1',1,'Chest/Back','Standard Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('2',1,'Chest/Back','Wide Front Pull-Ups',2,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('3',1,'Chest/Back','Military Push-Ups',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('4',1,'Chest/Back','Reverse Grip Chin-Ups',4,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('5',1,'Chest/Back','Wide Fly Push-Ups',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('6',1,'Chest/Back','Closed Grip Overhand Pull-Ups',6,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('7',1,'Chest/Back','Decline Push-Ups',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('8',1,'Chest/Back','Heavy Pants',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('9',1,'Chest/Back','Diamond Push-Ups',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('10',1,'Chest/Back','Lawnmowers',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('11',1,'Chest/Back','Dive-Bomber Push-Ups',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('12',1,'Chest/Back','Back Flys',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('13',1,'Chest/Back','Standard Push-Ups',13,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('14',1,'Chest/Back','Wide Front Pull-Ups',14,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('15',1,'Chest/Back','Military Push-Ups',15,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('16',1,'Chest/Back','Reverse Grip Chin-Ups',16,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('17',1,'Chest/Back','Wide Fly Push-Ups',17,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('18',1,'Chest/Back','Closed Grip Overhand Pull-Ups',18,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('19',1,'Chest/Back','Decline Push-Ups',19,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('20',1,'Chest/Back','Heavy Pants',20,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('21',1,'Chest/Back','Diamond Push-Ups',21,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('22',1,'Chest/Back','Lawnmowers',22,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('23',1,'Chest/Back','Dive-Bomber Push-Ups',23,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('24',1,'Chest/Back','Back Flys',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('25',3,'Shoulders/Arms','Alternating Shoulder Press',1,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('26',3,'Shoulders/Arms','In/Out Bicep Curls',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('27',3,'Shoulders/Arms','Two-Arm Tricep Kickbacks',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('28',3,'Shoulders/Arms','Alternating Shoulder Press',4,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('29',3,'Shoulders/Arms','In/Out Bicep Curls',5,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('30',3,'Shoulders/Arms','Two-Arm Tricep Kickbacks',6,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('31',3,'Shoulders/Arms','Deep Swimmers Press',7,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('32',3,'Shoulders/Arms','Full Supination Concentration Curls',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('33',3,'Shoulders/Arms','Chair Dips',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('34',3,'Shoulders/Arms','Deep Swimmers Press',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('35',3,'Shoulders/Arms','Full Supination Concentration Curls',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('36',3,'Shoulders/Arms','Chair Dips',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('37',3,'Shoulders/Arms','Upright Rows',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('38',3,'Shoulders/Arms','Staic Arm Curls',14,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('39',3,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('40',3,'Shoulders/Arms','Upright Rows',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('41',3,'Shoulders/Arms','Staic Arm Curls',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('42',3,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',18,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('43',3,'Shoulders/Arms','Two-Angle Shoulder Flys',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('44',3,'Shoulders/Arms','Crouching Cohen Curls',20,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('45',3,'Shoulders/Arms','Lying-Down Tricep Extensions',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('46',3,'Shoulders/Arms','Two-Angle Shoulder Flys',22,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('47',3,'Shoulders/Arms','Crouching Cohen Curls',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('48',3,'Shoulders/Arms','Lying-Down Tricep Extensions',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('49',3,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',25,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('50',3,'Shoulders/Arms','Congdon Curls',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('51',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('52',3,'Shoulders/Arms','Side Tri-Rise Right',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('53',3,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('54',3,'Shoulders/Arms','Congdon Curls',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('55',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('56',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('57',5,'Legs/Back','Balance Lunge Left Leg',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('58',5,'Legs/Back','Balance Lunge Right Leg',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('59',5,'Legs/Back','Calf Raise Squat',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('60',5,'Legs/Back','Reverse Grip Chin-Ups',4,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('61',5,'Legs/Back','Super Skater Left Leg',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('62',5,'Legs/Back','Super Skater Right Leg',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('63',5,'Legs/Back','Wall Squat (sec)',7,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('64',5,'Legs/Back','Wide Front Pull-Ups',8,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('65',5,'Legs/Back','Step Back Lunge Left Leg',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('66',5,'Legs/Back','Step Back Lunge Right Leg',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('67',5,'Legs/Back','Alternating Side Lunge',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('68',5,'Legs/Back','Closed Grip Overhand Pull-Ups',12,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('69',5,'Legs/Back','Single Leg Wall Squat (sec)',13,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('70',5,'Legs/Back','Deadlift Squat Left Leg',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('71',5,'Legs/Back','Deadlift Squat Right Leg',15,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('72',5,'Legs/Back','Switch Grip Pull-Ups',16,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('73',5,'Legs/Back','Three-Way Lunge Right Leg',17,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('74',5,'Legs/Back','Three-Way Lunge Left Leg',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('75',5,'Legs/Back','Sneaky Lunge',19,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('76',5,'Legs/Back','Reverse Grip Chin-Ups',20,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('77',5,'Legs/Back','Chair Salutations (sec)',21,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('78',5,'Legs/Back','Chair Salutations (sec)',22,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('79',5,'Legs/Back','Toe-Roll Iso Lunge',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('80',5,'Legs/Back','Wide Front Pull-Ups',24,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('81',5,'Legs/Back','Groucho Walk',25,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('82',5,'Legs/Back','Calf Raises',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('83',5,'Legs/Back','Closed Grip Overhand Pull-Ups',27,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('84',5,'Legs/Back','80/20 Cyber-Speed Squat Right Leg',28,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('85',5,'Legs/Back','80/20 Cyber-Speed Squat Left Leg',29,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('86',5,'Legs/Back','Switch Grip Pull-Ups',30,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('87',8,'CoreSynergistics','Stack Foot/Stagger Hands Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('88',8,'CoreSynergistics','Banana Rolls',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('89',8,'CoreSynergistics','Leaning Crescent Lunges',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('90',8,'CoreSynergistics','Squat Run',4,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('91',8,'CoreSynergistics','Sphinx Push-Ups',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('92',8,'CoreSynergistics','Bow To Boat',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('93',8,'CoreSynergistics','Low Lateral Skaters',7,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('94',8,'CoreSynergistics','Lunge/Reach',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('95',8,'CoreSynergistics','Prison Cell Push-Ups',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('96',8,'CoreSynergistics','Side Hip Raise Right Side',10,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('97',8,'CoreSynergistics','Side Hip Raise Left Side',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('98',8,'CoreSynergistics','Squat X-Press',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('99',8,'CoreSynergistics','Plank To Chaturanga Run',13,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('100',8,'CoreSynergistics','Walking Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('101',8,'CoreSynergistics','Superman Banana',15,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('102',8,'CoreSynergistics','Lunge-Kickback-Curl-Press',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('103',8,'CoreSynergistics','Towel Hopping',17,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('104',8,'CoreSynergistics','Reach High/Under Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('105',8,'CoreSynergistics','Steam Engine',19,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('106',8,'CoreSynergistics','Dreya Roll',20,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('107',8,'CoreSynergistics','Plank To Chaturanga Iso',21,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('108',8,'CoreSynergistics','The Halfback',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('109',8,'CoreSynergistics','Table Dip Leg Raise',23,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('110',10,'Chest/Shoulders/Tricpes','Slow-Motion 3-in-1 Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('111',10,'Chest/Shoulders/Tricpes','In/Out Shoulder Flys',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('112',10,'Chest/Shoulders/Tricpes','Chairs Dips',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('113',10,'Chest/Shoulders/Tricpes','Plange Push-Ups',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('114',10,'Chest/Shoulders/Tricpes','Pike Presses',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('115',10,'Chest/Shoulders/Tricpes','Side Tri-Rises Right Side',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('116',10,'Chest/Shoulders/Tricpes','Side Tri-Rises Left Side',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('117',10,'Chest/Shoulders/Tricpes','Floor Flys',8,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('118',10,'Chest/Shoulders/Tricpes','Scarecrows',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('119',10,'Chest/Shoulders/Tricpes','Overhead Tricep Extensions',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('120',10,'Chest/Shoulders/Tricpes','Two-Twitch Speed Push-Ups',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('121',10,'Chest/Shoulders/Tricpes','Y-Presses',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('122',10,'Chest/Shoulders/Tricpes','Lying Tricep Extensions',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('123',10,'Chest/Shoulders/Tricpes','Side-To-Side Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('124',10,'Chest/Shoulders/Tricpes','Pour Flys',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('125',10,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Right Side',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('126',10,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Left Side',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('127',10,'Chest/Shoulders/Tricpes','One-Arm Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('128',10,'Chest/Shoulders/Tricpes','Weighted Circles',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('129',10,'Chest/Shoulders/Tricpes','Throw the Bomb Right Side',20,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('130',10,'Chest/Shoulders/Tricpes','Throw the Bomb Left Side',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('131',10,'Chest/Shoulders/Tricpes','Clap or Plyo Push-Ups',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('132',10,'Chest/Shoulders/Tricpes','Slo-Mo Throws',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('133',10,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Right Side',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('134',10,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Left Side',25,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('135',10,'Chest/Shoulders/Tricpes','One-Arm Balance Push-Ups',26,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('136',10,'Chest/Shoulders/Tricpes','Fly-Row Presses',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('137',10,'Chest/Shoulders/Tricpes','Dumbbell Cross-Body Blows',28,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('138',9,'Back/Bicpes','Wide Front Pull-Ups',1,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('139',9,'Back/Bicpes','Lawnmowers Right Side',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('140',9,'Back/Bicpes','Lawnmowers Left Side',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('141',9,'Back/Bicpes','Twenty-Ones',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('142',9,'Back/Bicpes','One-Arm Cross-Body Curls Right Side',5,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('143',9,'Back/Bicpes','One-Arm Cross-Body Curls Left Side',6,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('144',9,'Back/Bicpes','Switch Grip Pull-Ups',7,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('145',9,'Back/Bicpes','Elbows-Out Lawnmowers Right Side',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('146',9,'Back/Bicpes','Elbows-Out Lawnmowers Left Side',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('147',9,'Back/Bicpes','Standing Bicep Curls',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('148',9,'Back/Bicpes','One-Arm Concentration Curls',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('149',9,'Back/Bicpes','Corn Cob Pull-Ups',12,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('150',9,'Back/Bicpes','Reverse Grip Bent-Over Rows',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('151',9,'Back/Bicpes','Open Arm Curls',14,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('152',9,'Back/Bicpes','Static Arm Curls',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('153',9,'Back/Bicpes','Towel Pull-Ups',16,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('154',9,'Back/Bicpes','Congdon Locomotives',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('155',9,'Back/Bicpes','Crouching Cohen Curls',18,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('156',9,'Back/Bicpes','One-Arm Corkscrew Curls',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('157',9,'Back/Bicpes','Chin-Ups',20,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('158',9,'Back/Bicpes','Seated Bent-Over Back Flys',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('159',9,'Back/Bicpes','Curl-Up/Hammer Downs',22,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('160',9,'Back/Bicpes','Hammer Curls',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('161',9,'Back/Bicpes','Max Rep Pull-Ups',24,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('162',9,'Back/Bicpes','Superman',25,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('163',9,'Back/Bicpes','In-Out Hammer Curls',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('164',9,'Back/Bicpes','Strip-Set Curls',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('165',9,'Back/Bicpes','Strip-Set Curls',28,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('166',9,'Back/Bicpes','Strip-Set Curls',29,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('167',9,'Back/Bicpes','Strip-Set Curls',30,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('168',12,'AbRipperX','In/Out',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('169',12,'AbRipperX','Seated Bicycle',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('170',12,'AbRipperX','Seated Crunchy Frog',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('171',12,'AbRipperX','Crossed leg/Wide Leg Sit-Up',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('172',12,'AbRipperX','Fifer Scissors',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('173',12,'AbRipperX','Hip Rock N Raise',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('174',12,'AbRipperX','Pulse-Up',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('175',12,'AbRipperX','Roll-Up/V-Up Combo',8,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('176',12,'AbRipperX','Oblique V-Up',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('177',12,'AbRipperX','Leg Climb',10,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('178',12,'AbRipperX','Mason Twist',11,1)</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('1','Chest and Back','1')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('2','Plyometrics','2')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('3','Shoulders and Arms','3')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('4','Yoga X','4')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('5','Legs and Back','5')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('6','Kenpo X','6')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('7','Rest or X Stretch','7')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('8','Core Synergistics','8')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('9','Back and Biceps','9')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('10','Chest Shoulders and Tricpes','10')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('11','Cardio X','11')</statement>
+<statement>INSERT INTO "p90dayKey" VALUES('12','Ab Ripper X','12')</statement>
 </sql>

@@ -18,25 +18,29 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:onClick="programSelect"
-        android:text="Select Program" />
+        android:text="Select Program"
+        style="@style/buttonText" />
 
     <Button
         android:id="@+id/btnPreferences"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Preferences"
-        android:onClick="preferenceSelect" />
+        android:onClick="preferenceSelect"
+        style="@style/buttonText" />
 
     <Button
         android:id="@+id/btnMeasure"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Measurements" />
+        android:text="Measurements"
+        style="@style/buttonText" />
 
     <Button
         android:id="@+id/btnContinue"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Continue Program" />
+        android:text="Continue Program"
+        style="@style/buttonText" />
 
 </LinearLayout>

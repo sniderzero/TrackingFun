@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent">
+
+    <TextView
+        android:id="@+id/lblHistory"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Large Text"
+        style="@style/buttonText" />
+
+    <Button
+        android:id="@+id/testbutton"
+        style="@style/buttonText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="@string/hello" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@+id/testbutton"
+        android:layout_below="@+id/lblHistory"
+        android:divider="@drawable/hline" >
+</ListView>
+
+</RelativeLayout>

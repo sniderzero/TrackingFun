@@ -9,15 +9,15 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:gravity="center"
-		    android:text="Select Your Workout Day :"
+		    android:text="Select Your Exercise :"
 		    android:textAppearance="?android:attr/textAppearanceLarge" />
-
+
 		<ListView
 		    android:id="@+id/list"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
-		    android:divider="@drawable/hline"
-		    android:drawSelectorOnTop="false" >
+		    android:drawSelectorOnTop="false"
+		     >
 
 		</ListView>
 

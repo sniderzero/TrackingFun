@@ -9,14 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DAY:"
-        android:paddingRight="4dp"
+        android:paddingRight="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/programname"
+        android:id="@+id/daynum"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
+        android:paddingRight="5dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

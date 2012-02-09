@@ -38,14 +38,15 @@ public class programlist extends Activity {
     	//grab variable passed from previous activity
         programID = getIntent().getStringExtra("PROGRAM_NAME");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT _id, track, dayname, weeknumber, daynumber, type FROM p90days WHERE track = " + "'" + programID +"'", null);
+    	cursor = db.rawQuery("SELECT p90days.dayName, p90days._id, p90days.daynumber, p90days.type, p90days.track, p90days.dayID, p90days.hasRipper " +
+    			"FROM p90days WHERE p90days.track =" + "'" + programID +"'", null);
     	// set ListView to results
     	adapter = new SimpleCursorAdapter(
 				this, 
 				R.layout.row, 
 				cursor, 
-				new String[] {"dayname", "daynumber"}, 
-				new int[] {R.id.name, R.id.programname});
+				new String[] {cursor.getColumnName(0), "daynumber"}, 
+				new int[] {R.id.name, R.id.daynum});
 		lstDays.setAdapter(adapter);
 	
 
@@ -55,19 +56,21 @@ public class programlist extends Activity {
 			{
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-			type = cursor.getInt(5);
+			type = cursor.getInt(3);
 			if(type == 2)
 				{
-				Toast.makeText(getBaseContext(), cursor.getString(2), 2000).show();	
+				Toast.makeText(getBaseContext(), cursor.getString(5), 2000).show();	
 				Intent intent = new Intent(programlist.this, exerciselist.class);
 					//Cursor cursor2 = (Cursor) adapter.getItem(position);
-					intent.putExtra("PROGRAM_DAY", cursor.getString(2));
-					//db.close();
+					intent.putExtra("PROGRAM_DAY", cursor.getInt(5));
+					intent.putExtra("HAS_RIPPER", cursor.getInt(6));
+					db.close();
 					startActivity(intent);
 				}
 				else { 
-					Toast.makeText(getBaseContext(), cursor.getString(5), 2000).show();
-					Intent intent = new Intent(programlist.this, StopWatch.class);
+					Intent intent = new Intent(programlist.this, StopwatchActivity.class);
+					intent.putExtra("PROGRAM_DAY", cursor.getString(0));
+					db.close();
 					startActivity(intent);
 				 	}
 																								}
