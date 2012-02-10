@@ -216,6 +216,8 @@ public class StopwatchActivity extends Activity{
 	    
 public void clickHistory(View v){
 	Intent intent = new Intent(StopwatchActivity.this, HistoryView.class);
+	intent.putExtra("EXERCISE_NAME", dayID);
+	intent.putExtra("EXERCISE_TYPE", 3);
 	startActivity(intent);
 }
 

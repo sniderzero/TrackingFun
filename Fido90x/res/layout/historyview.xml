@@ -1,30 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent" 
-    android:layout_height="fill_parent">
-
-    <TextView
-        android:id="@+id/lblHistory"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Large Text"
-        style="@style/buttonText" />
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
 
+    <LinearLayout
+        android:id="@+id/llHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/lblHistory"
+            style="@style/buttonText"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Large Text" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/hline" />
+
+        <LinearLayout
+            android:id="@+id/llColumns"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/lblTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Time"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:layout_marginLeft="5dip"
+                android:paddingRight="20dip" />
+
+            <TextView
+                android:id="@+id/lblDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/lblReps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reps"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/lblWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/lblBand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Band"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/lblAssist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Assist"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:visibility="gone" />
+        </LinearLayout>
+
+    </LinearLayout>
+
     <Button
         android:id="@+id/testbutton"
         style="@style/buttonText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="@string/hello" />
-
+        android:text="Done"
+        android:onClick="clickClose" />
+
     <ListView
-        android:id="@+id/list"
+        android:id="@+id/lstHistory"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_above="@+id/testbutton"
-        android:layout_below="@+id/lblHistory"
+        android:layout_below="@+id/llHeader"
         android:divider="@drawable/hline" >
-</ListView>
+    </ListView>
 
 </RelativeLayout>

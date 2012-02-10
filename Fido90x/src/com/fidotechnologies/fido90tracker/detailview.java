@@ -121,14 +121,14 @@ public class detailview extends Activity {
 		String spnBandInt = spnBand.getItemAtPosition((int) spnBand.getSelectedItemId()).toString();
 		String strDate = getDate();
 	  
-	  db.execSQL("INSERT INTO userstats (exername,weight,reps,time,date) VALUES("+ "'" + cursor.getString(2) +"'" + "," 
-			+ "'" + spnWeightInt +"'"+","+"'" + spnRepsInt +"'"+","+"'" + spnBandInt +"'"+","+ "'" + strDate +"'"+ ")");
+	  db.execSQL("INSERT INTO results (ExerciseName,weight,reps,band,date,pullup) VALUES("+ "'" + cursor.getString(2) +"'" + "," 
+			+ "'" + spnWeightInt +"'"+","+"'" + spnRepsInt +"'"+","+"'" + spnBandInt +"'"+","+ "'" + strDate +"'"+","+ + 0 + ")");
 	
 	
   }
   public void fillUserStats(){
   	//changing the textviews to show the users last results
-  	cursor_user = db.rawQuery("SELECT _id, weight, exername, reps, time FROM userstats WHERE exername = " + "'" + cursor.getString(2) +"'", null);
+  	cursor_user = db.rawQuery("SELECT _id, weight, ExerciseName, reps, time FROM results WHERE ExerciseName = " + "'" + cursor.getString(2) +"'", null);
   	
   	if (cursor_user.getCount()==0){
   		txtRepsValue.setText("0");
@@ -213,6 +213,13 @@ public void nohasRipper(){
 }
 public void hasRipper(){
 	cursor = db.rawQuery("SELECT _id, dayID, name, exernum, type FROM p90Exercises WHERE dayID =" + dayID + " or dayID = "+ 12, null);
+}
+
+public void clickHistory(View v){
+	Intent intent = new Intent(detailview.this, HistoryView.class);
+	intent.putExtra("EXERCISE_NAME", cursor.getString(2));
+	intent.putExtra("EXERCISE_TYPE", cursor.getInt(4));
+	startActivity(intent);
 }
 
 }
