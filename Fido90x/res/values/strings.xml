@@ -94,9 +94,9 @@
 		<item>Medium</item>
 		<item>High</item>
 	</string-array>
-		<string-array name="pullup_values">
+		<string-array name="assist_values">
+		<item>None</item>
 		<item>Bands</item>
 		<item>Chair</item>
-		<item>No-Chair</item>
 	</string-array>
 </resources>

@@ -58,11 +58,6 @@ public void programSelect (View view)
                 Cursor cursor = (Cursor) adapter.getItem(position);
                 Intent in = new Intent(launch.this, programlist.class);
                 in.putExtra("PROGRAM_NAME", cursor.getString(cursor.getColumnIndex("name")));
-                //set current program preference
-                SharedPreferences appSettings = getSharedPreferences("AppPreferences", MODE_PRIVATE);  
-                SharedPreferences.Editor prefEditor = appSettings.edit();  
-                prefEditor.putString("trackType", cursor.getString(cursor.getColumnIndex("name")));  
-                prefEditor.commit();  
                 //start activity
 				startActivity(in); 
                 dialog.dismiss();

@@ -4,12 +4,10 @@
     android:layout_height="fill_parent"
     android:gravity="center"
     android:orientation="vertical" >
-
-    <LinearLayout
+    <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="fill_parent"
         android:layout_height="70dp"
-        android:layout_weight="33"
         android:orientation="vertical" >
 
         <TextView
@@ -22,9 +20,9 @@
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
     </LinearLayout>
-
+
     <LinearLayout
-        android:id="@+id/linearLayout1"
+        android:id="@+id/llbuttons"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
 
@@ -51,70 +49,122 @@
             android:text="Next" />
 
     </LinearLayout>
-
+
     <LinearLayout
-        android:id="@+id/linearLayout3"
+        android:id="@+id/llSpinners"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="50"
         android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/lblReps"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Reps"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20dip" />
-
-        <Spinner
-            android:id="@+id/spnReps"
+
+        <LinearLayout
+            android:id="@+id/llReps"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip" />
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lblReps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Reps"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20dip" />
 
-        <TextView
-            android:id="@+id/lblWeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Weight"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20dip" />
+            <Spinner
+                android:id="@+id/spnReps"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip" />
 
-        <Spinner
-            android:id="@+id/spnWeight"
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llWeight"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip" />
+            android:orientation="vertical" >
 
-        <TextView
-            android:id="@+id/lblBand"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="Band"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textSize="20dip" />
+            <TextView
+                android:id="@+id/lblWeight"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Weight"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20dip" />
 
-        <Spinner
-            android:id="@+id/spnBand"
+            <Spinner
+                android:id="@+id/spnWeight"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llAssist"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dip" />
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lblAssist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pullup Assist"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20dip" />
+
+            <Spinner
+                android:id="@+id/spnAssist"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llBand"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/lblBand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Band"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textSize="20dip"
+                 />
+
+            <Spinner
+                android:id="@+id/spnBand"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dip"
+                 />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llResults"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:src="@drawable/hline" />
 
         <TextView
             android:id="@+id/lblLastRound"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:text="Beat Your Last Results"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textSize="26dip" />
@@ -122,72 +172,121 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:src="@drawable/hline" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
+        <TableLayout
+            android:id="@+id/tableLayout1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/txtReps"
+            <TableRow
+                android:id="@+id/tableRow1"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:text="Reps"
-                android:textSize="22dip" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/txtWeight"
+                <TextView
+                    android:id="@+id/txtReps"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Reps"
+                    android:textSize="22dip" />
+
+                <TextView
+                    android:id="@+id/txtWeight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Weight"
+                    android:textSize="22dip" />
+
+                <TextView
+                    android:id="@+id/txtTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Time"
+                    android:textSize="22dip" />
+
+                <TextView
+                    android:id="@+id/txtBand"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Band"
+                    android:textSize="22dip" />
+
+                <TextView
+                    android:id="@+id/txtAssist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Assist"
+                    android:textSize="22dip" />
+
+                <TextView
+                    android:id="@+id/txtDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Date"
+                    android:textSize="22dip" />
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:text="Weight"
-                android:textSize="22dip" />
+                android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/txtTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_weight="33"
-                android:text="Time"
-                android:textSize="22dip" />
+                <TextView
+                    android:id="@+id/txtRepsValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Reps"
+                    android:textSize="22dip" />
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txtWeightValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Weight"
+                    android:textSize="22dip" />
 
-        <LinearLayout
-            android:id="@+id/LinearLayout01"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="33" >
+                <TextView
+                    android:id="@+id/txtTimeValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Time"
+                    android:textSize="22dip" />
 
-            <TextView
-                android:id="@+id/txtRepsValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:text="Reps"
-                android:textSize="22dip" />
+                <TextView
+                    android:id="@+id/txtBandValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Band"
+                    android:textSize="22dip" />
 
-            <TextView
-                android:id="@+id/txtWeightValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:text="Weight"
-                android:textSize="22dip" />
+                <TextView
+                    android:id="@+id/txtAssistValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Assist"
+                    android:textSize="22dip" />
 
-            <TextView
-                android:id="@+id/txtTimeValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="33"
-                android:text="Time"
-                android:textSize="22dip" />
-
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/txtDateValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="33"
+                    android:text="Date"
+                    android:textSize="22dip" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
     <Button
@@ -195,7 +294,7 @@
         style="@style/buttonText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Full History"
-        android:onClick="clickHistory" />
+        android:onClick="clickHistory"
+        android:text="Full History" />
 
 </LinearLayout>

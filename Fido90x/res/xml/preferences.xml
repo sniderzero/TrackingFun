@@ -12,7 +12,7 @@
   <ListPreference     android:title="Equipment Type"
                       android:summary="Are you using weights or bands?"
                       android:key="equipmentType"
-                      android:defaultValue="1"
+                      android:defaultValue=""
                       android:entries="@array/listEquip"
                       android:entryValues="@array/listEquip" />
 </PreferenceScreen>
