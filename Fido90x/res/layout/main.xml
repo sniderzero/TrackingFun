@@ -2,45 +2,107 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@drawable/background"
     android:orientation="vertical" >
-
-    <TextView
-        android:id="@+id/textView1"
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="UltiTracker 90"
-        android:gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-         />
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/blackbuttonpressed"
+            android:orientation="vertical" >
 
-    <Button
-        android:id="@+id/btnPrgm"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:onClick="programSelect"
-        android:text="Select Program"
-        style="@style/buttonText" />
+            <TextView
+                android:id="@+id/lblHeaderMain"
+                style="@style/header"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="UltiTrack 90" />
 
-    <Button
-        android:id="@+id/btnPreferences"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Preferences"
-        android:onClick="preferenceSelect"
-        style="@style/buttonText" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btnMeasure"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Measurements"
-        style="@style/buttonText" />
+        <Button
+            android:id="@+id/btnPreferences"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:onClick="preferenceSelect"
+            android:text="Preferences"
+            android:background="@drawable/startbuttonstates"
+            android:textSize="45dip" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@id/btnPreferences"
+            android:layout_below="@id/linearLayout8"
+            android:orientation="horizontal" >
 
-    <Button
-        android:id="@+id/btnContinue"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Continue Program"
-        style="@style/buttonText" />
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout3"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/linearLayout5"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" >
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout7"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" >
+
+                    <Button
+                        android:id="@+id/btnBringIt"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:layout_margin="1dip"
+                        android:background="@drawable/startbuttonstates"
+                        android:onClick="clickBringIt"
+                        android:singleLine="false"
+                        android:text="Bring It!!" 
+                        android:textSize="45dip"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayout6"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" >
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
 
 </LinearLayout>

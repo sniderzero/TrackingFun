@@ -15,6 +15,7 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,19 +32,22 @@ public class StopwatchActivity extends Activity{
     /** Called when the activity is first created. */
 	
 	
-	private TextView timerTextView, textName, txtTime, txtDate; 
-	private Button actionBtn; 
+	private TextView timerTextView, textName, txtTime, txtDate, lblDate, lblTime, lblLastRound; 
+	private Button btnStart, btnReset, btnStop, btnHist, btnSave;
 	private Handler mHandler = new Handler();
 	private long startTime;
 	private long elapsedTime;
 	private final int REFRESH_RATE = 100;
-	private String hours,minutes,seconds,dayID;
+	private String hours,minutes,seconds,dayID,content;
 	private long secs,mins,hrs;
 	private boolean stopped = false;
 	protected SQLiteDatabase db;
 	Cursor cursor_user;
 	Intent intent;
 	ListAdapter adapter;
+	Typeface font;
+	int dayID2;
+	
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,15 +59,35 @@ public class StopwatchActivity extends Activity{
         textName = (TextView) findViewById(R.id.textName);
         txtTime = (TextView) findViewById(R.id.txtTime);
         txtDate = (TextView) findViewById(R.id.txtDate);
+        lblTime = (TextView) findViewById(R.id.lblTime);
+        lblDate = (TextView) findViewById(R.id.lblDate);
+        lblLastRound = (TextView) findViewById(R.id.lblLastRound);
     	timerTextView = (TextView) findViewById(R.id.timer); 
-    	actionBtn = (Button)findViewById(R.id.startButton);
-    	actionBtn = (Button)findViewById(R.id.resetButton);
-    	actionBtn = (Button)findViewById(R.id.stopButton);
-    	actionBtn = (Button)findViewById(R.id.btnHist);
+    	btnStart = (Button)findViewById(R.id.startButton);
+    	btnReset = (Button)findViewById(R.id.resetButton);
+    	btnStop = (Button)findViewById(R.id.stopButton);
+    	btnHist = (Button)findViewById(R.id.btnHist);
+    	btnSave = (Button)findViewById(R.id.saveButton);
+    	//declare font
+    	font = Typeface.createFromAsset(getAssets(), "font.otf");
+    	//set font
+    	textName.setTypeface(font);
+    	txtTime.setTypeface(font);
+    	txtDate.setTypeface(font);
+    	lblTime.setTypeface(font);
+    	lblDate.setTypeface(font);
+    	lblLastRound.setTypeface(font);
+    	timerTextView.setTypeface(font);
+    	btnStart.setTypeface(font);
+    	btnReset.setTypeface(font);
+    	btnStop.setTypeface(font);
+    	btnHist.setTypeface(font);
+    	btnSave.setTypeface(font);
     	//creating an intent to call when finished
     	intent = new Intent(StopwatchActivity.this, launch.class);
     	//grabbing passed variable
-    	dayID = getIntent().getStringExtra("PROGRAM_DAY");
+    	dayID = getIntent().getStringExtra("DAY_NAME");
+    	dayID2 = getIntent().getIntExtra("DAY_ID",1);
     	//setting header value
     	textName.setText(dayID);
     	//opening db
@@ -90,12 +114,13 @@ public class StopwatchActivity extends Activity{
     	}
     	mHandler.removeCallbacks(startTimer);
         mHandler.postDelayed(startTimer, 0);
+        showStopButton();
     }
     //actions when clicking the stop button
     public void stopClick (View view){
     	mHandler.removeCallbacks(startTimer);
     	stopped = true;
-    	((Button)findViewById(R.id.saveButton)).setVisibility(View.VISIBLE);
+    	hideStopButton();
     }
     //actions when clicking the reset button
     public void resetClick (View view){
@@ -103,15 +128,27 @@ public class StopwatchActivity extends Activity{
     	((TextView)findViewById(R.id.timer)).setText("00:00:00"); 	
     }
     //actions when clicking the save button
-    public void saveClick (View view){
-    	String content = timerTextView.getText().toString();
+    public void saveAction (){
+    	content = timerTextView.getText().toString();
     	String strDate = detailview.getDate();
     	db.execSQL("INSERT INTO results (ExerciseName,time,date) VALUES("+ "'" + dayID +"'" + "," 
     			+ "'" + content + "'" + ","+ "'" + strDate +"'"+ ")");
+    	db.execSQL("UPDATE p90days SET date= "+ "'" + strDate + "'" + " WHERE _id = " + "'" + dayID2 + "'");
     	db.close();
     	dialogShare();
     }
     
+    
+    public void saveClick (View view){
+    	content = timerTextView.getText().toString();
+    	if(content.equals("00:00:00")){
+    		Toast.makeText(this, "Exercise Not Saved, the timer is at 00:00:00", 50).show();
+    	}
+    	else{
+    		saveAction();
+    	}
+    	
+    }
     
     private Runnable startTimer = new Runnable() {
 	 	   public void run() {
@@ -219,6 +256,18 @@ public void clickHistory(View v){
 	intent.putExtra("EXERCISE_NAME", dayID);
 	intent.putExtra("EXERCISE_TYPE", 3);
 	startActivity(intent);
+}
+
+public void hideStopButton(){
+	((Button)findViewById(R.id.stopButton)).setVisibility(View.GONE);
+	((Button)findViewById(R.id.startButton)).setVisibility(View.VISIBLE);
+	((Button)findViewById(R.id.resetButton)).setVisibility(View.VISIBLE);
+}
+
+public void showStopButton(){
+	((Button)findViewById(R.id.stopButton)).setVisibility(View.VISIBLE);
+	((Button)findViewById(R.id.startButton)).setVisibility(View.GONE);
+	((Button)findViewById(R.id.resetButton)).setVisibility(View.GONE);
 }
 
 }

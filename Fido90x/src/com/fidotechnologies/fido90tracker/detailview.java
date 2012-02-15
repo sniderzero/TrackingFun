@@ -9,12 +9,15 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.text.Editable;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
@@ -33,14 +36,16 @@ protected SQLiteDatabase db;
 protected Cursor cursor, cursor_user;
 protected ListAdapter adapter;
 protected int curPos;
-int dayID, type, hasRIP;
-String spnBandStr, spnAssistStr, TimerStr, strDate, spnWeightStr, spnRepsStr;
+int dayID, type, hasRIP, dayID2;
+String spnBandStr, spnAssistStr, TimerStr, strDate, eTxtWeightStr, eTxtRepsStr, dayName;
 TextView txtName, txtRepsValue, txtWeightValue, txtTimeValue, txtAssistValue, txtBandValue, txtDateValue;
-Spinner spnWeight, spnReps, spnBand, spnAssist;
+TextView lblReps, lblWeight, lblAssist, lblBand, lblLastRound, txtReps, txtWeight, txtTime, txtAssist, txtBand, txtDate;
+Spinner spnBand, spnAssist;
 ArrayAdapter<CharSequence> adapter_band, adapter_rep, adapter_weight, adapter_assist;
-Button btnNext, btnPrev, actionBtn;
+Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop;
 SharedPreferences preferences;
 String equipPref;
+EditText eTxtReps, eTxtWeight;
 //declare stuff her for stopwatch
 private TextView timerTextView;
 private Handler mHandler = new Handler();
@@ -50,7 +55,8 @@ private final int REFRESH_RATE = 100;
 private String hours,minutes,seconds;
 private long secs,mins,hrs;
 private boolean stopped = false;
-Intent intent;
+Intent intentHome;
+Typeface font;
 
 
 @Override
@@ -66,33 +72,72 @@ Intent intent;
         txtAssistValue = (TextView) findViewById(R.id.txtAssistValue);
         txtBandValue = (TextView) findViewById(R.id.txtBandValue);
         txtDateValue = (TextView) findViewById(R.id.txtDateValue);
+        lblReps = (TextView) findViewById(R.id.lblReps);
+        lblWeight= (TextView) findViewById(R.id.lblWeight);
+        lblAssist= (TextView) findViewById(R.id.lblAssist);
+        lblBand= (TextView) findViewById(R.id.lblBand);
+        lblLastRound= (TextView) findViewById(R.id.lblLastRound);
+        txtReps= (TextView) findViewById(R.id.txtReps);
+        txtWeight= (TextView) findViewById(R.id.txtWeight);
+        txtTime= (TextView) findViewById(R.id.txtTime);
+        txtAssist= (TextView) findViewById(R.id.txtAssist);
+        txtBand= (TextView) findViewById(R.id.txtBand);
+        txtDate= (TextView) findViewById(R.id.txtDate);
+        
         btnNext = (Button) findViewById(R.id.imgNext);
         btnPrev = (Button) findViewById(R.id.imgPrev);
-
+        btnSave = (Button) findViewById(R.id.imgSave);
         timerTextView = (TextView) findViewById(R.id.timer); 
-        actionBtn = (Button)findViewById(R.id.startButton);
-        actionBtn = (Button)findViewById(R.id.resetButton);
-        actionBtn = (Button)findViewById(R.id.stopButton);
+        btnStart = (Button)findViewById(R.id.startButton);
+        btnReset = (Button)findViewById(R.id.resetButton);
+        btnStop = (Button)findViewById(R.id.stopButton);
+        
+        //declaring font
+        font = Typeface.createFromAsset(getAssets(), "font.otf");
+        
+        //setting widgets to font
+        txtName.setTypeface(font);
+        txtRepsValue.setTypeface(font);
+        txtWeightValue.setTypeface(font);
+        txtTimeValue.setTypeface(font);
+        txtAssistValue.setTypeface(font);
+        txtBandValue.setTypeface(font);
+        txtDateValue.setTypeface(font);
+        btnNext.setTypeface(font);
+        btnPrev.setTypeface(font);
+        btnSave.setTypeface(font);
+        timerTextView.setTypeface(font);
+        btnStart.setTypeface(font);
+        btnReset.setTypeface(font);
+        btnStop.setTypeface(font);
+        lblReps.setTypeface(font);
+        lblWeight.setTypeface(font);
+        lblAssist.setTypeface(font);
+        lblBand.setTypeface(font);
+        lblLastRound.setTypeface(font);
+        txtReps.setTypeface(font);
+        txtWeight.setTypeface(font);
+        txtTime.setTypeface(font);
+        txtAssist.setTypeface(font);
+        txtBand.setTypeface(font);
+        txtDate.setTypeface(font);
+
+        
+                  
+        //building home intent
+        intentHome = new Intent(this, launch.class);
 
      //creating some spinner adapters
-     adapter_rep = ArrayAdapter.createFromResource(
-     this, R.array.rep_values, android.R.layout.simple_spinner_item );
-     adapter_rep.setDropDownViewResource( android.R.layout.simple_spinner_item );
-     adapter_weight = ArrayAdapter.createFromResource(
-     this, R.array.weight_values, android.R.layout.simple_spinner_item );
-     adapter_weight.setDropDownViewResource( android.R.layout.simple_spinner_item);
      adapter_band = ArrayAdapter.createFromResource(
-     this, R.array.band_values, android.R.layout.simple_spinner_item );
-     adapter_band.setDropDownViewResource( android.R.layout.simple_spinner_item );
+     this, R.array.band_values, android.R.layout.simple_spinner_item);
+     adapter_band.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
      adapter_assist= ArrayAdapter.createFromResource(
      this, R.array.assist_values, android.R.layout.simple_spinner_item );
-     adapter_assist.setDropDownViewResource( android.R.layout.simple_spinner_item );
+     adapter_assist.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
      //creating spinners and assigning adapters
-     spnReps = (Spinner) findViewById( R.id.spnReps );
-     spnReps.setAdapter(adapter_rep);
-     spnWeight = (Spinner) findViewById( R.id.spnWeight );
-     spnWeight.setAdapter(adapter_weight);
+     eTxtReps = (EditText) this.findViewById(R.id.eTxtReps);
+     eTxtWeight = (EditText) this.findViewById(R.id.eTxtWeight);
      spnBand = (Spinner) findViewById( R.id.spnBand );
      spnBand.setAdapter(adapter_band);
      spnAssist = (Spinner) findViewById( R.id.spnAssist );
@@ -102,8 +147,10 @@ Intent intent;
         db = (new DBHelper(this)).getWritableDatabase();
      //grab variables from previous activity
         curPos = getIntent().getIntExtra("int",-1); //current postion
-        dayID = getIntent().getIntExtra("PROGRAM_DAY", 0); //day name
+        dayID = getIntent().getIntExtra("PROGRAM_DAY", 0); //day id
         hasRIP = getIntent().getIntExtra("HAS_RIPPER", 1); //has ripper or not
+        dayID2 = getIntent().getIntExtra("DAY_ID",1);
+        dayName = getIntent().getStringExtra("DAY_NAME");
      // query db based on that variable and move to correct position
         if (hasRIP == 0){
          nohasRipper();
@@ -127,14 +174,14 @@ Intent intent;
      
      //calling function to set what is visible
      showWhat();
-     
+     viewRefresh();
      //checking to see if we are at the beginning or end, and showing the appropriate buttons for each
      atEnd();
      atBeginning();
      
      //setting the date string
      strDate = getDate();
-
+     
      
     
     }
@@ -170,25 +217,33 @@ Intent intent;
 	  viewRefresh();
     }
   
+  public void clickSave(View v)
+		  {
+	  db.execSQL("UPDATE p90days SET date= "+ "'" + strDate + "'" + " WHERE _id = " + "'" + dayID2 + "'");
+	  saveRecord();
+	  db.close();
+	  dialogShare();
+		  }
+  
   
 public void saveRecord(){
 	//grabing values
-	spnWeightStr = spnWeight.getItemAtPosition((int) spnWeight.getSelectedItemId()).toString();
-	spnRepsStr = spnReps.getItemAtPosition((int) spnReps.getSelectedItemId()).toString();
+	eTxtWeightStr = eTxtWeight.getText().toString();
+	eTxtRepsStr = eTxtReps.getText().toString();
 	spnBandStr = spnBand.getItemAtPosition((int) spnBand.getSelectedItemId()).toString();
 	spnAssistStr = spnAssist.getItemAtPosition((int) spnAssist.getSelectedItemId()).toString();
 	TimerStr = timerTextView.getText().toString();
 	
-	if(spnRepsStr.equals("0") && TimerStr.equals("00:00:00")){
-		Toast.makeText(this, "Exercise Not Saved, proper values not selected", 1500).show();
+	if(eTxtRepsStr.equals("0") && TimerStr.equals("00:00:00")){
+		Toast.makeText(this, "Exercise Not Saved, the number of reps or time is 0", 50).show();
 	}
 	else {
 		
 		//storing them in DB if they aren't all 0
 		db.execSQL("INSERT INTO results (ExerciseName,weight,reps,band,date,pullup,time) VALUES("+ "'" + cursor.getString(2) +"'" + ","
-				+  "'" +spnWeightStr+"'" +","+ "'" +spnRepsStr+"'" +","+"'" + spnBandStr +"'"+","+ "'" + strDate +"'"+ ","+"'" + 
+				+  "'" + eTxtWeightStr +"'" +","+ "'" +eTxtRepsStr+"'" +","+"'" + spnBandStr +"'"+","+ "'" + strDate +"'"+ ","+"'" + 
 				spnAssistStr +"'"+ ","+"'" + TimerStr +"'"+ ")");
-		Toast.makeText(this, "Exercise Saved", 1500).show();
+		Toast.makeText(this, "Exercise Saved", 50).show();
 		
 
 	}
@@ -223,8 +278,8 @@ public void saveRecord(){
   //function resets spinners and timer
    public void viewRefresh(){
 		((TextView)findViewById(R.id.timer)).setText("00:00:00");
-		spnWeight.setSelection(0);
-		spnReps.setSelection(0);
+		eTxtWeight.setText("0");
+		eTxtReps.setText("0");
 		spnAssist.setSelection(0);
 		spnBand.setSelection(0);
   
@@ -272,9 +327,11 @@ public void saveRecord(){
 public void atEnd(){
 if (cursor.isLast() == false) {
      btnNext.setVisibility(View.VISIBLE);
+     btnSave.setVisibility(View.GONE);
      }
 else if (cursor.isLast() == true){
-btnNext.setVisibility(View.INVISIBLE);
+btnNext.setVisibility(View.GONE);
+btnSave.setVisibility(View.VISIBLE);
 }
 }
 
@@ -328,6 +385,7 @@ public void showReps(){
    ((LinearLayout)findViewById(R.id.llAssist)).setVisibility(View.GONE);
    ((LinearLayout)findViewById(R.id.llBand)).setVisibility(View.GONE);
    ((LinearLayout)findViewById(R.id.llStopwatch)).setVisibility(View.GONE);
+   ((LinearLayout)findViewById(R.id.llSpinners)).setVisibility(View.VISIBLE);
    
 }
 
@@ -349,21 +407,22 @@ public void showWeights() {
    ((LinearLayout)findViewById(R.id.llAssist)).setVisibility(View.GONE);
    ((LinearLayout)findViewById(R.id.llBand)).setVisibility(View.GONE);
    ((LinearLayout)findViewById(R.id.llStopwatch)).setVisibility(View.GONE);
+   ((LinearLayout)findViewById(R.id.llSpinners)).setVisibility(View.VISIBLE);
 }
 
 public void showTime() {
 	   ((TextView)findViewById(R.id.txtWeight)).setVisibility(View.GONE);
-	   ((TextView)findViewById(R.id.txtBand)).setVisibility(View.VISIBLE);
-	   ((TextView)findViewById(R.id.txtAssist)).setVisibility(View.VISIBLE);
-	   ((TextView)findViewById(R.id.txtReps)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtBand)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtAssist)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtReps)).setVisibility(View.GONE);
 	   ((TextView)findViewById(R.id.txtTime)).setVisibility(View.VISIBLE);
 	   ((TextView)findViewById(R.id.txtWeightValue)).setVisibility(View.GONE);
-	   ((TextView)findViewById(R.id.txtBandValue)).setVisibility(View.VISIBLE);
-	   ((TextView)findViewById(R.id.txtAssistValue)).setVisibility(View.VISIBLE);
-	   ((TextView)findViewById(R.id.txtRepsValue)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtBandValue)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtAssistValue)).setVisibility(View.INVISIBLE);
+	   ((TextView)findViewById(R.id.txtRepsValue)).setVisibility(View.GONE);
 	   ((TextView)findViewById(R.id.txtTimeValue)).setVisibility(View.VISIBLE);
 	   ((LinearLayout)findViewById(R.id.llSpinners)).setVisibility(View.GONE);
-	((LinearLayout)findViewById(R.id.llStopwatch)).setVisibility(View.VISIBLE);
+	   ((LinearLayout)findViewById(R.id.llStopwatch)).setVisibility(View.VISIBLE);
 }
 
 public void showAssist() {
@@ -383,6 +442,7 @@ public void showAssist() {
    ((LinearLayout)findViewById(R.id.llAssist)).setVisibility(View.VISIBLE);
    ((LinearLayout)findViewById(R.id.llBand)).setVisibility(View.VISIBLE);
    ((LinearLayout)findViewById(R.id.llStopwatch)).setVisibility(View.GONE);
+   ((LinearLayout)findViewById(R.id.llSpinners)).setVisibility(View.VISIBLE);
 }
 
 public void showBand(){
@@ -508,9 +568,10 @@ private void updateTimer (float time){
   /* This guy makes a dialog asking if the user wants to share their stats with their friends*/
     public void dialogShare()
     {
+    	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this); 
     	builder
-    	.setMessage("Congratulations! you just finished the " + dayID + " workout!!, do you want to tell your friends?")
+    	.setMessage("Congratulations! you just finished the " + dayName + " workout!!, do you want to tell your friends?")
     	.setTitle("Share with your Friends?")
         .setCancelable(false)
         .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
@@ -518,8 +579,8 @@ private void updateTimer (float time){
 			public void onClick(DialogInterface dialog, int which) {
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
-				String URL = "https://market.android.com/details?id=com.fidotechnologies.jit";
-				String shareBody = "just completed " + dayID + ", and I tracked it using UltiTrack! get it at " + URL;
+				String URL = "https://market.android.com/details?id=com.fidotechnologies.ultitrack90";
+				String shareBody = "just completed " + dayName + ", and I tracked it using UltiTrack! get it at " + URL;
 				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "I am Awesome!!!");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 				startActivity(Intent.createChooser(sharingIntent, "Share via"));
@@ -532,7 +593,7 @@ private void updateTimer (float time){
             public void onClick(DialogInterface dialog, int which) {
 			//since they said no, we take them to the launch activity
             	
-			startActivity(intent);
+			startActivity(intentHome);
 			}
             });
     	

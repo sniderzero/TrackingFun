@@ -2,9 +2,12 @@ package com.fidotechnologies.fido90tracker;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,9 @@ public class HistoryView extends Activity{
 	ListAdapter adapter;
 	TextView lblHistory;
 	Integer exerType;
+	SharedPreferences preferences;
+	String equipPref;
+	Typeface font;
 	
 	public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
@@ -37,30 +43,34 @@ public class HistoryView extends Activity{
         lstHistory = (ListView)findViewById(R.id.lstHistory);
         lblHistory = (TextView)findViewById(R.id.lblHistory);
         
+        //declaring font
+        font = Typeface.createFromAsset(getAssets(), "font.otf");
+        //setting font
+		((TextView)findViewById(R.id.lblTime)).setTypeface(font);
+		((TextView)findViewById(R.id.lblReps)).setTypeface(font);
+		((TextView)findViewById(R.id.lblWeight)).setTypeface(font);
+		((TextView)findViewById(R.id.lblBand)).setTypeface(font);
+		((TextView)findViewById(R.id.lblAssist)).setTypeface(font);
+		lblHistory.setTypeface(font);
+        
         
         //open db connection
         db = (new DBHelper(this)).getWritableDatabase();
         //bring in variables from previous activity
         exerName = getIntent().getStringExtra("EXERCISE_NAME");
         exerType = getIntent().getIntExtra("EXERCISE_TYPE", 0);
-        Toast toast = Toast.makeText(this, exerType.toString(), 5000);
-        toast.show();
-
-
         //set label to exercisename
         lblHistory.setText(exerName);
         //search db based on variable
         cursor = db.rawQuery("SELECT _id, ExerciseName, date, time, weight, reps, band, pullup FROM results WHERE ExerciseName = " + "'" + exerName +"'", null);
-        //set cursor an an adapter
-    	/*adapter = new SimpleCursorAdapter(
-				this, 
-				R.layout.historyrow, 
-				cursor, 
-				new String[] {"time", "date", "weight", "reps", "band", "pullup"}, 
-				new int[] {R.id.txtTime, R.id.txtDate, R.id.txtWeight, R.id.txtReps, R.id.txtBand, R.id.txtAssist}); */
-		lstHistory.setAdapter(new adapter(this,cursor));
-		//determine what to show
+        //grabbing the band/weight preference
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        equipPref = preferences.getString("equipmentType", "");
+      //determine what to show
         whatDisplay();
+        lstHistory.setAdapter(new adapter(this,cursor));
+		//close db
+        db.close();
 		
 		
 }
@@ -74,7 +84,7 @@ public class HistoryView extends Activity{
 			showReps();
 			break;
 		case 2:
-			showWeight();
+			weightsOrBands();
 			break;
 		case 3:
 			showTime();
@@ -100,29 +110,29 @@ public class HistoryView extends Activity{
 	    public void bindView(View view, Context context, Cursor cursor) {  
 	      TextView t = (TextView) view.findViewById(R.id.txtTime);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("time")));  
-	  
+	      t.setTypeface(font);
 	      t = (TextView) view.findViewById(R.id.txtDate);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("date")));
-	      	  
+	      t.setTypeface(font); 
 	      t = (TextView) view.findViewById(R.id.txtWeight);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("weight")));  
-	      
+	      t.setTypeface(font);
 	      t = (TextView) view.findViewById(R.id.txtAssist);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("pullup")));
-	      
+	      t.setTypeface(font);
 	      t = (TextView) view.findViewById(R.id.txtReps);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("reps")));
-	      
+	      t.setTypeface(font);
 	      t = (TextView) view.findViewById(R.id.txtBand);  
 	      t.setText(cursor.getString(cursor.getColumnIndex("band")));
-	      
+	      t.setTypeface(font);
 			
 	      switch(exerType){
 	      case 3:
 			((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.VISIBLE);
-			((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.GONE);
+			((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.INVISIBLE);
 			((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.GONE); 
-			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.GONE);
+			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.INVISIBLE);
 			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.GONE);
 			break;
 			
@@ -130,36 +140,39 @@ public class HistoryView extends Activity{
 			((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.GONE);
 			((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
 			((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.GONE);
-			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.GONE);
-			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.GONE);
+			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.INVISIBLE);
+			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.INVISIBLE);
 			break;
 			
 	      case 2:
-			((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.GONE);
-			((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
-			((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.VISIBLE);
-			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.GONE);
-			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.GONE);
+	    	  if(equipPref.equals("Bands")){
+	  			((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.GONE);
+				((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
+				((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.INVISIBLE);
+				((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.VISIBLE);
+				((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.GONE);
+	  		}
+	  		else {
+		    	((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.GONE);
+				((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
+				((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.VISIBLE);
+				((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.GONE);
+				((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.INVISIBLE);
+	  		}    	  
+
 			break;
 	      
-	      case 5:
+	      case 4:
 			((TextView)view.findViewById(R.id.txtTime)).setVisibility(View.GONE);
 			((TextView)view.findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
 			((TextView)view.findViewById(R.id.txtWeight)).setVisibility(View.GONE);
 			((TextView)view.findViewById(R.id.txtBand)).setVisibility(View.VISIBLE);
-			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.GONE);
-			break;
-			
-	      case 4:
-			((TextView)findViewById(R.id.txtTime)).setVisibility(View.GONE);
-			((TextView)findViewById(R.id.txtReps)).setVisibility(View.VISIBLE);
-			((TextView)findViewById(R.id.txtWeight)).setVisibility(View.GONE);
-			((TextView)findViewById(R.id.txtBand)).setVisibility(View.GONE);
-			((TextView)findViewById(R.id.txtAssist)).setVisibility(View.VISIBLE);
+			((TextView)view.findViewById(R.id.txtAssist)).setVisibility(View.VISIBLE); 
 	      break;
 	      }
+	      }
 	      
-	      }  
+
 	  
 	    @Override  
 	    public View newView(Context context, Cursor cursor, ViewGroup parent) {  
@@ -174,9 +187,9 @@ public class HistoryView extends Activity{
 	public void showTime(){
 		
 		((TextView)findViewById(R.id.lblTime)).setVisibility(View.VISIBLE);
-		((TextView)findViewById(R.id.lblReps)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblReps)).setVisibility(View.INVISIBLE);
 		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.GONE);
-		((TextView)findViewById(R.id.lblBand)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblBand)).setVisibility(View.INVISIBLE);
 		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.GONE);
 				
 	}
@@ -185,8 +198,8 @@ public class HistoryView extends Activity{
 		((TextView)findViewById(R.id.lblTime)).setVisibility(View.GONE);
 		((TextView)findViewById(R.id.lblReps)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.GONE);
-		((TextView)findViewById(R.id.lblBand)).setVisibility(View.GONE);
-		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblBand)).setVisibility(View.INVISIBLE);
+		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.INVISIBLE);
 
 	}
 	
@@ -195,14 +208,14 @@ public class HistoryView extends Activity{
 		((TextView)findViewById(R.id.lblReps)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblBand)).setVisibility(View.GONE);
-		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.INVISIBLE);
 
 	}
 	
 	public void showBand(){
 		((TextView)findViewById(R.id.lblTime)).setVisibility(View.GONE);
 		((TextView)findViewById(R.id.lblReps)).setVisibility(View.VISIBLE);
-		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.INVISIBLE);
 		((TextView)findViewById(R.id.lblBand)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.GONE);
 
@@ -212,8 +225,19 @@ public class HistoryView extends Activity{
 		((TextView)findViewById(R.id.lblTime)).setVisibility(View.GONE);
 		((TextView)findViewById(R.id.lblReps)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblWeight)).setVisibility(View.GONE);
-		((TextView)findViewById(R.id.lblBand)).setVisibility(View.GONE);
+		((TextView)findViewById(R.id.lblBand)).setVisibility(View.VISIBLE);
 		((TextView)findViewById(R.id.lblAssist)).setVisibility(View.VISIBLE);
 
 	}
+	
+	//checking the user's equip preferences to show weights or bands
+	public void weightsOrBands(){
+		if(equipPref.equals("Bands")){
+			showBand();
+		}
+		else {
+			showWeight();
+		}
+	}
+	
 }

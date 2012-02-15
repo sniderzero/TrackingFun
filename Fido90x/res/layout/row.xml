@@ -2,29 +2,47 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="horizontal" >
+    android:orientation="vertical" >
 
-    <TextView
-        android:id="@+id/lblDAY"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="DAY:"
-        android:paddingRight="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/lblDAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingRight="5dp"
+            android:text="Day "
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#030202" />
+
+        <TextView
+            android:id="@+id/daynum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/lblDAY"
+            android:paddingRight="5dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#030202" />
+
+        <ImageView
+            android:id="@+id/imgCheck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/check" />
 
-    <TextView
-        android:id="@+id/daynum"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""
-        android:paddingRight="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#030202" />
     
 </LinearLayout>

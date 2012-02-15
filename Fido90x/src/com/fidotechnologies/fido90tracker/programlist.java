@@ -1,18 +1,29 @@
 package com.fidotechnologies.fido90tracker;
 
+import com.fidotechnologies.fido90tracker.HistoryView.adapter;
+
 import android.app.Activity;
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.CursorAdapter;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -25,6 +36,9 @@ public class programlist extends Activity {
 	protected String programID;
 	protected ListView lstDays;
 	protected int type;
+	SharedPreferences preferences;
+	TextView lblHeader;
+	Typeface font;
 	
 	@Override
 	// on open 
@@ -33,23 +47,23 @@ public class programlist extends Activity {
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.programlist);
         lstDays = (ListView)findViewById(R.id.list);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        font = Typeface.createFromAsset(getAssets(), "font.otf");
+        lblHeader = (TextView)findViewById(R.id.lblHeader);
+        lblHeader.setTypeface(font);
     	//open db
         db = (new DBHelper(this)).getWritableDatabase();
-    	//grab variable passed from previous activity
-        programID = getIntent().getStringExtra("PROGRAM_NAME");
+    	//grab user track preference
+        programID =  preferences.getString("trackType", "Lean");
     	// query db based on that variable
-    	cursor = db.rawQuery("SELECT p90days.dayName, p90days._id, p90days.daynumber, p90days.type, p90days.track, p90days.dayID, p90days.hasRipper " +
-    			"FROM p90days WHERE p90days.track =" + "'" + programID +"'", null);
-    	// set ListView to results
-    	adapter = new SimpleCursorAdapter(
-				this, 
-				R.layout.row, 
-				cursor, 
-				new String[] {cursor.getColumnName(0), "daynumber"}, 
-				new int[] {R.id.name, R.id.daynum});
-		lstDays.setAdapter(adapter);
-	
-
+    	cursor = db.rawQuery("SELECT dayname, _id, daynumber, type, track, dayID, hasRipper, date " +
+    			"FROM p90days WHERE track =" + "'" + programID +"'", null);
+		lstDays.setAdapter(new adapter(this,cursor));
+		//close db
+		//db.close();
+		
+		
+		
 			
  lstDays.setOnItemClickListener(
 	new OnItemClickListener()
@@ -59,17 +73,19 @@ public class programlist extends Activity {
 			type = cursor.getInt(3);
 			if(type == 2)
 				{
-				Toast.makeText(getBaseContext(), cursor.getString(5), 2000).show();	
-				Intent intent = new Intent(programlist.this, exerciselist.class);
+					Intent intent = new Intent(programlist.this, exerciselist.class);
 					//Cursor cursor2 = (Cursor) adapter.getItem(position);
 					intent.putExtra("PROGRAM_DAY", cursor.getInt(5));
 					intent.putExtra("HAS_RIPPER", cursor.getInt(6));
+					intent.putExtra("DAY_ID", cursor.getInt(1));
+					intent.putExtra("DAY_NAME", cursor.getString(0));
 					db.close();
 					startActivity(intent);
 				}
 				else { 
 					Intent intent = new Intent(programlist.this, StopwatchActivity.class);
-					intent.putExtra("PROGRAM_DAY", cursor.getString(0));
+					intent.putExtra("DAY_NAME", cursor.getString(0));
+					intent.putExtra("DAY_ID", cursor.getInt(1));
 					db.close();
 					startActivity(intent);
 				 	}
@@ -78,6 +94,45 @@ public class programlist extends Activity {
 			});
 	
 }
+	public class adapter extends CursorAdapter{  
+	    private Cursor mCursor;  
+	    private Context mContext;  
+	    LayoutInflater mInflater;  
+	  
+	    public adapter(Context context, Cursor cursor) {  
+	      super(context, cursor, true);  
+	      mInflater = LayoutInflater.from(context);  
+	      mContext = context;  
+	    }  
+	  
+	    @Override  
+	    public void bindView(View view, Context context, Cursor cursor) {  
+	      TextView t = (TextView)view.findViewById(R.id.name);  
+	      t.setText(cursor.getString(cursor.getColumnIndex("dayname")));
+	  
+	      TextView t1 = (TextView)view.findViewById(R.id.daynum);  
+	      t1.setText(cursor.getString(cursor.getColumnIndex("daynumber")));
+	      	  
+	      t.setTypeface(font);
+	      t1.setTypeface(font);
+	      
+	      
+	      if(cursor.isNull(7)){
+	    	  ((ImageView)view.findViewById(R.id.imgCheck)).setVisibility(View.INVISIBLE);
+	      }
+	      else{
+	    	  ((ImageView)view.findViewById(R.id.imgCheck)).setVisibility(View.VISIBLE);
+	      }
+	      }  
+	  
+	    @Override  
+	    public View newView(Context context, Cursor cursor, ViewGroup parent) {  
+	      final View view = mInflater.inflate(R.layout.row, parent, false);  
+	      return view;  
+	    }  
+	  }  
+	
+	
 }
 
 

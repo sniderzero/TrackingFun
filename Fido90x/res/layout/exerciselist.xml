@@ -2,21 +2,40 @@
 	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:layout_width="fill_parent"
 	    android:layout_height="wrap_content"
-	    android:orientation="vertical" >
-
-		<TextView
-		    android:id="@+id/textView1"
+	    android:background="@drawable/background"
+	    android:orientation="vertical"
+	     >
+
+		<LinearLayout
+		    android:id="@+id/llHeader"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
-		    android:gravity="center"
-		    android:text="Select Your Exercise :"
-		    android:textAppearance="?android:attr/textAppearanceLarge" />
+		    android:background="@drawable/blackbuttonpressed"
+		    android:orientation="vertical" >
+
+			<TextView
+			    android:id="@+id/lblHeader"
+			    style="@style/header"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:gravity="center"
+			    android:text="Select Exercise" />
+
+		</LinearLayout>
+
+		<ImageView
+		    android:id="@+id/imageView1"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:src="@drawable/hline" />
 
 		<ListView
 		    android:id="@+id/list"
 		    android:layout_width="fill_parent"
 		    android:layout_height="fill_parent"
 		    android:drawSelectorOnTop="false"
+		    android:cacheColorHint="#00000000"
+		    android:divider="@drawable/hline"
 		     >
 
 		</ListView>

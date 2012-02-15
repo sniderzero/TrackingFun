@@ -4,6 +4,11 @@
   <EditTextPreference android:title="Your Name"
                       android:key="username"
                       android:summary="Please provide your username"/>
+  
+<CheckBoxPreference android:title="First Run"
+                      android:key= "firstrun"
+                      android:summary="Tracks the first run state of the app"/>
+    
   <ListPreference     android:title="Current Track"
                       android:summary="Which Track are you current on?"
                       android:key="trackType"
