@@ -1,7 +1,9 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
 
 
+
+import com.fidotechnologies.fido90tracker.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -72,6 +74,7 @@ public class launch extends Activity {
 public void clickBringIt(View v){
 	boolean firstrun = preferences.getBoolean("firstrun", false);
 	if(firstrun == true){
+		db.close();
     	Intent in = new Intent(launch.this, programlist.class);
     	startActivity(in);
 	}
@@ -113,7 +116,7 @@ public void preferenceSelect ()
     	edit.commit();
     	Intent in = new Intent(launch.this, programlist.class);
     	startActivity(in);
-    	finish();
+    	db.close();
         }
     });
     

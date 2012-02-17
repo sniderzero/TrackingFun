@@ -1,4 +1,6 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
+
+import com.fidotechnologies.fido90tracker.R;
 
 import android.app.Activity;
 import android.content.Context;
@@ -51,6 +53,7 @@ public class HistoryView extends Activity{
 		((TextView)findViewById(R.id.lblWeight)).setTypeface(font);
 		((TextView)findViewById(R.id.lblBand)).setTypeface(font);
 		((TextView)findViewById(R.id.lblAssist)).setTypeface(font);
+		((TextView)findViewById(R.id.btnDone)).setTypeface(font);
 		lblHistory.setTypeface(font);
         
         

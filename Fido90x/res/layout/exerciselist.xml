@@ -5,19 +5,20 @@
 	    android:background="@drawable/background"
 	    android:orientation="vertical"
 	     >
-
+
 		<LinearLayout
 		    android:id="@+id/llHeader"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:background="@drawable/blackbuttonpressed"
-		    android:orientation="vertical" >
-
+		    android:orientation="horizontal" >
+
 			<TextView
 			    android:id="@+id/lblHeader"
 			    style="@style/header"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"
+			    android:layout_gravity="center_vertical"
 			    android:gravity="center"
 			    android:text="Select Exercise" />
 

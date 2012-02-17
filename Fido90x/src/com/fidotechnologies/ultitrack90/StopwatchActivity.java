@@ -1,4 +1,4 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
 
 
@@ -24,7 +24,9 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import com.fidotechnologies.fido90tracker.detailview;
+
+import com.fidotechnologies.fido90tracker.R;
+import com.fidotechnologies.ultitrack90.detailview;
 
 
 
@@ -220,7 +222,7 @@ public class StopwatchActivity extends Activity{
 	    {
 	    	AlertDialog.Builder builder = new AlertDialog.Builder(this); 
 	    	builder
-	    	.setMessage("Congratulations! you just finished the " + dayID + " workout!!, do you want to tell your friends?")
+	    	.setMessage("Congratulations! you just finished the " + dayID + " workout!! Do you want to tell your friends?")
 	    	.setTitle("Share with your Friends?")
 	        .setCancelable(false)
 	        .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
@@ -229,7 +231,7 @@ public class StopwatchActivity extends Activity{
 					Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 					sharingIntent.setType("text/plain");
 					String URL = "https://market.android.com/details?id=com.fidotechnologies.jit";
-					String shareBody = "just completed " + dayID + ", and I tracked it using UltiTrack! get it at " + URL;
+					String shareBody = "I just completed " + dayID + " of the P90X, and I tracked it using UltiTrack! get it here " + URL;
 					sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "I am Awesome!!!");
 					sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 					startActivity(Intent.createChooser(sharingIntent, "Share via"));

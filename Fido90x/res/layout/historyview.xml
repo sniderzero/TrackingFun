@@ -27,27 +27,28 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/llHeader"
         android:src="@drawable/hline" />
-
+
     <Button
-        android:id="@+id/testbutton"
+        android:id="@+id/btnDone"
         style="@style/buttonText"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Done"
+        android:background="@drawable/startbuttonstates"
         android:onClick="clickClose"
-        android:background="@drawable/startbuttonstates" />
+        android:text="Done" />
 
     <ListView
         android:id="@+id/lstHistory"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_above="@+id/testbutton"
+        android:layout_above="@+id/btnDone"
         android:layout_below="@+id/llLabels"
-        android:divider="@drawable/hline" >
+        android:divider="@drawable/hline"
+        android:cacheColorHint="#00000000" >
 
     </ListView>
-
+
     <LinearLayout
         android:id="@+id/llLabels"
         android:layout_width="fill_parent"
@@ -56,7 +57,7 @@
 
         <TextView
             android:id="@+id/lblTime"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Time"
@@ -65,52 +66,53 @@
 
         <TextView
             android:id="@+id/lblReps"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Reps"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible" 
-            android:textColor="#030202"/>
+            android:textColor="#030202"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/lblWeight"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Weight"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible"
-            android:textColor="#030202" />
+            android:textColor="#030202"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/lblBand"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Band"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="invisible" 
-            android:textColor="#030202"/>
+            android:textColor="#030202"
+            android:visibility="invisible" />
 
         <TextView
             android:id="@+id/lblAssist"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Assist"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:visibility="gone"
-            android:textColor="#030202" />
-
+            android:textColor="#030202"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/lblDate"
-            android:layout_width="fill_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1.25"
             android:text="Date"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="#030202" />
+
     </LinearLayout>
 
 </RelativeLayout>

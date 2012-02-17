@@ -1,6 +1,7 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
-import com.fidotechnologies.fido90tracker.HistoryView.adapter;
+import com.fidotechnologies.fido90tracker.R;
+import com.fidotechnologies.ultitrack90.HistoryView.adapter;
 
 import android.app.Activity;
 import android.app.ListActivity;
@@ -59,8 +60,7 @@ public class programlist extends Activity {
     	cursor = db.rawQuery("SELECT dayname, _id, daynumber, type, track, dayID, hasRipper, date " +
     			"FROM p90days WHERE track =" + "'" + programID +"'", null);
 		lstDays.setAdapter(new adapter(this,cursor));
-		//close db
-		//db.close();
+
 		
 		
 		
@@ -113,9 +113,12 @@ public class programlist extends Activity {
 	      TextView t1 = (TextView)view.findViewById(R.id.daynum);  
 	      t1.setText(cursor.getString(cursor.getColumnIndex("daynumber")));
 	      	  
+	      TextView t2 = (TextView)view.findViewById(R.id.lblDAY);  
+	      
+	      
 	      t.setTypeface(font);
 	      t1.setTypeface(font);
-	      
+	      t2.setTypeface(font);
 	      
 	      if(cursor.isNull(7)){
 	    	  ((ImageView)view.findViewById(R.id.imgCheck)).setVisibility(View.INVISIBLE);

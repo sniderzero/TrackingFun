@@ -1,6 +1,7 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
-import com.fidotechnologies.fido90tracker.programlist.adapter;
+import com.fidotechnologies.fido90tracker.R;
+import com.fidotechnologies.ultitrack90.programlist.adapter;
 
 import android.app.Activity;
 import android.app.ListActivity;

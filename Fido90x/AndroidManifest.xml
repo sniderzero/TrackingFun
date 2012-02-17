@@ -4,7 +4,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="7" />
+    <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="11"/>
     <supports-screens android:largeScreens="true" android:smallScreens="false" android:normalScreens="true"/>
 
     <application
@@ -12,7 +12,7 @@
         android:label="@string/app_name" android:theme="@android:style/Theme.Black.NoTitleBar" android:allowClearUserData="true">
         <activity
             android:name=".launch"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,14 +20,14 @@
             </intent-filter>
         </activity>
         <activity 
-            android:name="programlist">
+            android:name="programlist" android:screenOrientation="portrait">
         	android:theme="@android:style/"
         </activity>
-        <activity android:name="exerciselist"></activity>
-        <activity android:name="detailview"></activity>
-        <activity android:name="AppPreferences"></activity>
+        <activity android:name="exerciselist" android:screenOrientation="portrait"></activity>
+        <activity android:name="detailview" android:screenOrientation="portrait"></activity>
+        <activity android:name="AppPreferences" android:screenOrientation="portrait"></activity>
         <activity android:name="StopwatchActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name="HistoryView"></activity>
+        <activity android:name="com.fidotechnologies.ultitrack90.HistoryView" android:screenOrientation="portrait"></activity>
         
         
     </application>

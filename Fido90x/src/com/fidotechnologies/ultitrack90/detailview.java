@@ -1,6 +1,8 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
 import java.util.Calendar;
+
+import com.fidotechnologies.fido90tracker.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -42,7 +44,7 @@ TextView txtName, txtRepsValue, txtWeightValue, txtTimeValue, txtAssistValue, tx
 TextView lblReps, lblWeight, lblAssist, lblBand, lblLastRound, txtReps, txtWeight, txtTime, txtAssist, txtBand, txtDate;
 Spinner spnBand, spnAssist;
 ArrayAdapter<CharSequence> adapter_band, adapter_rep, adapter_weight, adapter_assist;
-Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop;
+Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop, btnHistory;
 SharedPreferences preferences;
 String equipPref;
 EditText eTxtReps, eTxtWeight;
@@ -91,6 +93,7 @@ Typeface font;
         btnStart = (Button)findViewById(R.id.startButton);
         btnReset = (Button)findViewById(R.id.resetButton);
         btnStop = (Button)findViewById(R.id.stopButton);
+        btnHistory = (Button)findViewById(R.id.btnHist);
         
         //declaring font
         font = Typeface.createFromAsset(getAssets(), "font.otf");
@@ -110,6 +113,7 @@ Typeface font;
         btnStart.setTypeface(font);
         btnReset.setTypeface(font);
         btnStop.setTypeface(font);
+        btnHistory.setTypeface(font);
         lblReps.setTypeface(font);
         lblWeight.setTypeface(font);
         lblAssist.setTypeface(font);
@@ -160,7 +164,7 @@ Typeface font;
         }
      //move to position selected in list
      cursor.moveToPosition(curPos);
-     //db.close();
+     
      
      // txtName Value based on previous selection criteria
      txtName.setText(cursor.getString(2));
@@ -181,6 +185,7 @@ Typeface font;
      
      //setting the date string
      strDate = getDate();
+     
      
      
     
@@ -233,8 +238,9 @@ public void saveRecord(){
 	spnBandStr = spnBand.getItemAtPosition((int) spnBand.getSelectedItemId()).toString();
 	spnAssistStr = spnAssist.getItemAtPosition((int) spnAssist.getSelectedItemId()).toString();
 	TimerStr = timerTextView.getText().toString();
+	int repsLength = eTxtRepsStr.length();
 	
-	if(eTxtRepsStr.equals("0") && TimerStr.equals("00:00:00")){
+	if(repsLength == 0 && TimerStr.equals("00:00:00")){
 		Toast.makeText(this, "Exercise Not Saved, the number of reps or time is 0", 50).show();
 	}
 	else {
@@ -278,8 +284,8 @@ public void saveRecord(){
   //function resets spinners and timer
    public void viewRefresh(){
 		((TextView)findViewById(R.id.timer)).setText("00:00:00");
-		eTxtWeight.setText("0");
-		eTxtReps.setText("0");
+		eTxtWeight.setText("");
+		eTxtReps.setText("");
 		spnAssist.setSelection(0);
 		spnBand.setSelection(0);
   
@@ -571,7 +577,7 @@ private void updateTimer (float time){
     	
     	AlertDialog.Builder builder = new AlertDialog.Builder(this); 
     	builder
-    	.setMessage("Congratulations! you just finished the " + dayName + " workout!!, do you want to tell your friends?")
+    	.setMessage("Congratulations! you just finished the " + dayName + " workout!! Do you want to tell your friends?")
     	.setTitle("Share with your Friends?")
         .setCancelable(false)
         .setNegativeButton("Yes", new DialogInterface.OnClickListener() {
@@ -580,7 +586,7 @@ private void updateTimer (float time){
 				Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 				sharingIntent.setType("text/plain");
 				String URL = "https://market.android.com/details?id=com.fidotechnologies.ultitrack90";
-				String shareBody = "just completed " + dayName + ", and I tracked it using UltiTrack! get it at " + URL;
+				String shareBody = "I just completed " + dayName + " of the P90X, and I tracked it using UltiTrack! get it here " + URL;
 				sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "I am Awesome!!!");
 				sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
 				startActivity(Intent.createChooser(sharingIntent, "Share via"));

@@ -1,4 +1,4 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
 
 import java.io.InputStream;
 
@@ -7,6 +7,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
+
+import com.fidotechnologies.fido90tracker.R;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -27,7 +30,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String s;
 		try {
-			Toast.makeText(context, "1", 2000).show();
+			
 			InputStream in = context.getResources().openRawResource(R.raw.sql);
 			DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
 			Document doc = builder.parse(in, null);

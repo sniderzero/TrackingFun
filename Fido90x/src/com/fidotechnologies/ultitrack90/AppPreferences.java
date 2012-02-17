@@ -1,4 +1,6 @@
-package com.fidotechnologies.fido90tracker;
+package com.fidotechnologies.ultitrack90;
+
+import com.fidotechnologies.fido90tracker.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
