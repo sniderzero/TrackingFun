@@ -16,6 +16,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -608,4 +611,28 @@ private void updateTimer (float time){
     	alert.show();
     }
 
+    @Override
+    public void onBackPressed() {
+    	   db.close();
+    	   finish();
+    	}
+
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    MenuInflater inflater = getMenuInflater();
+	    inflater.inflate(R.menu.options, menu);
+	    return true;
+	  }
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    case R.id.preferences:
+	        Intent in = new Intent(this, AppPreferences.class);
+	        startActivity(in);
+	          return true;
+	    default:
+	          return super.onOptionsItemSelected(item);
+	    }
+
+	}
+    
 }

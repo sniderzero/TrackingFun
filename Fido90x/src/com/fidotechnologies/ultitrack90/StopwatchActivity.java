@@ -22,6 +22,9 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -270,6 +273,24 @@ public void showStopButton(){
 	((Button)findViewById(R.id.stopButton)).setVisibility(View.VISIBLE);
 	((Button)findViewById(R.id.startButton)).setVisibility(View.GONE);
 	((Button)findViewById(R.id.resetButton)).setVisibility(View.GONE);
+}
+
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options, menu);
+    return true;
+  }
+
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+    case R.id.preferences:
+        Intent in = new Intent(this, AppPreferences.class);
+        startActivity(in);
+          return true;
+    default:
+          return super.onOptionsItemSelected(item);
+    }
+
 }
 
 }

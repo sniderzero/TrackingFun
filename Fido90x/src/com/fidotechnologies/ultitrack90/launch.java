@@ -17,6 +17,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Adapter;
@@ -43,7 +46,7 @@ public class launch extends Activity {
 	String strTrack, strEquip, strUserName;
 	SpinnerAdapter adapter_track, adapter_equip;
 	TextView txtName;
-	Button btnBringIt, btnPreferences;
+	Button btnBringIt;
 	
     /** Called when the activity is first created. */
     @Override
@@ -52,11 +55,9 @@ public class launch extends Activity {
         setContentView(R.layout.main);
         txtName = (TextView)findViewById(R.id.lblHeaderMain);
         btnBringIt = (Button)findViewById(R.id.btnBringIt);
-        btnPreferences = (Button)findViewById(R.id.btnPreferences);
         Typeface font = Typeface.createFromAsset(getAssets(), "font.otf");
         txtName.setTypeface(font);
         btnBringIt.setTypeface(font);
-        btnPreferences.setTypeface(font);
         
         db = (new DBHelper(this)).getWritableDatabase();
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -125,13 +126,22 @@ public void preferenceSelect ()
 	
 }
 
-public void preferenceSelect (View view)
-{
 
-                Intent in = new Intent(launch.this, AppPreferences.class);
-               
-                startActivity(in); 
+public boolean onCreateOptionsMenu(Menu menu) {
+    MenuInflater inflater = getMenuInflater();
+    inflater.inflate(R.menu.options, menu);
+    return true;
+  }
+
+public boolean onOptionsItemSelected(MenuItem item) {
+    switch (item.getItemId()) {
+    case R.id.preferences:
+        Intent in = new Intent(launch.this, AppPreferences.class);
+        startActivity(in);
+          return true;
+    default:
+          return super.onOptionsItemSelected(item);
+    }
 
 }
-
 }
