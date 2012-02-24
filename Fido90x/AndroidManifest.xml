@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fidotechnologies.fido90tracker"
+    package="com.fidotechnologies.ultitrack90"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -11,7 +11,7 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" android:theme="@android:style/Theme.Black.NoTitleBar" android:allowClearUserData="true">
         <activity
-            android:name=".launch"
+            android:name="launch"
             android:label="@string/app_name" android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,7 +27,7 @@
         <activity android:name="detailview" android:screenOrientation="portrait"></activity>
         <activity android:name="AppPreferences" android:screenOrientation="portrait"></activity>
         <activity android:name="StopwatchActivity" android:screenOrientation="portrait"></activity>
-        <activity android:name="com.fidotechnologies.ultitrack90.HistoryView" android:screenOrientation="portrait"></activity>
+        <activity android:name="HistoryView" android:screenOrientation="portrait"></activity>
         
         
     </application>

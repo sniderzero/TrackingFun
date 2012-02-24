@@ -8,7 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.NodeList;
 
-import com.fidotechnologies.fido90tracker.R;
+import com.fidotechnologies.ultitrack90.R;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -25,7 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
-import com.fidotechnologies.fido90tracker.R;
+import com.fidotechnologies.ultitrack90.R;
 import com.fidotechnologies.ultitrack90.detailview;
 
 
@@ -230,7 +230,7 @@ public class StopwatchActivity extends Activity{
 				public void onClick(DialogInterface dialog, int which) {
 					Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
 					sharingIntent.setType("text/plain");
-					String URL = "https://market.android.com/details?id=com.fidotechnologies.jit";
+					String URL = "http://market.android.com/details?id=com.fidotechnologies.ultitrack90";
 					String shareBody = "I just completed " + dayID + " of the P90X, and I tracked it using UltiTrack! get it here " + URL;
 					sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "I am Awesome!!!");
 					sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
