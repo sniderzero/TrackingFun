@@ -129,7 +129,9 @@ Typeface font;
         txtBand.setTypeface(font);
         txtDate.setTypeface(font);
 
-        
+        //grabbing the band/weight preference
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        equipPref = preferences.getString("equipmentType", "");
                   
         //building home intent
         intentHome = new Intent(this, launch.class);
@@ -179,9 +181,7 @@ Typeface font;
      // filling out user stats     
      fillUserStats();
      
-     //grabbing the band/weight preference
-     preferences = PreferenceManager.getDefaultSharedPreferences(this);
-     equipPref = preferences.getString("equipmentType", "");
+
      
      //calling function to set what is visible
      showWhat();
@@ -493,7 +493,7 @@ public void showStopButton(){
 
 //checking the user's equip preferences to show weights or bands
 public void weightsOrBands(){
-	if(equipPref.equals("Bands")){
+	if(equipPref.equals("Generic Bands") || equipPref.equals("X Bands")){
 		showBand();
 	}
 	else {
