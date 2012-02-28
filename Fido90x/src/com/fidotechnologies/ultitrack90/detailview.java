@@ -134,13 +134,17 @@ Typeface font;
         //building home intent
         intentHome = new Intent(this, launch.class);
 
-     //creating some spinner adapters
-     adapter_band = ArrayAdapter.createFromResource(
-     this, R.array.band_values, android.R.layout.simple_spinner_item);
-     adapter_band.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
-     adapter_assist= ArrayAdapter.createFromResource(
-     this, R.array.assist_values, android.R.layout.simple_spinner_item );
-     adapter_assist.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        //creating some spinner adapters
+        if(equipPref.equals("Generic Bands")) { 
+        adapter_band = ArrayAdapter.createFromResource(
+        		this, R.array.Generic_Bands, android.R.layout.simple_spinner_item);
+        }
+        else {
+            adapter_band = ArrayAdapter.createFromResource(
+            		this, R.array.X_Bands, android.R.layout.simple_spinner_item);
+        }
+        
+        adapter_band.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
      //creating spinners and assigning adapters
      eTxtReps = (EditText) this.findViewById(R.id.eTxtReps);

@@ -6,15 +6,14 @@ package com.fidotechnologies.ultitrack90;
 import com.fidotechnologies.ultitrack90.R;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
@@ -22,11 +21,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
@@ -43,10 +40,13 @@ public class launch extends Activity {
 	protected ListAdapter adapter;
 	SharedPreferences preferences;
 	Spinner spnTrack, spnEquip;
-	String strTrack, strEquip, strUserName;
+	String strTrack, strEquip, strUserName, strRuns;
 	SpinnerAdapter adapter_track, adapter_equip;
 	TextView txtName;
 	Button btnBringIt;
+	Integer intRuns;
+	Editor edit;
+	Boolean bnFeedback;
 	
     /** Called when the activity is first created. */
     @Override
@@ -59,8 +59,69 @@ public class launch extends Activity {
         txtName.setTypeface(font);
         btnBringIt.setTypeface(font);
         
-        db = (new DBHelper(this)).getWritableDatabase();
+        //open preferences
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+        //declare preference editor
+        edit = preferences.edit();
+        //grabbing number or runs preference
+        strRuns = preferences.getString("runnumber", "0");
+        //grabbing if feedback has been given boolean
+        bnFeedback = preferences.getBoolean("feedbackgiven", false);
+        //converting it to Integer
+        intRuns = Integer.valueOf(strRuns);
+        //adding one everytime the user runs the app
+        intRuns = intRuns+1;
+        //converting back to a string
+        strRuns = String.valueOf(intRuns);
+        //storing in preferences
+        edit.putString("runnumber", strRuns);
+        edit.commit();
+        
+       //check if the user has given feedback
+        if(bnFeedback == false){
+        
+        //check if the number of runs is 5/10/15
+       
+        if(intRuns ==  10 || intRuns == 15 || intRuns == 25){
+        	//ask for feedback if it is
+        	
+            final Dialog dialog = new Dialog(launch.this);
+            dialog.setContentView(R.layout.rateappdialog);
+            dialog.setTitle("Will you rate UltiTrack90?");
+            dialog.setCancelable(true);
+            //declare dialog buttons
+            Button btnYes = (Button) dialog.findViewById(R.id.btnYes);
+            Button btnLater = (Button) dialog.findViewById(R.id.btnLater);
+            Button btnNothanks = (Button) dialog.findViewById(R.id.btnNothanks);
+            btnYes.setOnClickListener(new OnClickListener() {
+            @Override
+                public void onClick(View v) {
+            	edit.putBoolean("feedbackgiven", true);
+            	edit.commit();
+            	rateApp();
+            	dialog.dismiss();
+                }
+            });
+            btnLater.setOnClickListener(new OnClickListener() {
+            @Override
+                public void onClick(View v) {
+            	dialog.dismiss();
+                }
+            });
+            btnNothanks.setOnClickListener(new OnClickListener() {
+            @Override
+                public void onClick(View v) {
+            	edit.putBoolean("feedbackgiven", true);
+            	edit.commit();
+            	dialog.dismiss();
+                }
+            });
+        	dialog.show();
+
+        }
+        }
+        
+        db = (new DBHelper(this)).getWritableDatabase();
         cursor = db.rawQuery("SELECT _id, name, program FROM programs", null);
         adapter = new SimpleCursorAdapter(
     			this, 
@@ -126,6 +187,11 @@ public void preferenceSelect ()
 	
 }
 
+public void rateApp(){
+	Intent intent = new Intent(Intent.ACTION_VIEW);
+	intent.setData(Uri.parse("market://details?id=com.fidotechnologies.ultitrack92"));
+	startActivity(intent);
+}
 
 public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
