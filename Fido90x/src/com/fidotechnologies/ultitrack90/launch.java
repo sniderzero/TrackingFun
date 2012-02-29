@@ -47,7 +47,7 @@ public class launch extends Activity {
 	Integer intRuns;
 	Editor edit;
 	Boolean bnFeedback;
-	
+	//merge test
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
