@@ -95,7 +95,7 @@
 			    android:id="@+id/llResults"
 			    android:layout_width="wrap_content"
 			    android:layout_height="wrap_content"
-			    android:layout_above="@+id/btnHist"
+        	    android:layout_alignParentBottom="true"
 			    android:orientation="vertical" >
 
 			    <ImageView
@@ -177,17 +177,7 @@
 			    </TableLayout>
 			</LinearLayout>
 
-        <Button
-            android:id="@+id/btnHist"
-            style="@style/buttonText"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:onClick="clickHistory"
-            android:text="Full History" 
-            android:background="@drawable/startbuttonstates"/>
-
-			<LinearLayout
+       			<LinearLayout
 			    android:id="@+id/llSaveButton"
 			    android:layout_width="fill_parent"
 			    android:layout_height="wrap_content"

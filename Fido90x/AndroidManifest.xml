@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.fidotechnologies.ultitrack90"
     android:versionCode="3"
-    android:versionName="1.0.2" >
+    android:versionName="1.1.3" >
 
     <uses-sdk android:minSdkVersion="7" android:targetSdkVersion="11"/>
     <supports-screens android:largeScreens="true" android:smallScreens="false" android:normalScreens="true"/>
@@ -21,7 +21,6 @@
         </activity>
         <activity 
             android:name="programlist" android:screenOrientation="portrait">
-        	android:theme="@android:style/"
         </activity>
         <activity android:name="exerciselist" android:screenOrientation="portrait"></activity>
         <activity android:name="detailview" android:screenOrientation="portrait"></activity>

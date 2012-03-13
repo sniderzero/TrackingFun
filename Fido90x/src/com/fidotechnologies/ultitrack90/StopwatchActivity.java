@@ -4,24 +4,16 @@ package com.fidotechnologies.ultitrack90;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -38,7 +30,7 @@ public class StopwatchActivity extends Activity{
 	
 	
 	private TextView timerTextView, textName, txtTime, txtDate, lblDate, lblTime, lblLastRound; 
-	private Button btnStart, btnReset, btnStop, btnHist, btnSave;
+	private Button btnStart, btnReset, btnStop, btnSave;
 	private Handler mHandler = new Handler();
 	private long startTime;
 	private long elapsedTime;
@@ -71,7 +63,6 @@ public class StopwatchActivity extends Activity{
     	btnStart = (Button)findViewById(R.id.startButton);
     	btnReset = (Button)findViewById(R.id.resetButton);
     	btnStop = (Button)findViewById(R.id.stopButton);
-    	btnHist = (Button)findViewById(R.id.btnHist);
     	btnSave = (Button)findViewById(R.id.saveButton);
     	//declare font
     	font = Typeface.createFromAsset(getAssets(), "font.otf");
@@ -86,7 +77,6 @@ public class StopwatchActivity extends Activity{
     	btnStart.setTypeface(font);
     	btnReset.setTypeface(font);
     	btnStop.setTypeface(font);
-    	btnHist.setTypeface(font);
     	btnSave.setTypeface(font);
     	//creating an intent to call when finished
     	intent = new Intent(StopwatchActivity.this, launch.class);
@@ -248,6 +238,7 @@ public class StopwatchActivity extends Activity{
 				//since they said no, we take them to the launch activity
 	            	
 				startActivity(intent);
+				finish();
 				}
 	            });
 	    	
@@ -256,7 +247,7 @@ public class StopwatchActivity extends Activity{
 	    	alert.show();
 	    }
 	    
-public void clickHistory(View v){
+public void clickHistory(){
 	Intent intent = new Intent(StopwatchActivity.this, HistoryView.class);
 	intent.putExtra("EXERCISE_NAME", dayID);
 	intent.putExtra("EXERCISE_TYPE", 3);
@@ -277,7 +268,7 @@ public void showStopButton(){
 
 public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
-    inflater.inflate(R.menu.options, menu);
+    inflater.inflate(R.menu.optionsdetail, menu);
     return true;
   }
 
@@ -286,6 +277,9 @@ public boolean onOptionsItemSelected(MenuItem item) {
     case R.id.preferences:
         Intent in = new Intent(this, AppPreferences.class);
         startActivity(in);
+          return true;
+    case R.id.History:
+    	clickHistory();
           return true;
     default:
           return super.onOptionsItemSelected(item);

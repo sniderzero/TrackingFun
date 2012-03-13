@@ -24,4 +24,11 @@
                       android:defaultValue=""
                       android:entries="@array/listEquip"
                       android:entryValues="@array/listEquip" />
+
+<ListPreference     android:title="Exercise Track"
+                      android:summary="Which track are you doing?"
+                      android:key="trackType"
+                      android:defaultValue=""
+                      android:entries="@array/listTrack"
+                      android:entryValues="@array/listTrack" />
 </PreferenceScreen>

@@ -47,7 +47,7 @@ TextView txtName, txtRepsValue, txtWeightValue, txtTimeValue, txtAssistValue, tx
 TextView lblReps, lblWeight, lblAssist, lblBand, lblLastRound, txtReps, txtWeight, txtTime, txtAssist, txtBand, txtDate;
 Spinner spnBand, spnAssist;
 ArrayAdapter<CharSequence> adapter_band, adapter_rep, adapter_weight, adapter_assist;
-Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop, btnHistory;
+Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop;
 SharedPreferences preferences;
 String equipPref;
 EditText eTxtReps, eTxtWeight;
@@ -96,7 +96,6 @@ Typeface font;
         btnStart = (Button)findViewById(R.id.startButton);
         btnReset = (Button)findViewById(R.id.resetButton);
         btnStop = (Button)findViewById(R.id.stopButton);
-        btnHistory = (Button)findViewById(R.id.btnHist);
         
         //declaring font
         font = Typeface.createFromAsset(getAssets(), "font.otf");
@@ -116,7 +115,6 @@ Typeface font;
         btnStart.setTypeface(font);
         btnReset.setTypeface(font);
         btnStop.setTypeface(font);
-        btnHistory.setTypeface(font);
         lblReps.setTypeface(font);
         lblWeight.setTypeface(font);
         lblAssist.setTypeface(font);
@@ -147,6 +145,10 @@ Typeface font;
         }
         
         adapter_band.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
+        
+        adapter_assist = ArrayAdapter.createFromResource(
+        		this, R.array.assist_values, android.R.layout.simple_spinner_item);
+        adapter_assist.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 
      //creating spinners and assigning adapters
      eTxtReps = (EditText) this.findViewById(R.id.eTxtReps);
@@ -235,11 +237,12 @@ Typeface font;
 	  saveRecord();
 	  db.close();
 	  dialogShare();
+	  
 		  }
   
   
 public void saveRecord(){
-	//grabing values
+	//grabbing values
 	eTxtWeightStr = eTxtWeight.getText().toString();
 	eTxtRepsStr = eTxtReps.getText().toString();
 	spnBandStr = spnBand.getItemAtPosition((int) spnBand.getSelectedItemId()).toString();
@@ -372,7 +375,7 @@ cursor = db.rawQuery("SELECT _id, dayID, name, exernum, type FROM p90Exercises W
 
 
 //opens the full history view
-public void clickHistory(View v){
+public void clickHistory(){
 Intent intent = new Intent(detailview.this, HistoryView.class);
 intent.putExtra("EXERCISE_NAME", cursor.getString(2));
 intent.putExtra("EXERCISE_TYPE", cursor.getInt(4));
@@ -607,6 +610,7 @@ private void updateTimer (float time){
 			//since they said no, we take them to the launch activity
             	
 			startActivity(intentHome);
+			finish();
 			}
             });
     	
@@ -623,7 +627,7 @@ private void updateTimer (float time){
 
 	public boolean onCreateOptionsMenu(Menu menu) {
 	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(R.menu.options, menu);
+	    inflater.inflate(R.menu.optionsdetail, menu);
 	    return true;
 	  }
 
@@ -632,6 +636,9 @@ private void updateTimer (float time){
 	    case R.id.preferences:
 	        Intent in = new Intent(this, AppPreferences.class);
 	        startActivity(in);
+	          return true;
+	    case R.id.History:
+	    	clickHistory();
 	          return true;
 	    default:
 	          return super.onOptionsItemSelected(item);
