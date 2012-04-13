@@ -1,66 +1,66 @@
 <sql>
 <statement>
 CREATE TABLE IF NOT EXISTS p90days (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	track VARCHAR(50), 
-	dayname VARCHAR(50),
-	dayID INTERGER, 
-	weeknumber INTERGER, 
-	daynumber INTERGER,
-	type INTERGER,
-	date VARCHAR(50),
-	hasRipper INTERGER)
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+track VARCHAR(50),
+dayname VARCHAR(50),
+dayID INTERGER,
+weeknumber INTERGER,
+daynumber INTERGER,
+type INTERGER,
+date VARCHAR(50),
+hasRipper INTERGER)
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS results (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	profile VARCHAR(50),
-	ExerciseName VARCHAR(50),
-	weight INTERGER,
-	reps INTERGER,
-	band VARCHAR(50),
-	time VARCHAR(50),
-	pullup VARCHAR(50),
-	date VARCHAR(50),
-	notes VARCHAR(100))
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+profile VARCHAR(50),
+ExerciseName VARCHAR(50),
+weight INTERGER,
+reps INTERGER,
+band VARCHAR(50),
+time VARCHAR(50),
+pullup VARCHAR(50),
+date VARCHAR(50),
+notes VARCHAR(100))
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS weighin (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	profile VARCHAR(50),
-	weight INTERGER,
-	date VARCHAR(50))
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+profile VARCHAR(50),
+weight INTERGER,
+date VARCHAR(50))
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS programs (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	name VARCHAR(50),
-	program VARCHAR(50))
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+name VARCHAR(50),
+program VARCHAR(50))
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS p90Exercises (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT,
-	dayID INTEGER,
-	day VARCHAR(50),
-	name VARCHAR(50),
-	exernum INTEGER,
-	type INTEGER)
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+dayID INTEGER,
+day VARCHAR(50),
+name VARCHAR(50),
+exernum INTEGER,
+type INTEGER)
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS userstats (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	username VARCHAR(50),
-	exername VARCHAR(50),
-	weight INTERGER,
-	reps INTERGER,
-	time INTERGER,
-	date INTERGER)
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+username VARCHAR(50),
+exername VARCHAR(50),
+weight INTERGER,
+reps INTERGER,
+time INTERGER,
+date INTERGER)
 </statement>
 <statement>
 CREATE TABLE IF NOT EXISTS p90dayKey (
-	_id INTEGER PRIMARY KEY AUTOINCREMENT, 
-	dayName VARCHAR(50),
-	dayID INTERGER)
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+dayName VARCHAR(50),
+dayID INTERGER)
 </statement>
 <statement>INSERT INTO programs VALUES(1,'Classic','P90X : ')</statement>
 <statement>INSERT INTO programs VALUES(2,'Lean','P90X : ')</statement>
@@ -375,18 +375,18 @@ CREATE TABLE IF NOT EXISTS p90dayKey (
 <statement>INSERT INTO "p90Exercises" VALUES('10',1,'Chest/Back','Lawnmowers',10,2)</statement>
 <statement>INSERT INTO "p90Exercises" VALUES('11',1,'Chest/Back','Dive-Bomber Push-Ups',11,1)</statement>
 <statement>INSERT INTO "p90Exercises" VALUES('12',1,'Chest/Back','Back Flys',12,2)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('13',1,'Chest/Back','Standard Push-Ups',13,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('14',1,'Chest/Back','Wide Front Pull-Ups',14,4)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('15',1,'Chest/Back','Military Push-Ups',15,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('16',1,'Chest/Back','Reverse Grip Chin-Ups',16,4)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('17',1,'Chest/Back','Wide Fly Push-Ups',17,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('18',1,'Chest/Back','Closed Grip Overhand Pull-Ups',18,4)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('19',1,'Chest/Back','Decline Push-Ups',19,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('20',1,'Chest/Back','Heavy Pants',20,2)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('21',1,'Chest/Back','Diamond Push-Ups',21,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('22',1,'Chest/Back','Lawnmowers',22,2)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('23',1,'Chest/Back','Dive-Bomber Push-Ups',23,1)</statement>
-<statement>INSERT INTO "p90Exercises" VALUES('24',1,'Chest/Back','Back Flys',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('14',1,'Chest/Back','Standard Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('13',1,'Chest/Back','Wide Front Pull-Ups',13,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('16',1,'Chest/Back','Military Push-Ups',16,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('15',1,'Chest/Back','Reverse Grip Chin-Ups',15,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('18',1,'Chest/Back','Wide Fly Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('17',1,'Chest/Back','Closed Grip Overhand Pull-Ups',17,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('20',1,'Chest/Back','Decline Push-Ups',20,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('19',1,'Chest/Back','Heavy Pants',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('22',1,'Chest/Back','Diamond Push-Ups',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('21',1,'Chest/Back','Lawnmowers',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('24',1,'Chest/Back','Dive-Bomber Push-Ups',24,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('23',1,'Chest/Back','Back Flys',23,2)</statement>
 <statement>INSERT INTO "p90Exercises" VALUES('25',3,'Shoulders/Arms','Alternating Shoulder Press',1,2)</statement>
 <statement>INSERT INTO "p90Exercises" VALUES('26',3,'Shoulders/Arms','In/Out Bicep Curls',2,2)</statement>
 <statement>INSERT INTO "p90Exercises" VALUES('27',3,'Shoulders/Arms','Two-Arm Tricep Kickbacks',3,2)</statement>

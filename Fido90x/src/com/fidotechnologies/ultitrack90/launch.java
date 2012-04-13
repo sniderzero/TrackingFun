@@ -7,6 +7,7 @@ import com.fidotechnologies.ultitrack90.R;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -28,6 +29,7 @@ import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 
@@ -40,13 +42,13 @@ public class launch extends Activity {
 	protected ListAdapter adapter;
 	SharedPreferences preferences;
 	Spinner spnTrack, spnEquip;
-	String strTrack, strEquip, strUserName, strRuns;
+	String strTrack, strEquip, strUserName, strRuns, url;
 	SpinnerAdapter adapter_track, adapter_equip;
 	TextView txtName;
 	Button btnBringIt;
 	Integer intRuns;
 	Editor edit;
-	Boolean bnFeedback;
+	Boolean bnFeedback, bnURLTest;
 	
     /** Called when the activity is first created. */
     @Override
@@ -119,7 +121,7 @@ public class launch extends Activity {
         	dialog.show();
 
         }
-        }
+        } 
         
         db = (new DBHelper(this)).getWritableDatabase();
         cursor = db.rawQuery("SELECT _id, name, program FROM programs", null);
@@ -186,11 +188,34 @@ public void preferenceSelect ()
     dialog.show();
 	
 }
-
+//function for rating app
 public void rateApp(){
 	Intent intent = new Intent(Intent.ACTION_VIEW);
-	intent.setData(Uri.parse("market://details?id=com.fidotechnologies.ultitrack92"));
+	intent.setData(Uri.parse("market://details?id=com.fidotechnologies.ultitrack90"));  //PLAY STORE
+	//intent.setData(Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=com.fidotechnologies.ultitrack90"));  //AMAZON APP STORE
+	//intent.setData(Uri.parse("http://www.barnesandnoble.com/u/NOOK-Apps/379003212"));  //NOOK STORE	
 	startActivity(intent);
+}
+
+//function for checking if intent is available
+public static boolean isUriAvailable(Context context, String uri) {
+    Intent test = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+    return context.getPackageManager().resolveActivity(test, 0) != null;
+}
+
+
+public void facebookLike(View v){
+	bnURLTest = isUriAvailable(this, "fb://profile/346670485368866/wall");
+	
+	if(bnURLTest = true) {
+	url = "fb://profile/346670485368866/wall";
+	}
+	else{
+	url = "http://www.facebook.com/appsmarttech";
+	}
+	Intent i = new Intent(Intent.ACTION_VIEW);  
+	i.setData(Uri.parse(url));  
+	startActivity(i);
 }
 
 public boolean onCreateOptionsMenu(Menu menu) {
