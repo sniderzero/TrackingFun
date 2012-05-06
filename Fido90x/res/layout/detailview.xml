@@ -10,7 +10,7 @@
         android:id="@+id/relativeLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
+
         <LinearLayout
             android:id="@+id/llHeader"
             android:layout_width="fill_parent"
@@ -18,7 +18,7 @@
             android:layout_alignParentTop="true"
             android:background="@drawable/blackbuttonpressed"
             android:orientation="horizontal" >
-
+
             <TextView
                 android:id="@+id/txtName"
                 style="@style/detailheader"
@@ -27,9 +27,8 @@
                 android:layout_gravity="center_vertical"
                 android:gravity="center"
                 android:text="Large Text" />
-
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/llbuttons"
             android:layout_width="fill_parent"
@@ -41,7 +40,7 @@
                 style="@style/buttonText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
+                android:layout_weight="1"
                 android:background="@drawable/startbuttonstates"
                 android:onClick="prevExercise"
                 android:paddingBottom="10dip"
@@ -53,7 +52,7 @@
                 style="@style/buttonText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50"
+                android:layout_weight="1"
                 android:background="@drawable/startbuttonstates"
                 android:onClick="nextExercise"
                 android:paddingBottom="10dip"
@@ -73,7 +72,7 @@
                 android:text="Save"
                 android:visibility="gone" />
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/llStopwatch"
             android:layout_width="fill_parent"
@@ -137,7 +136,7 @@
                     android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
-
+
         <LinearLayout
             android:id="@+id/llSpinners"
             android:layout_width="fill_parent"
@@ -164,6 +163,14 @@
                     android:textAppearance="?android:attr/textAppearanceMedium"
                     android:textColor="#030202"
                     android:textSize="20dip" />
+
+                <Button
+                    android:id="@+id/btnDate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:onClick="diaglogDatePick"
+                     />
 
                 <EditText
                     android:id="@+id/eTxtReps"

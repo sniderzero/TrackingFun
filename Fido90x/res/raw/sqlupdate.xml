@@ -1,0 +1,189 @@
+<sql>
+<statement>
+CREATE TABLE IF NOT EXISTS p90Exercises (
+_id INTEGER PRIMARY KEY AUTOINCREMENT,
+dayID INTEGER,
+day VARCHAR(50),
+name VARCHAR(50),
+exernum INTEGER,
+type INTEGER)
+</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('1',1,'Chest/Back','Standard Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('2',1,'Chest/Back','Wide Front Pull-Ups',2,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('3',1,'Chest/Back','Military Push-Ups',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('4',1,'Chest/Back','Reverse Grip Chin-Ups',4,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('5',1,'Chest/Back','Wide Fly Push-Ups',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('6',1,'Chest/Back','Closed Grip Overhand Pull-Ups',6,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('7',1,'Chest/Back','Decline Push-Ups',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('8',1,'Chest/Back','Heavy Pants',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('9',1,'Chest/Back','Diamond Push-Ups',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('10',1,'Chest/Back','Lawnmowers',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('11',1,'Chest/Back','Dive-Bomber Push-Ups',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('12',1,'Chest/Back','Back Flys',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('14',1,'Chest/Back','Standard Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('13',1,'Chest/Back','Wide Front Pull-Ups',13,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('16',1,'Chest/Back','Military Push-Ups',16,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('15',1,'Chest/Back','Reverse Grip Chin-Ups',15,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('18',1,'Chest/Back','Wide Fly Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('17',1,'Chest/Back','Closed Grip Overhand Pull-Ups',17,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('20',1,'Chest/Back','Decline Push-Ups',20,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('19',1,'Chest/Back','Heavy Pants',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('22',1,'Chest/Back','Diamond Push-Ups',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('21',1,'Chest/Back','Lawnmowers',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('24',1,'Chest/Back','Dive-Bomber Push-Ups',24,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('23',1,'Chest/Back','Back Flys',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('25',3,'Shoulders/Arms','Alternating Shoulder Press',1,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('26',3,'Shoulders/Arms','In/Out Bicep Curls',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('27',3,'Shoulders/Arms','Two-Arm Tricep Kickbacks',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('28',3,'Shoulders/Arms','Alternating Shoulder Press',4,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('29',3,'Shoulders/Arms','In/Out Bicep Curls',5,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('30',3,'Shoulders/Arms','Two-Arm Tricep Kickbacks',6,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('31',3,'Shoulders/Arms','Deep Swimmers Press',7,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('32',3,'Shoulders/Arms','Full Supination Concentration Curls',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('33',3,'Shoulders/Arms','Chair Dips',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('34',3,'Shoulders/Arms','Deep Swimmers Press',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('35',3,'Shoulders/Arms','Full Supination Concentration Curls',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('36',3,'Shoulders/Arms','Chair Dips',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('37',3,'Shoulders/Arms','Upright Rows',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('38',3,'Shoulders/Arms','Staic Arm Curls',14,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('39',3,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('40',3,'Shoulders/Arms','Upright Rows',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('41',3,'Shoulders/Arms','Staic Arm Curls',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('42',3,'Shoulders/Arms','Flip-Grip Twist Tricep Kickbacks',18,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('43',3,'Shoulders/Arms','Two-Angle Shoulder Flys',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('44',3,'Shoulders/Arms','Crouching Cohen Curls',20,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('45',3,'Shoulders/Arms','Lying-Down Tricep Extensions',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('46',3,'Shoulders/Arms','Two-Angle Shoulder Flys',22,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('47',3,'Shoulders/Arms','Crouching Cohen Curls',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('48',3,'Shoulders/Arms','Lying-Down Tricep Extensions',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('49',3,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',25,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('50',3,'Shoulders/Arms','Congdon Curls',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('51',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('52',3,'Shoulders/Arms','Side Tri-Rise Right',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('53',3,'Shoulders/Arms','In/Out Straight-Arm Shoulder Flys',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('54',3,'Shoulders/Arms','Congdon Curls',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('55',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('56',3,'Shoulders/Arms','Side Tri-Rise Left',27,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('57',5,'Legs/Back','Balance Lunge Left Leg',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('58',5,'Legs/Back','Balance Lunge Right Leg',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('59',5,'Legs/Back','Calf Raise Squat',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('60',5,'Legs/Back','Reverse Grip Chin-Ups',4,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('61',5,'Legs/Back','Super Skater Left Leg',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('62',5,'Legs/Back','Super Skater Right Leg',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('63',5,'Legs/Back','Wall Squat (sec)',7,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('64',5,'Legs/Back','Wide Front Pull-Ups',8,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('65',5,'Legs/Back','Step Back Lunge Left Leg',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('66',5,'Legs/Back','Step Back Lunge Right Leg',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('67',5,'Legs/Back','Alternating Side Lunge',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('68',5,'Legs/Back','Closed Grip Overhand Pull-Ups',12,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('69',5,'Legs/Back','Single Leg Wall Squat (sec)',13,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('70',5,'Legs/Back','Deadlift Squat Left Leg',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('71',5,'Legs/Back','Deadlift Squat Right Leg',15,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('72',5,'Legs/Back','Switch Grip Pull-Ups',16,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('73',5,'Legs/Back','Three-Way Lunge Right Leg',17,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('74',5,'Legs/Back','Three-Way Lunge Left Leg',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('75',5,'Legs/Back','Sneaky Lunge',19,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('76',5,'Legs/Back','Reverse Grip Chin-Ups',20,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('77',5,'Legs/Back','Chair Salutations (sec)',21,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('78',5,'Legs/Back','Chair Salutations (sec)',22,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('79',5,'Legs/Back','Toe-Roll Iso Lunge',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('80',5,'Legs/Back','Wide Front Pull-Ups',24,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('81',5,'Legs/Back','Groucho Walk',25,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('82',5,'Legs/Back','Calf Raises',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('83',5,'Legs/Back','Closed Grip Overhand Pull-Ups',27,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('84',5,'Legs/Back','80/20 Cyber-Speed Squat Right Leg',28,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('85',5,'Legs/Back','80/20 Cyber-Speed Squat Left Leg',29,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('86',5,'Legs/Back','Switch Grip Pull-Ups',30,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('87',8,'CoreSynergistics','Stack Foot/Stagger Hands Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('88',8,'CoreSynergistics','Banana Rolls',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('89',8,'CoreSynergistics','Leaning Crescent Lunges',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('90',8,'CoreSynergistics','Squat Run',4,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('91',8,'CoreSynergistics','Sphinx Push-Ups',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('92',8,'CoreSynergistics','Bow To Boat',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('93',8,'CoreSynergistics','Low Lateral Skaters',7,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('94',8,'CoreSynergistics','Lunge/Reach',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('95',8,'CoreSynergistics','Prison Cell Push-Ups',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('96',8,'CoreSynergistics','Side Hip Raise Right Side',10,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('97',8,'CoreSynergistics','Side Hip Raise Left Side',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('98',8,'CoreSynergistics','Squat X-Press',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('99',8,'CoreSynergistics','Plank To Chaturanga Run',13,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('100',8,'CoreSynergistics','Walking Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('101',8,'CoreSynergistics','Superman Banana',15,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('102',8,'CoreSynergistics','Lunge-Kickback-Curl-Press',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('103',8,'CoreSynergistics','Towel Hopping',17,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('104',8,'CoreSynergistics','Reach High/Under Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('105',8,'CoreSynergistics','Steam Engine',19,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('106',8,'CoreSynergistics','Dreya Roll',20,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('107',8,'CoreSynergistics','Plank To Chaturanga Iso',21,3)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('108',8,'CoreSynergistics','The Halfback',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('109',8,'CoreSynergistics','Table Dip Leg Raise',23,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('110',10,'Chest/Shoulders/Tricpes','Slow-Motion 3-in-1 Push-Ups',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('111',10,'Chest/Shoulders/Tricpes','In/Out Shoulder Flys',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('112',10,'Chest/Shoulders/Tricpes','Chairs Dips',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('113',10,'Chest/Shoulders/Tricpes','Plange Push-Ups',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('114',10,'Chest/Shoulders/Tricpes','Pike Presses',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('115',10,'Chest/Shoulders/Tricpes','Side Tri-Rises Right Side',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('116',10,'Chest/Shoulders/Tricpes','Side Tri-Rises Left Side',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('117',10,'Chest/Shoulders/Tricpes','Floor Flys',8,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('118',10,'Chest/Shoulders/Tricpes','Scarecrows',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('119',10,'Chest/Shoulders/Tricpes','Overhead Tricep Extensions',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('120',10,'Chest/Shoulders/Tricpes','Two-Twitch Speed Push-Ups',11,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('121',10,'Chest/Shoulders/Tricpes','Y-Presses',12,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('122',10,'Chest/Shoulders/Tricpes','Lying Tricep Extensions',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('123',10,'Chest/Shoulders/Tricpes','Side-To-Side Push-Ups',14,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('124',10,'Chest/Shoulders/Tricpes','Pour Flys',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('125',10,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Right Side',16,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('126',10,'Chest/Shoulders/Tricpes','Side-Leaning Tricep Extensions Left Side',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('127',10,'Chest/Shoulders/Tricpes','One-Arm Push-Ups',18,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('128',10,'Chest/Shoulders/Tricpes','Weighted Circles',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('129',10,'Chest/Shoulders/Tricpes','Throw the Bomb Right Side',20,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('130',10,'Chest/Shoulders/Tricpes','Throw the Bomb Left Side',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('131',10,'Chest/Shoulders/Tricpes','Clap or Plyo Push-Ups',22,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('132',10,'Chest/Shoulders/Tricpes','Slo-Mo Throws',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('133',10,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Right Side',24,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('134',10,'Chest/Shoulders/Tricpes','Front-To Back Tricep Extensions Left Side',25,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('135',10,'Chest/Shoulders/Tricpes','One-Arm Balance Push-Ups',26,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('136',10,'Chest/Shoulders/Tricpes','Fly-Row Presses',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('137',10,'Chest/Shoulders/Tricpes','Dumbbell Cross-Body Blows',28,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('138',9,'Back/Bicpes','Wide Front Pull-Ups',1,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('139',9,'Back/Bicpes','Lawnmowers Right Side',2,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('140',9,'Back/Bicpes','Lawnmowers Left Side',3,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('141',9,'Back/Bicpes','Twenty-Ones',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('142',9,'Back/Bicpes','One-Arm Cross-Body Curls Right Side',5,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('143',9,'Back/Bicpes','One-Arm Cross-Body Curls Left Side',6,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('144',9,'Back/Bicpes','Switch Grip Pull-Ups',7,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('145',9,'Back/Bicpes','Elbows-Out Lawnmowers Right Side',8,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('146',9,'Back/Bicpes','Elbows-Out Lawnmowers Left Side',9,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('147',9,'Back/Bicpes','Standing Bicep Curls',10,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('148',9,'Back/Bicpes','One-Arm Concentration Curls',11,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('149',9,'Back/Bicpes','Corn Cob Pull-Ups',12,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('150',9,'Back/Bicpes','Reverse Grip Bent-Over Rows',13,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('151',9,'Back/Bicpes','Open Arm Curls',14,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('152',9,'Back/Bicpes','Static Arm Curls',15,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('153',9,'Back/Bicpes','Towel Pull-Ups',16,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('154',9,'Back/Bicpes','Congdon Locomotives',17,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('155',9,'Back/Bicpes','Crouching Cohen Curls',18,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('156',9,'Back/Bicpes','One-Arm Corkscrew Curls',19,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('157',9,'Back/Bicpes','Chin-Ups',20,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('158',9,'Back/Bicpes','Seated Bent-Over Back Flys',21,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('159',9,'Back/Bicpes','Curl-Up/Hammer Downs',22,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('160',9,'Back/Bicpes','Hammer Curls',23,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('161',9,'Back/Bicpes','Max Rep Pull-Ups',24,4)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('162',9,'Back/Bicpes','Superman',25,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('163',9,'Back/Bicpes','In-Out Hammer Curls',26,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('164',9,'Back/Bicpes','Strip-Set Curls',27,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('165',9,'Back/Bicpes','Strip-Set Curls',28,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('166',9,'Back/Bicpes','Strip-Set Curls',29,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('167',9,'Back/Bicpes','Strip-Set Curls',30,2)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('168',12,'AbRipperX','In/Out',1,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('169',12,'AbRipperX','Seated Bicycle',2,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('170',12,'AbRipperX','Seated Crunchy Frog',3,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('171',12,'AbRipperX','Crossed leg/Wide Leg Sit-Up',4,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('172',12,'AbRipperX','Fifer Scissors',5,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('173',12,'AbRipperX','Hip Rock N Raise',6,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('174',12,'AbRipperX','Pulse-Up',7,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('175',12,'AbRipperX','Roll-Up/V-Up Combo',8,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('176',12,'AbRipperX','Oblique V-Up',9,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('177',12,'AbRipperX','Leg Climb',10,1)</statement>
+<statement>INSERT INTO "p90Exercises" VALUES('178',12,'AbRipperX','Mason Twist',11,1)</statement>
+</sql>

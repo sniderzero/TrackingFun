@@ -6,6 +6,7 @@ import com.fidotechnologies.ultitrack90.R;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,8 +21,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.DatePicker.OnDateChangedListener;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -41,13 +45,13 @@ protected SQLiteDatabase db;
 protected Cursor cursor, cursor_user;
 protected ListAdapter adapter;
 protected int curPos;
-int dayID, type, hasRIP, dayID2;
+int dayID, type, hasRIP, dayID2, intYear, intMonth, intDay;
 String spnBandStr, spnAssistStr, TimerStr, strDate, eTxtWeightStr, eTxtRepsStr, dayName;
 TextView txtName, txtRepsValue, txtWeightValue, txtTimeValue, txtAssistValue, txtBandValue, txtDateValue;
 TextView lblReps, lblWeight, lblAssist, lblBand, lblLastRound, txtReps, txtWeight, txtTime, txtAssist, txtBand, txtDate;
 Spinner spnBand, spnAssist;
 ArrayAdapter<CharSequence> adapter_band, adapter_rep, adapter_weight, adapter_assist;
-Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop;
+Button btnNext, btnPrev, actionBtn, btnSave, btnStart, btnReset, btnStop, btnDatePicker;
 SharedPreferences preferences;
 String equipPref;
 EditText eTxtReps, eTxtWeight;
@@ -96,6 +100,7 @@ Typeface font;
         btnStart = (Button)findViewById(R.id.startButton);
         btnReset = (Button)findViewById(R.id.resetButton);
         btnStop = (Button)findViewById(R.id.stopButton);
+        btnDatePicker = (Button)findViewById(R.id.btnDate);
         
         //declaring font
         font = Typeface.createFromAsset(getAssets(), "font.otf");
@@ -133,6 +138,12 @@ Typeface font;
                   
         //building home intent
         intentHome = new Intent(this, launch.class);
+        
+        //setting date
+        final Calendar c = Calendar.getInstance();
+        intYear = c.get(Calendar.YEAR);
+        intMonth = c.get(Calendar.MONTH);
+        intDay = c.get(Calendar.DAY_OF_MONTH);
 
         //creating some spinner adapters
         if(equipPref.equals("Generic Bands")) { 
@@ -179,6 +190,9 @@ Typeface font;
      
      // txtName Value based on previous selection criteria
      txtName.setText(cursor.getString(2));
+     
+     strDate = (String) btnDatePicker.getText();
+     btnDatePicker.setText(getDate());
      
      // filling out user stats     
      fillUserStats();
@@ -580,6 +594,15 @@ private void updateTimer (float time){
 	((TextView)findViewById(R.id.timer)).setText(hours + ":" + minutes + ":" + seconds);
 }
 
+private void changeDate() {
+    btnDatePicker.setText(
+            new StringBuilder()
+            // Month is 0 based so add 1
+            .append(intMonth + 1).append("/")
+            .append(intDay).append("/")
+            .append(intYear).append(" "));
+}
+
 
   /* This guy makes a dialog asking if the user wants to share their stats with their friends*/
     public void dialogShare()
@@ -620,7 +643,42 @@ private void updateTimer (float time){
     	
     	alert.show();
     }
+    //dialog box for choosing date
+    public void diaglogDatePick(View v){
+        final Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.datepicker);
+        dialog.setTitle("Choose Exercise Date");
+        dialog.setCancelable(true);
+        //declare dialog buttons
+        Button btnOK = (Button) dialog.findViewById(R.id.btnDateOK);
+        Button btnCancel = (Button) dialog.findViewById(R.id.btnDateCancel);
+        final DatePicker datePicker = (DatePicker) dialog.findViewById(R.id.datePicker);
+        datePicker.init(intYear, intMonth, intDay, null);
 
+					
+				
+      
+        btnOK.setOnClickListener(new OnClickListener() {
+        @Override
+            public void onClick(View v) {
+            intYear = datePicker.getYear();
+            intMonth = datePicker.getMonth();
+            intDay = datePicker.getDayOfMonth();
+            changeDate();        	
+        	dialog.dismiss();
+            }
+        });
+        btnCancel.setOnClickListener(new OnClickListener() {
+        @Override
+            public void onClick(View v) {
+        	dialog.dismiss();
+            }
+        });
+
+    	dialog.show();
+
+    }
+    
     @Override
     public void onBackPressed() {
     	   db.close();
