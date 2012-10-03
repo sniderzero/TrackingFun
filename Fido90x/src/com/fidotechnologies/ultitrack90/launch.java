@@ -79,6 +79,8 @@ public class launch extends Activity {
         edit.putString("runnumber", strRuns);
         edit.commit();
         
+        newDialog();
+        
        //check if the user has given feedback
         if(bnFeedback == false){
         
@@ -140,6 +142,7 @@ public void clickBringIt(View v){
 	if(firstrun == true){
 		db.close();
     	Intent in = new Intent(launch.this, programlist.class);
+    	
     	startActivity(in);
 	}
 	else {
@@ -191,8 +194,8 @@ public void preferenceSelect ()
 //function for rating app
 public void rateApp(){
 	Intent intent = new Intent(Intent.ACTION_VIEW);
-	intent.setData(Uri.parse("market://details?id=com.fidotechnologies.ultitrack90"));  //PLAY STORE
-	//intent.setData(Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=com.fidotechnologies.ultitrack90"));  //AMAZON APP STORE
+	//intent.setData(Uri.parse("market://details?id=com.fidotechnologies.ultitrack90"));  //PLAY STORE
+	intent.setData(Uri.parse("http://www.amazon.com/gp/mas/dl/android?p=com.fidotechnologies.ultitrack90"));  //AMAZON APP STORE
 	//intent.setData(Uri.parse("http://www.barnesandnoble.com/u/NOOK-Apps/379003212"));  //NOOK STORE	
 	startActivity(intent);
 }
@@ -203,20 +206,6 @@ public static boolean isUriAvailable(Context context, String uri) {
     return context.getPackageManager().resolveActivity(test, 0) != null;
 }
 
-
-public void facebookLike(View v){
-	bnURLTest = isUriAvailable(this, "fb://profile/346670485368866/wall");
-	
-	if(bnURLTest = true) {
-	url = "fb://profile/346670485368866/wall";
-	}
-	else{
-	url = "http://www.facebook.com/appsmarttech";
-	}
-	Intent i = new Intent(Intent.ACTION_VIEW);  
-	i.setData(Uri.parse(url));  
-	startActivity(i);
-}
 
 public boolean onCreateOptionsMenu(Menu menu) {
     MenuInflater inflater = getMenuInflater();
@@ -235,4 +224,33 @@ public boolean onOptionsItemSelected(MenuItem item) {
     }
 
 }
+public void newDialog(){
+	final Dialog dialog = new Dialog(launch.this);
+    dialog.setContentView(R.layout.upgradedialog);
+    dialog.setTitle("Update Time!!");
+    dialog.setCancelable(true);
+    //declare dialog buttons
+    Button btnYes = (Button) dialog.findViewById(R.id.btnYes);
+    Button btnNothanks = (Button) dialog.findViewById(R.id.btnNothanks);
+    btnYes.setOnClickListener(new OnClickListener() {
+    @Override
+        public void onClick(View v) {
+    	Intent intent = new Intent(Intent.ACTION_VIEW);
+    	intent.setData(Uri.parse("market://details?id=com.appsmarttech.ut90")); //play store
+    		//intent.setData(Uri.parse("amzn://apps/android?p=com.appsmarttech.ut90")); //amazon app store
+    	startActivity(intent);
+    	dialog.dismiss();
+        }
+    });
+    btnNothanks.setOnClickListener(new OnClickListener() {
+    @Override
+        public void onClick(View v) {
+    	
+    	dialog.dismiss();
+        }
+    });
+	dialog.show();
+
+}
+
 }

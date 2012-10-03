@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/txtEquipment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:paddingBottom="5dp"
+        android:text="UltiTrack 90 has had a complete overhaul!
+\nNew Features include:
+\n - New Interface Design
+\n - Ability to use bands and weights at the same time
+\n - Change workout date for easy history input
+\n - Clear completed flags
+\n - Skip days 
+\n - and More to come!
+ \n
+\n Best of all it&apos;s FREE!"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/llButtons"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/btnNothanks"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="No Thanks" />
+
+        <Button
+            android:id="@+id/btnYes"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Get it Now" />
+
+    </LinearLayout>
+
+</LinearLayout>
